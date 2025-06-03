@@ -1,11 +1,25 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Helper function to display error messages in plot divs
+  function displayError(divId, message) {
+    const div = document.getElementById(divId);
+    div.innerHTML = `<p class="text-red-600 text-center">${message}</p>`;
+  }
+
   // Load 3D surface plot data
   fetch('heston_surface_data.json')
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json();
+    })
     .then(data => {
+      console.log('Surface data loaded:', data);
       const strikes = data.strikes;
       const maturities = data.maturities;
       const prices = data.prices;
+
+      if (!strikes || !maturities || !prices) {
+        throw new Error('Invalid surface data structure');
+      }
 
       const surfaceData = [{
         x: strikes,
@@ -41,15 +55,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
       Plotly.newPlot('surface-plot', surfaceData, surfaceLayout);
     })
-    .catch(error => console.error('Error loading surface data:', error));
+    .catch(error => {
+      console.error('Error loading surface data:', error);
+      displayError('surface-plot', 'Failed to load 3D surface plot. Please ensure heston_surface_data.json is accessible.');
+    });
 
   // Load 2D smile animation data
   fetch('heston_smile_data.json')
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json();
+    })
     .then(data => {
+      console.log('Smile data loaded:', data);
       const strikes = data.strikes;
       const times = data.times;
-      const implied_vols = data.implied_vols;
+      let implied_vols = data.implied_vols;
+
+      if (!strikes || !times || !implied_vols) {
+        throw new Error('Invalid smile data structure');
+      }
+
+      // Filter out invalid 0.2 values by interpolating
+      implied_vols = implied_vols.map(row => {
+        let lastValid = 0.3; // Default fallback
+        return row.map(vol => {
+          if (vol === 0.2 || !isFinite(vol)) {
+            return lastValid;
+          }
+          lastValid = vol;
+          return vol;
+        });
+      });
 
       // Create frames for animation
       const frames = times.map((time, index) => ({
@@ -149,5 +186,8 @@ document.addEventListener('DOMContentLoaded', function () {
         Plotly.addFrames('smile-plot', frames);
       });
     })
-    .catch(error => console.error('Error loading smile data:', error));
+    .catch(error => {
+      console.error('Error loading smile data:', error);
+      displayError('smile-plot', 'Failed to load 2D smile animation. Please ensure heston_smile_data.json is accessible.');
+    });
 });
