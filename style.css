@@ -1,9 +1,4 @@
 /* Custom styles to complement Tailwind */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-body {
-  font-family: 'Inter', sans-serif;
-}
 nav {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -13,20 +8,6 @@ nav a:hover {
 section {
   scroll-margin-top: 80px; /* Adjust for fixed nav */
 }
-#surface-plot, #smile-plot {
-  height: 320px; /* Mobile */
-}
-#vortex-video {
-  height: 192px; /* Mobile */
-}
-@media (min-width: 640px) {
-  #surface-plot {
-    height: 600px; /* Desktop */
-  }
-  #smile-plot {
-    height: 400px; /* Desktop */
-  }
-  #vortex-video {
-    height: 256px; /* Desktop */
-  }
+#plotly-chart {
+  height: 500px;
 }
