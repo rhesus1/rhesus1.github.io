@@ -1,47 +1,153 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Generate data for Heston model volatility surface
-  const strikes = Array.from({ length: 20 }, (_, i) => 80 + i * 2); // Strikes: 80 to 120
-  const volatilities = Array.from({ length: 20 }, (_, i) => 0.1 + i * 0.02); // Vol: 0.1 to 0.5
-  const z = strikes.map(strike => 
-    volatilities.map(vol => {
-      // Simplified Black-Scholes call price as a placeholder (Heston PDE would be more complex)
-      const S = 100; // Spot price
-      const r = 0.05; // Risk-free rate
-      const T = 1; // Time to maturity
-      const d1 = (Math.log(S / strike) + (r + vol * vol / 2) * T) / (vol * Math.sqrt(T));
-      const d2 = d1 - vol * Math.sqrt(T);
-      const callPrice = S * normCDF(d1) - strike * Math.exp(-r * T) * normCDF(d2);
-      return Math.max(0, callPrice); // Ensure non-negative prices
+  // Load 3D surface plot data
+  fetch('heston_surface_data.json')
+    .then(response => response.json())
+    .then(data => {
+      const strikes = data.strikes;
+      const maturities = data.maturities;
+      const prices = data.prices;
+
+      const surfaceData = [{
+        x: strikes,
+        y: maturities,
+        z: prices,
+        type: 'surface',
+        colorscale: 'Plasma',
+        showscale: true,
+        colorbar: {
+          title: 'Call Price ($)',
+          titleside: 'right'
+        }
+      }];
+
+      const surfaceLayout = {
+        title: {
+          text: 'Heston Model: Call Option Price Surface',
+          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          x: 0.5,
+          xanchor: 'center'
+        },
+        scene: {
+          xaxis: { title: 'Strike Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
+          yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
+          zaxis: { title: 'Call Option Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
+          camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
+          bgcolor: 'rgb(255, 255, 255)'
+        },
+        margin: { l: 20, r: 20, b: 20, t: 80 },
+        paper_bgcolor: 'rgb(255, 255, 255)',
+        font: { color: '#1a202c' }
+      };
+
+      Plotly.newPlot('surface-plot', surfaceData, surfaceLayout);
     })
-  );
+    .catch(error => console.error('Error loading surface data:', error));
 
-  // Normal CDF approximation for Black-Scholes
-  function normCDF(x) {
-    const t = 1 / (1 + 0.2316419 * Math.abs(x));
-    const d = 0.3989423 * Math.exp(-x * x / 2);
-    let prob = d * t * (0.31938153 + t * (-0.356563782 + t * (1.781477937 + t * (-1.821255978 + 1.330274429 * t))));
-    return x > 0 ? 1 - prob : prob;
-  }
+  // Load 2D smile animation data
+  fetch('heston_smile_data.json')
+    .then(response => response.json())
+    .then(data => {
+      const strikes = data.strikes;
+      const times = data.times;
+      const implied_vols = data.implied_vols;
 
-  // Plotly 3D surface plot
-  const data = [{
-    x: strikes,
-    y: volatilities,
-    z: z,
-    type: 'surface',
-    colorscale: 'Viridis',
-    showscale: true,
-  }];
+      // Create frames for animation
+      const frames = times.map((time, index) => ({
+        name: `T=${time.toFixed(2)}`,
+        data: [{
+          x: strikes,
+          y: implied_vols[index],
+          type: 'scatter',
+          mode: 'lines+markers',
+          line: { color: '#7b3fe4', width: 2 },
+          marker: { size: 6 }
+        }]
+      }));
 
-  const layout = {
-    title: 'Heston Model: Option Price Surface',
-    scene: {
-      xaxis: { title: 'Strike Price' },
-      yaxis: { title: 'Volatility' },
-      zaxis: { title: 'Call Option Price' },
-    },
-    margin: { l: 20, r: 20, b: 20, t: 50 },
-  };
+      // Initial plot data
+      const plotData = [{
+        x: strikes,
+        y: implied_vols[0],
+        type: 'scatter',
+        mode: 'lines+markers',
+        line: { color: '#7b3fe4', width: 2 },
+        marker: { size: 6 }
+      }];
 
-  Plotly.newPlot('plotly-chart', data, layout);
+      const layout = {
+        title: {
+          text: 'Heston Model: Implied Volatility Smile',
+          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          x: 0.5,
+          xanchor: 'center'
+        },
+        xaxis: {
+          title: 'Strike Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0'
+        },
+        yaxis: {
+          title: 'Implied Volatility',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0',
+          range: [0, Math.max(...implied_vols.flat()) * 1.1]
+        },
+        paper_bgcolor: 'rgb(255, 255, 255)',
+        plot_bgcolor: 'rgb(255, 255, 255)',
+        margin: { l: 60, r: 20, b: 60, t: 80 },
+        updatemenus: [{
+          buttons: [
+            {
+              method: 'animate',
+              args: [null, {
+                frame: { duration: 500, redraw: true },
+                fromcurrent: true,
+                transition: { duration: 300, easing: 'quadratic-in-out' }
+              }],
+              label: 'Play'
+            },
+            {
+              method: 'animate',
+              args: [[null], {
+                mode: 'immediate',
+                frame: { duration: 0 },
+                transition: { duration: 0 }
+              }],
+              label: 'Pause'
+            }
+          ],
+          direction: 'left',
+          pad: { r: 10, t: 10 },
+          showactive: true,
+          type: 'buttons',
+          x: 0.1,
+          xanchor: 'right',
+          y: 0,
+          yanchor: 'top'
+        }],
+        sliders: [{
+          pad: { t: 20 },
+          currentvalue: {
+            prefix: 'Time to Maturity: ',
+            font: { size: 14, color: '#1a202c' }
+          },
+          steps: times.map((time, index) => ({
+            label: `${time.toFixed(2)}`,
+            method: 'animate',
+            args: [[`T=${time.toFixed(2)}`], {
+              mode: 'immediate',
+              frame: { duration: 0 },
+              transition: { duration: 0 }
+            }]
+          }))
+        }]
+      };
+
+      Plotly.newPlot('smile-plot', plotData, layout).then(() => {
+        Plotly.addFrames('smile-plot', frames);
+      });
+    })
+    .catch(error => console.error('Error loading smile data:', error));
 });
