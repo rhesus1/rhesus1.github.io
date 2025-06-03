@@ -1,5 +1,5 @@
 /* Custom styles to complement Tailwind */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 body {
   font-family: 'Inter', sans-serif;
@@ -11,7 +11,7 @@ nav a:hover {
   color: #e0e0e0;
 }
 section {
-  scroll-margin-top: 96px; /* Increased for fixed nav */
+  scroll-margin-top: 96px; /* Adjust for fixed nav */
 }
 #surface-plot, #smile-plot {
   height: 320px; /* Mobile */
