@@ -6,7 +6,7 @@
   <title>Morgan J. Rees - Academic Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body class="bg-gray-100 font-sans">
   <!-- Navigation -->
@@ -27,7 +27,7 @@
   <section id="home" class="container mx-auto py-24 text-center">
     <img src="profile.jpg" alt="Morgan J. Rees" class="w-32 h-32 rounded-full mx-auto mb-4">
     <h2 class="text-3xl font-bold mb-4">Morgan J. Rees</h2>
-    <p class="text-lg text-gray-700 max-w-2xl mx-auto">PhD Candidate in Mathematics at the University of Kent, specialising in computational modeling of topological solitons and quantitative finance. My PhD work focuses on numerical solutions the Abelian-Higgs model. I have also studied numerical solutions for Black-Scholes and Heston PDEs for option pricing.</p>
+    <p class="text-lg text-gray-700 max-w-2xl mx-auto">PhD Candidate in Mathematics at the University of Kent, specializing in computational modeling of topological solitons and quantitative finance. My work focuses on numerical solutions for Black-Scholes and Heston PDEs for option pricing.</p>
   </section>
 
   <!-- About Section -->
@@ -53,9 +53,22 @@
   <!-- Option Pricing Section -->
   <section id="option-pricing" class="bg-white py-12">
     <div class="container mx-auto">
-      <h2 class="text-2xl font-bold mb-4 text-center">Option Pricing Visualization</h2>
-      <p class="text-gray-700 mb-4 max-w-2xl mx-auto text-center">This interactive 3D plot visualizes option prices under the Heston model, computed using numerical PDE solutions. It shows how call option prices vary with strike price and volatility, reflecting my work on solving Black-Scholes and Heston PDEs.</p>
-      <div id="plotly-chart" class="w-full max-w-3xl mx-auto"></div>
+      <h2 class="text-2xl font-bold mb-4 text-center">Option Pricing Visualizations</h2>
+      <p class="text-gray-700 mb-8 max-w-2xl mx-auto text-center">Explore my work on option pricing with these interactive visualizations, computed using the Heston model. The 3D surface plot shows call option prices across strike prices and maturities, while the animated 2D plot illustrates the evolving implied volatility smile over time.</p>
+      
+      <!-- 3D Surface Plot -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-2 text-center">Heston Model: Call Option Price Surface</h3>
+        <p class="text-gray-600 mb-4 max-w-2xl mx-auto text-center">This 3D plot visualizes call option prices as a function of strike price and time to maturity, computed using the Heston model's Fourier method.</p>
+        <div id="surface-plot" class="w-full max-w-3xl mx-auto h-[600px]"></div>
+      </div>
+
+      <!-- Animated 2D Smile Plot -->
+      <div>
+        <h3 class="text-xl font-semibold mb-2 text-center">Heston Model: Implied Volatility Smile Animation</h3>
+        <p class="text-gray-600 mb-4 max-w-2xl mx-auto text-center">This animated plot shows the implied volatility smile (implied volatility vs. strike price) evolving over time, highlighting the Heston model's stochastic volatility dynamics.</p>
+        <div id="smile-plot" class="w-full max-w-3xl mx-auto h-[400px]"></div>
+      </div>
     </div>
   </section>
 
