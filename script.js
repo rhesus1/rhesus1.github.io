@@ -37,23 +37,30 @@ document.addEventListener('DOMContentLoaded', function () {
       const surfaceLayout = {
         title: {
           text: 'Heston Model: Call Option Price Surface',
-          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          font: { size: 16, family: 'Inter, sans-serif', color: '#1a202c' },
           x: 0.5,
           xanchor: 'center'
         },
         scene: {
-          xaxis: { title: 'Strike Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
-          yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
-          zaxis: { title: 'Call Option Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
+          xaxis: { title: 'Strike Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c', size: 12 }, tickfont: { color: '#1a202c', size: 10 } },
+          yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c', size: 12 }, tickfont: { color: '#1a202c', size: 10 } },
+          zaxis: { title: 'Call Option Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c', size: 12 }, tickfont: { color: '#1a202c', size: 10 } },
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
           bgcolor: 'rgb(255, 255, 255)'
         },
-        margin: { l: 20, r: 20, b: 20, t: 80 },
+        margin: { l: 10, r: 10, b: 10, t: 60 },
         paper_bgcolor: 'rgb(255, 255, 255)',
-        font: { color: '#1a202c' }
+        font: { color: '#1a202c' },
+        responsive: true
       };
 
-      Plotly.newPlot('surface-plot', surfaceData, surfaceLayout);
+      const config = {
+        responsive: true,
+        displayModeBar: true,
+        modeBarButtonsToRemove: ['toImage', 'lasso2d', 'select2d']
+      };
+
+      Plotly.newPlot('surface-plot', surfaceData, surfaceLayout, config);
     })
     .catch(error => {
       console.error('Error loading surface data:', error);
@@ -114,26 +121,26 @@ document.addEventListener('DOMContentLoaded', function () {
       const layout = {
         title: {
           text: 'Heston Model: Implied Volatility Smile',
-          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          font: { size: 16, family: 'Inter, sans-serif', color: '#1a202c' },
           x: 0.5,
           xanchor: 'center'
         },
         xaxis: {
           title: 'Strike Price ($)',
-          titlefont: { color: '#1a202c' },
-          tickfont: { color: '#1a202c' },
+          titlefont: { color: '#1a202c', size: 12 },
+          tickfont: { color: '#1a202c', size: 10 },
           gridcolor: '#e2e8f0'
         },
         yaxis: {
           title: 'Implied Volatility',
-          titlefont: { color: '#1a202c' },
-          tickfont: { color: '#1a202c' },
+          titlefont: { color: '#1a202c', size: 12 },
+          tickfont: { color: '#1a202c', size: 10 },
           gridcolor: '#e2e8f0',
           range: [0, Math.max(...implied_vols.flat()) * 1.1]
         },
         paper_bgcolor: 'rgb(255, 255, 255)',
         plot_bgcolor: 'rgb(255, 255, 255)',
-        margin: { l: 60, r: 20, b: 60, t: 80 },
+        margin: { l: 40, r: 10, b: 50, t: 60 },
         updatemenus: [{
           buttons: [
             {
@@ -168,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
           pad: { t: 20 },
           currentvalue: {
             prefix: 'Time to Maturity: ',
-            font: { size: 14, color: '#1a202c' }
+            font: { size: 12, color: '#1a202c' }
           },
           steps: times.map((time, index) => ({
             label: `${time.toFixed(2)}`,
@@ -179,10 +186,17 @@ document.addEventListener('DOMContentLoaded', function () {
               transition: { duration: 0 }
             }]
           }))
-        }]
+        }],
+        responsive: true
       };
 
-      Plotly.newPlot('smile-plot', plotData, layout).then(() => {
+      const config = {
+        responsive: true,
+        displayModeBar: true,
+        modeBarButtonsToRemove: ['toImage', 'lasso2d', 'select2d']
+      };
+
+      Plotly.newPlot('smile-plot', plotData, layout, config).then(() => {
         Plotly.addFrames('smile-plot', frames);
       });
     })
