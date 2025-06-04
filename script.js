@@ -255,6 +255,14 @@ document.addEventListener('DOMContentLoaded', function () {
           line: { color: '#9467bd', width: 2 }
         },
         {
+          x: strikes,
+          y: heston_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Finite Difference',
+          line: { color: '#17becf', width: 2 }
+        },
+        {
           x: market_data.x,
           y: market_data.y,
           type: 'scatter',
