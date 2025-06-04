@@ -202,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const bs_mc = data.bs_mc;
       const heston_fourier = data.heston_fourier;
       const heston_mc = data.heston_mc;
+      const heston_fd = data.heston_fd;
 
       if (!strikes || !bs_analytical || !bs_fd || !bs_mc || !heston_fourier || !heston_mc) {
         throw new Error('Invalid comparison data structure');
