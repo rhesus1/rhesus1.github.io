@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         y: maturities,
         z: prices,
         type: 'surface',
-        colorscale: 'Portland',
+        colorscale: 'Plasma',
         showscale: true,
         colorbar: {
           title: 'Call Price ($)',
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return response.json();
     })
     .then(data => {
-      console.log('Comparison data loaded:', data);
+      console.log('Comparison data:', data);
       const strikes = data.strikes;
       const bs_analytical = data.bs_analytical;
       const bs_fd = data.bs_fd;
@@ -206,6 +206,12 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!strikes || !bs_analytical || !bs_fd || !bs_mc || !heston_fourier || !heston_mc) {
         throw new Error('Invalid comparison data structure');
       }
+
+      // Market data points
+      const market_data = {
+        x: [100, 150, 200, 250, 300],
+        y: [129.07, 83.8333, 45.97, 21.11, 8.34333]
+      };
 
       const plotData = [
         {
@@ -247,6 +253,18 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
+        },
+        {
+          x: market_data.x,
+          y: market_data.y,
+          type: 'scatter',
+          mode: 'markers',
+          name: 'Market Data',
+          marker: {
+            color: 'black',
+            size: 10,
+            symbol: 'star'
+          }
         }
       ];
 
@@ -261,13 +279,15 @@ document.addEventListener('DOMContentLoaded', function () {
           title: 'Strike Price ($)',
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
-          gridcolor: '#e2e8f0'
+          gridcolor: '#e2e8f0',
+          range: [50, 300] // Extended to include market data
         },
         yaxis: {
           title: 'Call Option Price ($)',
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
-          gridcolor: '#e2e8f0'
+          gridcolor: '#e2e8f0',
+          range: [0, Math.max(...bs_analytical, ...bs_fd, ...bs_mc, ...heston_fourier, ...heston_mc, ...market_data.y) * 1.1]
         },
         paper_bgcolor: 'rgb(255, 255, 255)',
         plot_bgcolor: 'rgb(255, 255, 255)',
@@ -284,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
       Plotly.newPlot('comparison-plot', plotData, layout);
     })
     .catch(error => {
-      console.error('Error loading comparison data:', error);
-      displayError('comparison-plot', 'Failed to load comparison plot. Please ensure option_pricing_comparison.json is accessible.');
+      console.error('Comparison plot error:', error);
+      displayError('comparison-plot', 'Failed to load comparison plot: ' + error.message);
     });
 });
