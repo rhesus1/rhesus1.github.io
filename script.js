@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Market data points
       const market_data = {
-        x: [100, 150, 200, 250, 300],
-        y: [129.07, 83.8333, 45.97, 21.11, 8.34333]
+        x: [110, 150, 200, 250, 300],
+        y: [119.657, 83.8333, 45.97, 21.11, 8.34333]
       };
 
       const plotData = [
