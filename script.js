@@ -76,9 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
         throw new Error('Invalid smile data structure');
       }
 
-      // Filter out invalid 0.2 values by interpolating
       implied_vols = implied_vols.map(row => {
-        let lastValid = 0.3; // Default fallback
+        let lastValid = 0.3;
         return row.map(vol => {
           if (vol === 0.2 || !isFinite(vol)) {
             return lastValid;
@@ -88,7 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
       });
 
-      // Create frames for animation
       const frames = times.map((time, index) => ({
         name: `T=${time.toFixed(2)}`,
         data: [{
@@ -101,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }]
       }));
 
-      // Initial plot data
       const plotData = [{
         x: strikes,
         y: implied_vols[0],
@@ -189,5 +186,105 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => {
       console.error('Error loading smile data:', error);
       displayError('smile-plot', 'Failed to load 2D smile animation. Please ensure heston_smile_data.json is accessible.');
+    });
+
+  // Load comparison plot data
+  fetch('option_pricing_comparison.json')
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log('Comparison data loaded:', data);
+      const strikes = data.strikes;
+      const bs_analytical = data.bs_analytical;
+      const bs_fd = data.bs_fd;
+      const bs_mc = data.bs_mc;
+      const heston_fourier = data.heston_fourier;
+      const heston_mc = data.heston_mc;
+
+      if (!strikes || !bs_analytical || !bs_fd || !bs_mc || !heston_fourier || !heston_mc) {
+        throw new Error('Invalid comparison data structure');
+      }
+
+      const plotData = [
+        {
+          x: strikes,
+          y: bs_analytical,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Analytical',
+          line: { color: '#1f77b4', width: 2 }
+        },
+        {
+          x: strikes,
+          y: bs_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Finite Difference',
+          line: { color: '#ff7f0e', width: 2 }
+        },
+        {
+          x: strikes,
+          y: bs_mc,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Monte Carlo',
+          line: { color: '#2ca02c', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_fourier,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Fourier',
+          line: { color: '#d62728', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_mc,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Monte Carlo',
+          line: { color: '#9467bd', width: 2 }
+        }
+      ];
+
+      const layout = {
+        title: {
+          text: 'Option Pricing Model Comparison',
+          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          x: 0.5,
+          xanchor: 'center'
+        },
+        xaxis: {
+          title: 'Strike Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0'
+        },
+        yaxis: {
+          title: 'Call Option Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0'
+        },
+        paper_bgcolor: 'rgb(255, 255, 255)',
+        plot_bgcolor: 'rgb(255, 255, 255)',
+        margin: { l: 60, r: 20, b: 60, t: 80 },
+        showlegend: true,
+        legend: {
+          x: 1,
+          xanchor: 'right',
+          y: 1,
+          bgcolor: 'rgba(255, 255, 255, 0.5)'
+        }
+      };
+
+      Plotly.newPlot('comparison-plot', plotData, layout);
+    })
+    .catch(error => {
+      console.error('Error loading comparison data:', error);
+      displayError('comparison-plot', 'Failed to load comparison plot. Please ensure option_pricing_comparison.json is accessible.');
     });
 });
