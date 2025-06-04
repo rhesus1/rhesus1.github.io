@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         y: maturities,
         z: prices,
         type: 'surface',
-        colorscale: 'Plasma',
+        colorscale: 'Portland',
         showscale: true,
         colorbar: {
           title: 'Call Price ($)',
