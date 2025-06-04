@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [100, 300] // Extended to include market data
+          range: [110, 300] // Extended to include market data
         },
         yaxis: {
           title: 'Call Option Price ($)',
