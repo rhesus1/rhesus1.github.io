@@ -76,16 +76,16 @@ document.addEventListener('DOMContentLoaded', function () {
         throw new Error('Invalid smile data structure');
       }
 
-      implied_vols = implied_vols.map(row => {
-        let lastValid = 0.3;
-        return row.map(vol => {
-          if (vol === 0.2 || !isFinite(vol)) {
-            return lastValid;
-          }
-          lastValid = vol;
-          return vol;
-        });
-      });
+      //implied_vols = implied_vols.map(row => {
+      //  let lastValid = 0.3;
+      //  return row.map(vol => {
+       //   if (vol === 0.2 || !isFinite(vol)) {
+        //    return lastValid;
+        //  }
+        //  lastValid = vol;
+        //  return vol;
+       // });
+     // });
 
       const frames = times.map((time, index) => ({
         name: `T=${time.toFixed(2)}`,
