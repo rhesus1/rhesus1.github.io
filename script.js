@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       const layout = {
         title: {
-          text: 'Option Pricing Model Comparison',
+          text: 'Call Option Pricing Model Comparison',
           font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
           x: 0.5,
           xanchor: 'center'
@@ -439,7 +439,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       };
 
-      Plotly.newPlot('comparison-plot', plotData, layout);
+      Plotly.newPlot('comparison-plot-put', plotData, layout);
     })
     .catch(error => {
       console.error('Comparison plot error:', error);
