@@ -5,123 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     div.innerHTML = `<p class="text-red-600 text-center">${message}</p>`;
   }
 
-  // Reusable function to generate comparison plots
-  function plotComparison(divId, jsonFile, title, yAxisTitle) {
-    fetch(jsonFile)
-      .then(response => {
-        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-        return response.json();
-      })
-      .then(data => {
-        console.log(`${title} data:`, data);
-        const { strikes, bs_analytical, bs_fd, bs_mc, heston_fourier, heston_mc, heston_fd, market_data } = data;
-
-        // Validate data
-        if (!strikes || !bs_analytical || !bs_fd || !bs_mc || !heston_fourier || !heston_mc || !heston_fd || !market_data) {
-          throw new Error('Invalid comparison data structure');
-        }
-
-        const plotData = [
-          {
-            x: strikes,
-            y: bs_analytical,
-            type: 'scatter',
-            mode: 'lines',
-            name: 'Black-Scholes Analytical',
-            line: { color: '#1f77b4', width: 2 }
-          },
-          {
-            x: strikes,
-            y: bs_fd,
-            type: 'scatter',
-            mode: 'lines',
-            name: 'Black-Scholes Finite Difference',
-            line: { color: '#ff7f0e', width: 2 }
-          },
-          {
-            x: strikes,
-            y: bs_mc,
-            type: 'scatter',
-            mode: 'lines',
-            name: 'Black-Scholes Monte Carlo',
-            line: { color: '#2ca02c', width: 2 }
-          },
-          {
-            x: strikes,
-            y: heston_fourier,
-            type: 'scatter',
-            mode: 'lines',
-            name: 'Heston Fourier',
-            line: { color: '#d62728', width: 2 }
-          },
-          {
-            x: strikes,
-            y: heston_mc,
-            type: 'scatter',
-            mode: 'lines',
-            name: 'Heston Monte Carlo',
-            line: { color: '#9467bd', width: 2 }
-          },
-          {
-            x: strikes,
-            y: heston_fd,
-            type: 'scatter',
-            mode: 'lines',
-            name: 'Heston Finite Difference',
-            line: { color: '#17becf', width: 2 }
-          },
-          {
-            x: market_data.x,
-            y: market_data.y,
-            type: 'scatter',
-            mode: 'markers',
-            name: 'Market Data',
-            marker: { color: 'black', size: 10, symbol: 'star' }
-          }
-        ];
-
-        const layout = {
-          title: {
-            text: title,
-            font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
-            x: 0.5,
-            xanchor: 'center'
-          },
-          xaxis: {
-            title: 'Strike Price ($)',
-            titlefont: { color: '#1a202c' },
-            tickfont: { color: '#1a202c' },
-            gridcolor: '#e2e8f0',
-            range: [Math.min(...strikes), Math.max(...strikes)]
-          },
-          yaxis: {
-            title: yAxisTitle,
-            titlefont: { color: '#1a202c' },
-            tickfont: { color: '#1a202c' },
-            gridcolor: '#e2e8f0',
-            range: [0, Math.max(...bs_analytical, ...bs_fd, ...bs_mc, ...heston_fourier, ...heston_mc, ...heston_fd, ...market_data.y) * 1.1]
-          },
-          paper_bgcolor: 'rgb(255, 255, 255)',
-          plot_bgcolor: 'rgb(255, 255, 255)',
-          margin: { l: 60, r: 20, b: 60, t: 80 },
-          showlegend: true,
-          legend: {
-            x: 1,
-            xanchor: 'right',
-            y: 1,
-            bgcolor: 'rgba(255, 255, 255, 0.5)'
-          }
-        };
-
-        Plotly.newPlot(divId, plotData, layout);
-      })
-      .catch(error => {
-        console.error(`${title} plot error:`, error);
-        displayError(divId, `Failed to load ${title.toLowerCase()}: ${error.message}`);
-      });
-  }
-
-  // Load 3D surface plot
+  // Load 3D surface plot data
   fetch('heston_surface_data.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -129,7 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .then(data => {
       console.log('Surface data loaded:', data);
-      const { strikes, maturities, prices } = data;
+      const strikes = data.strikes;
+      const maturities = data.maturities;
+      const prices = data.prices;
 
       if (!strikes || !maturities || !prices) {
         throw new Error('Invalid surface data structure');
@@ -142,7 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
         type: 'surface',
         colorscale: 'Portland',
         showscale: true,
-        colorbar: { title: 'Call Price ($)', titleside: 'right' }
+        colorbar: {
+          title: 'Call Price ($)',
+          titleside: 'right'
+        }
       }];
 
       const surfaceLayout = {
@@ -171,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       displayError('surface-plot', 'Failed to load 3D surface plot. Please ensure heston_surface_data.json is accessible.');
     });
 
-  // Load 2D smile animation
+  // Load 2D smile animation data
   fetch('heston_smile_data.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -179,11 +68,24 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .then(data => {
       console.log('Smile data loaded:', data);
-      const { strikes, times, implied_vols } = data;
+      const strikes = data.strikes;
+      const times = data.times;
+      let implied_vols = data.implied_vols;
 
       if (!strikes || !times || !implied_vols) {
         throw new Error('Invalid smile data structure');
       }
+
+      //implied_vols = implied_vols.map(row => {
+      //  let lastValid = 0.3;
+      //  return row.map(vol => {
+       //   if (vol === 0.2 || !isFinite(vol)) {
+        //    return lastValid;
+        //  }
+        //  lastValid = vol;
+        //  return vol;
+       // });
+     // });
 
       const frames = times.map((time, index) => ({
         name: `T=${time.toFixed(2)}`,
@@ -286,7 +188,261 @@ document.addEventListener('DOMContentLoaded', function () {
       displayError('smile-plot', 'Failed to load 2D smile animation. Please ensure heston_smile_data.json is accessible.');
     });
 
-  // Generate call and put option comparison plots
-  plotComparison('comparison-plot', 'call_option_pricing_comparison.json', 'Call Option Pricing Model Comparison', 'Call Option Price ($)');
-  plotComparison('comparison-plot-put', 'put_option_pricing_comparison.json', 'Put Option Pricing Model Comparison', 'Put Option Price ($)');
+  // Load comparison plot data
+  fetch('call_option_pricing_comparison.json')
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log('Comparison data:', data);
+      const strikes = data.strikes;
+      const bs_analytical = data.bs_analytical;
+      const bs_fd = data.bs_fd;
+      const bs_mc = data.bs_mc;
+      const heston_fourier = data.heston_fourier;
+      const heston_mc = data.heston_mc;
+      const heston_fd = data.heston_fd;
+
+      if (!strikes || !bs_analytical || !bs_fd || !bs_mc || !heston_fourier || !heston_mc) {
+        throw new Error('Invalid comparison data structure');
+      }
+
+      // Market data points
+      const market_data = {
+        x: [155, 175, 200, 225, 250],
+        y: [81.5667, 64.45, 45.97, 32.1467, 21.11]
+      };
+
+      const plotData = [
+        {
+          x: strikes,
+          y: bs_analytical,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Analytical',
+          line: { color: '#1f77b4', width: 2 }
+        },
+        {
+          x: strikes,
+          y: bs_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Finite Difference',
+          line: { color: '#ff7f0e', width: 2 }
+        },
+        {
+          x: strikes,
+          y: bs_mc,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Monte Carlo',
+          line: { color: '#2ca02c', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_fourier,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Fourier',
+          line: { color: '#d62728', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_mc,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Monte Carlo',
+          line: { color: '#9467bd', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Finite Difference',
+          line: { color: '#17becf', width: 2 }
+        },
+        {
+          x: market_data.x,
+          y: market_data.y,
+          type: 'scatter',
+          mode: 'markers',
+          name: 'Market Data',
+          marker: {
+            color: 'black',
+            size: 10,
+            symbol: 'star'
+          }
+        }
+      ];
+
+      const layout = {
+        title: {
+          text: 'Call Option Pricing Model Comparison',
+          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          x: 0.5,
+          xanchor: 'center'
+        },
+        xaxis: {
+          title: 'Strike Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0',
+          range: [150, 255] 
+        },
+        yaxis: {
+          title: 'Call Option Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0',
+          range: [0, Math.max(...bs_analytical, ...bs_fd, ...bs_mc, ...heston_fourier, ...heston_mc, ...market_data.y) * 1.1]
+        },
+        paper_bgcolor: 'rgb(255, 255, 255)',
+        plot_bgcolor: 'rgb(255, 255, 255)',
+        margin: { l: 60, r: 20, b: 60, t: 80 },
+        showlegend: true,
+        legend: {
+          x: 1,
+          xanchor: 'right',
+          y: 1,
+          bgcolor: 'rgba(255, 255, 255, 0.5)'
+        }
+      };
+
+      Plotly.newPlot('comparison-plot', plotData, layout);
+    })
+    .catch(error => {
+      console.error('Comparison plot error:', error);
+      displayError('comparison-plot', 'Failed to load comparison plot: ' + error.message);
+    });
+
+  // Load comparison plot data
+  fetch('put_option_pricing_comparison.json')
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log('Comparison data:', data);
+      const strikes = data.strikes;
+      const bs_analytical = data.bs_analytical;
+      const bs_fd = data.bs_fd;
+      const bs_mc = data.bs_mc;
+      const heston_fourier = data.heston_fourier;
+      const heston_mc = data.heston_mc;
+      const heston_fd = data.heston_fd;
+
+      if (!strikes || !bs_analytical || !bs_fd || !bs_mc || !heston_fourier || !heston_mc) {
+        throw new Error('Invalid comparison data structure');
+      }
+
+      // Market data points
+      const market_data = {
+        x: [155, 175, 200, 225, 250],
+        y: [81.5667, 64.45, 45.97, 32.1467, 21.11]
+      };
+
+      const plotData = [
+        {
+          x: strikes,
+          y: bs_analytical,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Analytical',
+          line: { color: '#1f77b4', width: 2 }
+        },
+        {
+          x: strikes,
+          y: bs_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Finite Difference',
+          line: { color: '#ff7f0e', width: 2 }
+        },
+        {
+          x: strikes,
+          y: bs_mc,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Monte Carlo',
+          line: { color: '#2ca02c', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_fourier,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Fourier',
+          line: { color: '#d62728', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_mc,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Monte Carlo',
+          line: { color: '#9467bd', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Finite Difference',
+          line: { color: '#17becf', width: 2 }
+        },
+        {
+          x: market_data.x,
+          y: market_data.y,
+          type: 'scatter',
+          mode: 'markers',
+          name: 'Market Data',
+          marker: {
+            color: 'black',
+            size: 10,
+            symbol: 'star'
+          }
+        }
+      ];
+
+      const layout = {
+        title: {
+          text: 'Put Option Pricing Model Comparison',
+          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          x: 0.5,
+          xanchor: 'center'
+        },
+        xaxis: {
+          title: 'Strike Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0',
+          range: [150, 255] 
+        },
+        yaxis: {
+          title: 'Put Option Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0',
+          range: [0, Math.max(...bs_analytical, ...bs_fd, ...bs_mc, ...heston_fourier, ...heston_mc, ...market_data.y) * 1.1]
+        },
+        paper_bgcolor: 'rgb(255, 255, 255)',
+        plot_bgcolor: 'rgb(255, 255, 255)',
+        margin: { l: 60, r: 20, b: 60, t: 80 },
+        showlegend: true,
+        legend: {
+          x: 1,
+          xanchor: 'right',
+          y: 1,
+          bgcolor: 'rgba(255, 255, 255, 0.5)'
+        }
+      };
+
+      Plotly.newPlot('comparison-plot-put', plotData, layout);
+    })
+    .catch(error => {
+      console.error('Comparison plot error:', error);
+      displayError('comparison-plot-put', 'Failed to load comparison plot: ' + error.message);
+    });
 });
