@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [10, 300] 
+          range: [110, 300] 
         },
         yaxis: {
           title: 'Call Option Price ($)',
@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [10, 300] 
+          range: [110, 300] 
         },
         yaxis: {
           title: 'Put Option Price ($)',
