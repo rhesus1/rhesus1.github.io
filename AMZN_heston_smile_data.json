@@ -3,19 +3,19 @@
     "T": 0.25,
     "data": [
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 90.0
         },
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 100.0
         },
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 110.0
         },
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 120.0
         },
         {
@@ -27,7 +27,7 @@
             "strike": 140.0
         },
         {
-            "implied_vol": 0.14757703761063978,
+            "implied_vol": null,
             "strike": 150.0
         },
         {
@@ -35,7 +35,7 @@
             "strike": 160.0
         },
         {
-            "implied_vol": 0.09822501105951208,
+            "implied_vol": 0.4364183808057457,
             "strike": 170.0
         },
         {
@@ -43,15 +43,15 @@
             "strike": 180.0
         },
         {
-            "implied_vol": 0.05426205792132249,
+            "implied_vol": 0.4364183772648627,
             "strike": 190.0
         },
         {
-            "implied_vol": 0.03260483746439336,
+            "implied_vol": 0.43641838223885143,
             "strike": 200.0
         },
         {
-            "implied_vol": 0.01259269667721037,
+            "implied_vol": 0.4364183772482545,
             "strike": 210.0
         },
         {
@@ -75,11 +75,11 @@
             "strike": 260.0
         },
         {
-            "implied_vol": 52.92519608147935,
+            "implied_vol": 0.43641837756879237,
             "strike": 270.0
         },
         {
-            "implied_vol": 0.10333000292019719,
+            "implied_vol": 0.43641837985050347,
             "strike": 280.0
         }
     ],
