@@ -3,83 +3,83 @@
     "T": 0.25,
     "data": [
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 90.0
         },
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 100.0
         },
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 110.0
         },
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 120.0
         },
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 130.0
         },
         {
-            "implied_vol": 0.16908117076001875,
+            "implied_vol": null,
             "strike": 140.0
         },
         {
-            "implied_vol": 0.14757703761063978,
+            "implied_vol": null,
             "strike": 150.0
         },
         {
-            "implied_vol": 0.11879766156178123,
+            "implied_vol": null,
             "strike": 160.0
         },
         {
-            "implied_vol": 0.09822501105951208,
+            "implied_vol": null,
             "strike": 170.0
         },
         {
-            "implied_vol": 0.07345870694031922,
+            "implied_vol": null,
             "strike": 180.0
         },
         {
-            "implied_vol": 0.05426205792132249,
+            "implied_vol": 1.4622192242233523,
             "strike": 190.0
         },
         {
-            "implied_vol": 0.03260483746439336,
+            "implied_vol": 1.1968790680601509,
             "strike": 200.0
         },
         {
-            "implied_vol": 4.490112658621473,
+            "implied_vol": 0.9547394957625301,
             "strike": 210.0
         },
         {
-            "implied_vol": 23.47802133625909,
+            "implied_vol": 0.8403004654655658,
             "strike": 220.0
         },
         {
-            "implied_vol": 1.4758691874679104,
+            "implied_vol": 0.8399089426846236,
             "strike": 230.0
         },
         {
-            "implied_vol": 0.04272606325263813,
+            "implied_vol": 1.405455904794484,
             "strike": 240.0
         },
         {
-            "implied_vol": 0.06001641381726919,
+            "implied_vol": 1.5067098340281173,
             "strike": 250.0
         },
         {
-            "implied_vol": 0.07369536804671045,
+            "implied_vol": null,
             "strike": 260.0
         },
         {
-            "implied_vol": 0.08892743365867078,
+            "implied_vol": null,
             "strike": 270.0
         },
         {
-            "implied_vol": 0.10333000292019719,
+            "implied_vol": null,
             "strike": 280.0
         }
     ],
