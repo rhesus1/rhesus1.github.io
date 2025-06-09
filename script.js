@@ -191,18 +191,6 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
-        },
-        {
-          x: market_data.x,
-          y: market_data.y,
-          type: 'scatter',
-          mode: 'markers',
-          name: 'Market Data (Heston Fourier)',
-          marker: {
-            color: 'black',
-            size: 10,
-            symbol: 'star'
-          }
         }
       ];
 
@@ -218,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [110, 300]
+          range: [180, 280]
         },
         yaxis: {
           title: 'Call Option Price ($)',
@@ -302,18 +290,6 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
-        },
-        {
-          x: market_data.x,
-          y: market_data.y,
-          type: 'scatter',
-          mode: 'markers',
-          name: 'Market Data (Heston Fourier)',
-          marker: {
-            color: 'black',
-            size: 10,
-            symbol: 'star'
-          }
         }
       ];
 
@@ -329,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [110, 300]
+          range: [180, 280]
         },
         yaxis: {
           title: 'Put Option Price ($)',
