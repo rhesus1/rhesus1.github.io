@@ -39,39 +39,39 @@
             "strike": 170.0
         },
         {
-            "implied_vol": 1.040408653391502,
+            "implied_vol": null,
             "strike": 180.0
         },
         {
-            "implied_vol": 0.7714009517212688,
+            "implied_vol": 0.7172183325876023,
             "strike": 190.0
         },
         {
-            "implied_vol": 0.573005672361992,
+            "implied_vol": 0.4881612302118135,
             "strike": 200.0
         },
         {
-            "implied_vol": 0.6885834355371319,
+            "implied_vol": 0.3739264688592324,
             "strike": 210.0
         },
         {
-            "implied_vol": 0.4111390346722157,
+            "implied_vol": 0.3416125543070236,
             "strike": 220.0
         },
         {
-            "implied_vol": 0.43119229973574213,
+            "implied_vol": 0.3727554815939317,
             "strike": 230.0
         },
         {
-            "implied_vol": 0.5114634655528808,
+            "implied_vol": 0.468818913001688,
             "strike": 240.0
         },
         {
-            "implied_vol": 0.644337483954094,
+            "implied_vol": 0.6308050761907508,
             "strike": 250.0
         },
         {
-            "implied_vol": 0.8133933114547193,
+            "implied_vol": 0.8510991505726281,
             "strike": 260.0
         },
         {
