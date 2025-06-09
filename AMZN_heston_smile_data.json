@@ -3,19 +3,19 @@
     "T": 0.25,
     "data": [
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 90.0
         },
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 100.0
         },
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 110.0
         },
         {
-            "implied_vol": 0.2,
+            "implied_vol": null,
             "strike": 120.0
         },
         {
@@ -39,39 +39,39 @@
             "strike": 170.0
         },
         {
-            "implied_vol": 0.7817998834988716,
+            "implied_vol": 1.026833777594753,
             "strike": 180.0
         },
         {
-            "implied_vol": 0.5666928465824957,
+            "implied_vol": 1.0698886038878435,
             "strike": 190.0
         },
         {
-            "implied_vol": 0.4380966675138868,
+            "implied_vol": 0.8228131138312469,
             "strike": 200.0
         },
         {
-            "implied_vol": 0.38396310618549406,
+            "implied_vol": 0.5670351015391907,
             "strike": 210.0
         },
         {
-            "implied_vol": 0.3852355449349773,
+            "implied_vol": 0.5524208129054462,
             "strike": 220.0
         },
         {
-            "implied_vol": 0.4280513340850874,
+            "implied_vol": 0.7514244784980014,
             "strike": 230.0
         },
         {
-            "implied_vol": 0.510855359022394,
+            "implied_vol": 1.0959988595943653,
             "strike": 240.0
         },
         {
-            "implied_vol": 0.6278790988272127,
+            "implied_vol": 1.0000954065933785,
             "strike": 250.0
         },
         {
-            "implied_vol": 0.767392500059803,
+            "implied_vol": 1.028549909785604,
             "strike": 260.0
         },
         {
@@ -84,11 +84,11 @@
         }
     ],
     "params": {
-        "kappa": 0.10086129196113675,
-        "rho": -0.8999179423388433,
-        "sigma": 0.15942145609545155,
-        "theta": 0.12599085526558063,
-        "v0": 0.14113316771303608
+        "kappa": 0.1311603808718654,
+        "rho": -0.10358435555152168,
+        "sigma": 0.01049948273313367,
+        "theta": 0.010665397476992612,
+        "v0": 0.030978312935164707
     },
     "r": 0.05,
     "symbol": "AMZN"
