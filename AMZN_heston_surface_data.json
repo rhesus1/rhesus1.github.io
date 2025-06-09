@@ -16,7 +16,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.0833,
-            "put_price": 0.0,
+            "put_price": 1.9661891730437775e-07,
             "strike": 110.0
         },
         {
@@ -40,19 +40,19 @@
         {
             "call_price": 0.0,
             "maturity": 0.0833,
-            "put_price": 0.0,
+            "put_price": 0.01502640408487721,
             "strike": 150.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.0833,
-            "put_price": 0.0,
+            "put_price": 0.07873146867476644,
             "strike": 160.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.0833,
-            "put_price": 0.0,
+            "put_price": 0.30496019312351574,
             "strike": 170.0
         },
         {
@@ -86,7 +86,7 @@
             "strike": 220.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 5.044217885519394,
             "maturity": 0.0833,
             "put_price": 0.0,
             "strike": 230.0
@@ -104,7 +104,7 @@
             "strike": 250.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 0.8116460278492479,
             "maturity": 0.0833,
             "put_price": 0.0,
             "strike": 260.0
@@ -116,7 +116,7 @@
             "strike": 270.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 0.18934942982188208,
             "maturity": 0.0833,
             "put_price": 0.0,
             "strike": 280.0
@@ -200,31 +200,31 @@
             "strike": 210.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 13.132480174895605,
             "maturity": 0.1667,
             "put_price": 0.0,
             "strike": 220.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 9.469664385208105,
             "maturity": 0.1667,
             "put_price": 0.0,
             "strike": 230.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 6.673903554752549,
             "maturity": 0.1667,
             "put_price": 0.0,
             "strike": 240.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 4.6034428099123375,
             "maturity": 0.1667,
             "put_price": 0.0,
             "strike": 250.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 3.112332765421307,
             "maturity": 0.1667,
             "put_price": 0.0,
             "strike": 260.0
@@ -320,25 +320,25 @@
             "strike": 210.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 16.92473742402545,
             "maturity": 0.25,
             "put_price": 0.0,
             "strike": 220.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 13.113094681707423,
             "maturity": 0.25,
             "put_price": 0.0,
             "strike": 230.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 10.02737075818159,
             "maturity": 0.25,
-            "put_price": 0.0,
+            "put_price": 33.476042876713166,
             "strike": 240.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 7.57473094497,
             "maturity": 0.25,
             "put_price": 0.0,
             "strike": 250.0
@@ -368,9 +368,9 @@
             "strike": 90.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 115.23319156467453,
             "maturity": 0.3333,
-            "put_price": 0.0,
+            "put_price": 0.010500858881817926,
             "strike": 100.0
         },
         {
@@ -388,7 +388,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.3333,
-            "put_price": 0.0,
+            "put_price": 0.31841475499224536,
             "strike": 130.0
         },
         {
@@ -398,33 +398,33 @@
             "strike": 140.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 67.44871143926161,
             "maturity": 0.3333,
-            "put_price": 0.0,
+            "put_price": 1.3996753805725692,
             "strike": 150.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.3333,
-            "put_price": 0.0,
+            "put_price": 2.5128115911410553,
             "strike": 160.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.3333,
-            "put_price": 0.0,
+            "put_price": 4.16398983596747,
             "strike": 170.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 42.99829339490418,
             "maturity": 0.3333,
-            "put_price": 0.0,
+            "put_price": 6.453450124477335,
             "strike": 180.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.3333,
-            "put_price": 0.0,
+            "put_price": 9.454494151927712,
             "strike": 190.0
         },
         {
@@ -440,19 +440,19 @@
             "strike": 210.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 20.181867814363684,
             "maturity": 0.3333,
-            "put_price": 0.0,
+            "put_price": 22.97594826161979,
             "strike": 220.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 16.29630673256682,
             "maturity": 0.3333,
             "put_price": 0.0,
             "strike": 230.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 13.045920392107703,
             "maturity": 0.3333,
             "put_price": 0.0,
             "strike": 240.0
@@ -464,13 +464,13 @@
             "strike": 250.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 8.169243955195249,
             "maturity": 0.3333,
             "put_price": 0.0,
             "strike": 260.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 6.398337362326352,
             "maturity": 0.3333,
             "put_price": 0.0,
             "strike": 270.0
@@ -496,7 +496,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.4167,
-            "put_price": 0.0,
+            "put_price": 0.1055866296420318,
             "strike": 110.0
         },
         {
@@ -514,7 +514,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.4167,
-            "put_price": 0.0,
+            "put_price": 1.1849695520874022,
             "strike": 140.0
         },
         {
@@ -526,7 +526,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.4167,
-            "put_price": 0.0,
+            "put_price": 3.5200845665949814,
             "strike": 160.0
         },
         {
@@ -538,7 +538,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.4167,
-            "put_price": 0.0,
+            "put_price": 8.020350472919574,
             "strike": 180.0
         },
         {
@@ -556,17 +556,17 @@
         {
             "call_price": 0.0,
             "maturity": 0.4167,
-            "put_price": 0.0,
+            "put_price": 19.739754925070088,
             "strike": 210.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 23.094761679630253,
             "maturity": 0.4167,
-            "put_price": 0.0,
+            "put_price": 24.988482466002523,
             "strike": 220.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 19.16991922549147,
             "maturity": 0.4167,
             "put_price": 0.0,
             "strike": 230.0
@@ -578,15 +578,15 @@
             "strike": 240.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 12.975844880270913,
             "maturity": 0.4167,
-            "put_price": 0.0,
+            "put_price": 44.250982137512125,
             "strike": 250.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 10.592199161026201,
             "maturity": 0.4167,
-            "put_price": 0.0,
+            "put_price": 51.661141908557084,
             "strike": 260.0
         },
         {
@@ -608,15 +608,15 @@
             "strike": 90.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 116.11705893207304,
             "maturity": 0.5,
-            "put_price": 0.0,
+            "put_price": 0.07805013490629764,
             "strike": 100.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.5,
-            "put_price": 0.0,
+            "put_price": 0.20690368226142453,
             "strike": 110.0
         },
         {
@@ -626,15 +626,15 @@
             "strike": 120.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 87.72350440734336,
             "maturity": 0.5,
-            "put_price": 0.0,
+            "put_price": 0.9437929710265944,
             "strike": 130.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.5,
-            "put_price": 0.0,
+            "put_price": 1.7162627495942022,
             "strike": 140.0
         },
         {
@@ -646,7 +646,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.5,
-            "put_price": 0.0,
+            "put_price": 4.510725709386225,
             "strike": 160.0
         },
         {
@@ -662,9 +662,9 @@
             "strike": 180.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 41.10368907051304,
             "maturity": 0.5,
-            "put_price": 0.0,
+            "put_price": 12.842572355896245,
             "strike": 190.0
         },
         {
@@ -676,11 +676,11 @@
         {
             "call_price": 0.0,
             "maturity": 0.5,
-            "put_price": 0.0,
+            "put_price": 21.5083930317618,
             "strike": 210.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 25.75401757226504,
             "maturity": 0.5,
             "put_price": 0.0,
             "strike": 220.0
@@ -698,13 +698,13 @@
             "strike": 240.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 15.436512596270006,
             "maturity": 0.5,
-            "put_price": 0.0,
+            "put_price": 45.69399060335314,
             "strike": 250.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 12.912818272668574,
             "maturity": 0.5,
             "put_price": 0.0,
             "strike": 260.0
@@ -716,21 +716,21 @@
             "strike": 270.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 8.949505370453913,
             "maturity": 0.5,
-            "put_price": 0.0,
+            "put_price": 68.46628073838704,
             "strike": 280.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.5833,
-            "put_price": 0.0,
+            "put_price": 0.05090817604663267,
             "strike": 90.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 116.58819312214497,
             "maturity": 0.5833,
-            "put_price": 0.0,
+            "put_price": 0.14381251940970619,
             "strike": 100.0
         },
         {
@@ -746,9 +746,9 @@
             "strike": 120.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 88.63614757824,
             "maturity": 0.5833,
-            "put_price": 0.0,
+            "put_price": 1.3294527946841264,
             "strike": 130.0
         },
         {
@@ -760,7 +760,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.5833,
-            "put_price": 0.0,
+            "put_price": 3.635606233887806,
             "strike": 150.0
         },
         {
@@ -772,7 +772,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.5833,
-            "put_price": 0.0,
+            "put_price": 7.837980614639378,
             "strike": 170.0
         },
         {
@@ -782,9 +782,9 @@
             "strike": 180.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 43.32523909973645,
             "maturity": 0.5833,
-            "put_price": 0.0,
+            "put_price": 14.293915954539415,
             "strike": 190.0
         },
         {
@@ -812,7 +812,7 @@
             "strike": 230.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 20.79753215555661,
             "maturity": 0.5833,
             "put_price": 0.0,
             "strike": 240.0
@@ -830,15 +830,15 @@
             "strike": 260.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 12.866590074080825,
             "maturity": 0.5833,
             "put_price": 0.0,
             "strike": 270.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 10.911610447368169,
             "maturity": 0.5833,
-            "put_price": 0.0,
+            "put_price": 69.29334475970936,
             "strike": 280.0
         },
         {
@@ -848,15 +848,15 @@
             "strike": 90.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 117.07998704454074,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 0.23143589019226707,
             "strike": 100.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 107.6835315513131,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 0.5071252815297629,
             "strike": 110.0
         },
         {
@@ -866,15 +866,15 @@
             "strike": 120.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 89.57607258696548,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 1.743956086312453,
             "strike": 130.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 81.01489073920222,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 2.854919123114323,
             "strike": 140.0
         },
         {
@@ -884,9 +884,9 @@
             "strike": 150.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 65.21200907150391,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 6.396327224546347,
             "strike": 160.0
         },
         {
@@ -896,15 +896,15 @@
             "strike": 170.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 51.46841187553687,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 11.997019797709633,
             "strike": 180.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 45.42412839356429,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 15.624881200302191,
             "strike": 190.0
         },
         {
@@ -914,9 +914,9 @@
             "strike": 200.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 34.97817892043459,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 24.52322149630278,
             "strike": 210.0
         },
         {
@@ -932,9 +932,9 @@
             "strike": 230.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 23.0812578526553,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 41.642735082218934,
             "strike": 240.0
         },
         {
@@ -950,15 +950,15 @@
             "strike": 260.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 14.908610664676438,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 62.48652254793552,
             "strike": 270.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 12.841457182314798,
             "maturity": 0.6667,
-            "put_price": 0.0,
+            "put_price": 70.09151395013902,
             "strike": 280.0
         },
         {
@@ -968,15 +968,15 @@
             "strike": 90.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 117.589721203411,
             "maturity": 0.75,
-            "put_price": 0.0,
+            "put_price": 0.3391629754931964,
             "strike": 100.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.75,
-            "put_price": 0.0,
+            "put_price": 0.6967262635364122,
             "strike": 110.0
         },
         {
@@ -986,9 +986,9 @@
             "strike": 120.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 90.53064629002958,
             "maturity": 0.75,
-            "put_price": 0.0,
+            "put_price": 2.1759205937364126,
             "strike": 130.0
         },
         {
@@ -1006,7 +1006,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.75,
-            "put_price": 0.0,
+            "put_price": 7.282687309568349,
             "strike": 160.0
         },
         {
@@ -1022,9 +1022,9 @@
             "strike": 180.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 47.414875855660725,
             "maturity": 0.75,
-            "put_price": 0.0,
+            "put_price": 16.851815222616864,
             "strike": 190.0
         },
         {
@@ -1034,9 +1034,9 @@
             "strike": 200.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 37.13207561324978,
             "maturity": 0.75,
-            "put_price": 0.0,
+            "put_price": 25.832903334622372,
             "strike": 210.0
         },
         {
@@ -1052,13 +1052,13 @@
             "strike": 230.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 25.251427924288322,
             "maturity": 0.75,
-            "put_price": 0.0,
+            "put_price": 42.848088177285575,
             "strike": 240.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 22.117052678167298,
             "maturity": 0.75,
             "put_price": 0.0,
             "strike": 250.0
@@ -1070,33 +1070,33 @@
             "strike": 260.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 16.888530518294274,
             "maturity": 0.75,
-            "put_price": 0.0,
+            "put_price": 63.38102330291619,
             "strike": 270.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 14.729398352256133,
             "maturity": 0.75,
-            "put_price": 0.0,
+            "put_price": 70.85383531408624,
             "strike": 280.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 127.45323431068846,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 0.21042932904937728,
             "strike": 90.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 118.11583898663291,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 0.4649445625894524,
             "strike": 100.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 108.96553040070697,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 0.9065465342591787,
             "strike": 110.0
         },
         {
@@ -1106,9 +1106,9 @@
             "strike": 120.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 91.49347477984438,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 2.618312028587898,
             "strike": 130.0
         },
         {
@@ -1120,7 +1120,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 5.839520128607919,
             "strike": 150.0
         },
         {
@@ -1130,9 +1130,9 @@
             "strike": 160.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 61.42236984719702,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 10.914849326323193,
             "strike": 170.0
         },
         {
@@ -1142,9 +1142,9 @@
             "strike": 180.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 49.314897383935445,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 17.991197978252927,
             "strike": 190.0
         },
         {
@@ -1154,15 +1154,15 @@
             "strike": 200.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 39.17981344963809,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 27.03993515914688,
             "strike": 210.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 32.26004076949195,
             "strike": 220.0
         },
         {
@@ -1172,9 +1172,9 @@
             "strike": 230.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 27.326182319959614,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 43.962035702255335,
             "strike": 240.0
         },
         {
@@ -1190,15 +1190,15 @@
             "strike": 260.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 18.811682717794042,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 64.22326777287671,
             "strike": 270.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 16.576155415872677,
             "maturity": 0.8333,
-            "put_price": 0.0,
+            "put_price": 71.57965102855101,
             "strike": 280.0
         },
         {
@@ -1210,13 +1210,13 @@
         {
             "call_price": 0.0,
             "maturity": 0.9167,
-            "put_price": 0.0,
+            "put_price": 0.6066388463940786,
             "strike": 100.0
         },
         {
             "call_price": 0.0,
             "maturity": 0.9167,
-            "put_price": 0.0,
+            "put_price": 1.1328219672657465,
             "strike": 110.0
         },
         {
@@ -1234,7 +1234,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.9167,
-            "put_price": 0.0,
+            "put_price": 4.586890312853818,
             "strike": 140.0
         },
         {
@@ -1246,7 +1246,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.9167,
-            "put_price": 0.0,
+            "put_price": 8.945357611676172,
             "strike": 160.0
         },
         {
@@ -1256,9 +1256,9 @@
             "strike": 170.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 56.836707763904556,
             "maturity": 0.9167,
-            "put_price": 0.0,
+            "put_price": 15.202628044730538,
             "strike": 180.0
         },
         {
@@ -1276,7 +1276,7 @@
         {
             "call_price": 0.0,
             "maturity": 0.9167,
-            "put_price": 0.0,
+            "put_price": 28.16043317355799,
             "strike": 210.0
         },
         {
@@ -1286,9 +1286,9 @@
             "strike": 220.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 32.86891042578836,
             "maturity": 0.9167,
-            "put_price": 0.0,
+            "put_price": 38.994808562399314,
             "strike": 230.0
         },
         {
@@ -1298,13 +1298,13 @@
             "strike": 240.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 26.124535550493505,
             "maturity": 0.9167,
             "put_price": 0.0,
             "strike": 250.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 23.25494971071801,
             "maturity": 0.9167,
             "put_price": 0.0,
             "strike": 260.0
@@ -1322,15 +1322,15 @@
             "strike": 280.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 128.33943690599907,
             "maturity": 1.0,
-            "put_price": 0.0,
+            "put_price": 0.3800851110633259,
             "strike": 90.0
         },
         {
             "call_price": 0.0,
             "maturity": 1.0,
-            "put_price": 0.0,
+            "put_price": 0.7616320828100767,
             "strike": 100.0
         },
         {
@@ -1348,7 +1348,7 @@
         {
             "call_price": 0.0,
             "maturity": 1.0,
-            "put_price": 0.0,
+            "put_price": 3.514647125763318,
             "strike": 130.0
         },
         {
@@ -1358,9 +1358,9 @@
             "strike": 140.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 78.0967462920706,
             "maturity": 1.0,
-            "put_price": 0.0,
+            "put_price": 7.211159967177711,
             "strike": 150.0
         },
         {
@@ -1370,9 +1370,9 @@
             "strike": 160.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 64.56141608428472,
             "maturity": 1.0,
-            "put_price": 0.0,
+            "put_price": 12.70041824940612,
             "strike": 170.0
         },
         {
@@ -1384,7 +1384,7 @@
         {
             "call_price": 0.0,
             "maturity": 1.0,
-            "put_price": 0.0,
+            "put_price": 20.052350268281508,
             "strike": 190.0
         },
         {
@@ -1400,13 +1400,13 @@
             "strike": 210.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 38.708217800783615,
             "maturity": 1.0,
-            "put_price": 0.0,
+            "put_price": 34.408691190940715,
             "strike": 220.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 34.790688580697804,
             "maturity": 1.0,
             "put_price": 0.0,
             "strike": 230.0
@@ -1418,13 +1418,13 @@
             "strike": 240.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 28.022110115899395,
             "maturity": 1.0,
-            "put_price": 0.0,
+            "put_price": 52.25946624107792,
             "strike": 250.0
         },
         {
-            "call_price": 0.0,
+            "call_price": 25.119219144921814,
             "maturity": 1.0,
             "put_price": 0.0,
             "strike": 260.0
