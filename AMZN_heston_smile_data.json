@@ -39,39 +39,39 @@
             "strike": 170.0
         },
         {
-            "implied_vol": 0.9425313415025551,
+            "implied_vol": null,
             "strike": 180.0
         },
         {
-            "implied_vol": 0.7704140782506758,
+            "implied_vol": 1.632718683880404,
             "strike": 190.0
         },
         {
-            "implied_vol": 0.7716965348279266,
+            "implied_vol": 1.3289829295579985,
             "strike": 200.0
         },
         {
-            "implied_vol": 0.39940775233181103,
+            "implied_vol": 1.1590751321503732,
             "strike": 210.0
         },
         {
-            "implied_vol": 0.30972455160519613,
+            "implied_vol": 1.1191925413809598,
             "strike": 220.0
         },
         {
-            "implied_vol": 0.6134642208845696,
+            "implied_vol": 1.2080354844577954,
             "strike": 230.0
         },
         {
-            "implied_vol": 0.5529276334128942,
+            "implied_vol": 1.4221613222211773,
             "strike": 240.0
         },
         {
-            "implied_vol": 0.7757032347228595,
+            "implied_vol": 1.7500297138408698,
             "strike": 250.0
         },
         {
-            "implied_vol": 0.957886839011963,
+            "implied_vol": null,
             "strike": 260.0
         },
         {
@@ -84,11 +84,11 @@
         }
     ],
     "params": {
-        "kappa": 0.3762619476856744,
-        "rho": -0.9,
-        "sigma": 0.0978422621698748,
-        "theta": 0.01,
-        "v0": 0.01
+        "kappa": 6.237368,
+        "rho": -0.755989,
+        "sigma": 0.920504,
+        "theta": 0.067924,
+        "v0": 0.190461
     },
     "r": 0.05,
     "symbol": "AMZN"
