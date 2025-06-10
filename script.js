@@ -142,11 +142,11 @@ document.addEventListener('DOMContentLoaded', function () {
       const strikes = data.data.map(item => item.strike);
       const bs_analytical = data.data.map(item => item.bs_analytical);
       const bs_mc = data.data.map(item => item.bs_mc);
-      const heston_fourier = data.data.map(item => item.heston_fourier);
+      //const heston_fourier = data.data.map(item => item.heston_fourier);
       const heston_mc = data.data.map(item => item.heston_mc);
       const bs_fd = data.data.map(item => item.bs_fd);
 
-      if (!strikes || !bs_analytical || !bs_mc || !heston_fourier || !heston_mc || !bs_fd) {
+      if (!strikes || !bs_analytical || !bs_mc || !heston_mc || !bs_fd) {
         throw new Error('Invalid call comparison data structure');
       }
 
@@ -183,14 +183,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
           x: strikes,
-          y: heston_fourier,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Heston Fourier',
-          line: { color: '#d62728', width: 2 }
-        },
-        {
-          x: strikes,
           y: heston_mc,
           type: 'scatter',
           mode: 'lines',
@@ -218,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_fourier, ...heston_mc, ...market_data.y) * 1.1]
+          range: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc, ...market_data.y) * 1.1]
         },
         paper_bgcolor: 'rgb(255, 255, 255)',
         plot_bgcolor: 'rgb(255, 255, 255)',
@@ -250,11 +242,10 @@ document.addEventListener('DOMContentLoaded', function () {
       const strikes = data.data.map(item => item.strike);
       const bs_analytical = data.data.map(item => item.bs_analytical);
       const bs_mc = data.data.map(item => item.bs_mc);
-      const heston_fourier = data.data.map(item => item.heston_fourier);
       const heston_mc = data.data.map(item => item.heston_mc);
       const bs_fd = data.data.map(item => item.bs_fd);
       
-      if (!strikes || !bs_analytical || !bs_mc || !heston_fourier || !heston_mc || !bs_fd) {
+      if (!strikes || !bs_analytical || !bs_mc || !heston_mc || !bs_fd) {
         throw new Error('Invalid put comparison data structure');
       }
 
@@ -291,14 +282,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         {
           x: strikes,
-          y: heston_fourier,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Heston Fourier',
-          line: { color: '#d62728', width: 2 }
-        },
-        {
-          x: strikes,
           y: heston_mc,
           type: 'scatter',
           mode: 'lines',
@@ -326,7 +309,7 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_fourier, ...heston_mc, ...market_data.y) * 1.1]
+          range: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc, ...market_data.y) * 1.1]
         },
         paper_bgcolor: 'rgb(255, 255, 255)',
         plot_bgcolor: 'rgb(255, 255, 255)',
