@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
           type: 'scatter',
           mode: 'lines',
           name: 'Black-Scholes Finite Difference',
-          line: { color: '#2ca02c', width: 2 }
+          line: { color: '#ff7f0e', width: 2 }
         },
         {
           x: strikes,
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
           type: 'scatter',
           mode: 'lines',
           name: 'Black-Scholes Finite Difference',
-          line: { color: '#2ca02c', width: 2 }
+          line: { color: '#ff7f0e', width: 2 }
         },
         {
           x: strikes,
