@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
       displayError('surface-plot', 'Failed to load 3D surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
     });
 
-  fetch('AMZN_volatility_surface_data.json')
+  fetch('AMZN_heston_surface_data.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
       return response.json();
