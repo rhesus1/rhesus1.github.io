@@ -148,8 +148,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const bs_mc = data.data.map(item => item.bs_mc);
       const heston_fourier = data.data.map(item => item.heston_fourier);
       const heston_mc = data.data.map(item => item.heston_mc);
+      const bs_fd = data.data.map(item => item.bs_fd);
 
-      if (!strikes || !bs_analytical || !bs_mc || !heston_fourier || !heston_mc) {
+      if (!strikes || !bs_analytical || !bs_mc || !heston_fourier || !heston_mc || !bs_fd) {
         throw new Error('Invalid call comparison data structure');
       }
 
@@ -174,6 +175,14 @@ document.addEventListener('DOMContentLoaded', function () {
           type: 'scatter',
           mode: 'lines',
           name: 'Black-Scholes Monte Carlo',
+          line: { color: '#2ca02c', width: 2 }
+        },
+        {
+          x: strikes,
+          y: bs_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Finite Difference',
           line: { color: '#2ca02c', width: 2 }
         },
         {
@@ -247,8 +256,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const bs_mc = data.data.map(item => item.bs_mc);
       const heston_fourier = data.data.map(item => item.heston_fourier);
       const heston_mc = data.data.map(item => item.heston_mc);
-
-      if (!strikes || !bs_analytical || !bs_mc || !heston_fourier || !heston_mc) {
+      const bs_fd = data.data.map(item => item.bs_fd);
+      
+      if (!strikes || !bs_analytical || !bs_mc || !heston_fourier || !heston_mc || !bs_fd) {
         throw new Error('Invalid put comparison data structure');
       }
 
@@ -273,6 +283,14 @@ document.addEventListener('DOMContentLoaded', function () {
           type: 'scatter',
           mode: 'lines',
           name: 'Black-Scholes Monte Carlo',
+          line: { color: '#2ca02c', width: 2 }
+        },
+        {
+          x: strikes,
+          y: bs_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Finite Difference',
           line: { color: '#2ca02c', width: 2 }
         },
         {
