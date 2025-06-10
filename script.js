@@ -76,24 +76,24 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(data => {
       console.log('Surface data loaded:', data);
       // Extract unique strikes and maturities
-      const strikes = [...new Set(data.data.map(item => item.strike))].sort((a, b) => a - b);
-      const maturities = [...new Set(data.data.map(item => item.maturity))].sort((a, b) => a - b);
+      const strikes1 = [...new Set(data.data.map(item => item.strike))].sort((a, b) => a - b);
+      const maturities1 = [...new Set(data.data.map(item => item.maturity))].sort((a, b) => a - b);
       
       // Create 2D array for call prices
-      const vols = maturities.map(() => Array(strikes.length).fill(0));
+      const vols = maturities1.map(() => Array(strikes1.length).fill(0));
       data.data.forEach(item => {
-        const i = maturities.indexOf(item.maturity);
-        const j = strikes.indexOf(item.strike);
+        const i = maturities1.indexOf(item.maturity);
+        const j = strikes1.indexOf(item.strike);
         vols[i][j] = item.implied_vol;
       });
 
-      if (!strikes.length || !maturities.length || !vols.length) {
+      if (!strikes1.length || !maturities1.length || !vols.length) {
         throw new Error('Invalid surface data structure');
       }
 
-      const surfaceData = [{
-        x: strikes,
-        y: maturities,
+      const surfaceData1 = [{
+        x: strikes1,
+        y: maturities1,
         z: vols,
         type: 'surface',
         colorscale: 'Portland',
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }];
 
-      const surfaceLayout = {
+      const surfaceLayout1 = {
         title: {
           text: 'Heston Model: Volatility Surface (AMZN)',
           font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
         font: { color: '#1a202c' }
       };
 
-        Plotly.newPlot('smile-plot', surfaceData, surfaceLayout);
+        Plotly.newPlot('smile-plot', surfaceData1, surfaceLayout1);
     })
     .catch(error => {
       console.error('Error loading surface data:', error);
