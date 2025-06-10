@@ -123,12 +123,13 @@ document.addEventListener('DOMContentLoaded', function () {
         font: { color: '#1a202c' }
       };
 
-      Plotly.newPlot('smile-plot', plotData, layout);
+        Plotly.newPlot('smile-plot', surfaceData, surfaceLayout);
     })
     .catch(error => {
-      console.error('Error loading smile data:', error);
-      displayError('smile-plot', 'Failed to load 2D smile plot. Please ensure AMZN_heston_smile_data.json is accessible.');
+      console.error('Error loading surface data:', error);
+      displayError('smile-plot', 'Failed to load 3D surface plot. Please ensure AMZN_volatility_surface_data.json is accessible.');
     });
+
 
   // Load call option comparison plot data
   fetch('AMZN_call_option_pricing_comparison.json')
