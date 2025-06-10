@@ -68,64 +68,59 @@ document.addEventListener('DOMContentLoaded', function () {
       displayError('surface-plot', 'Failed to load 3D surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
     });
 
-  // Load 2D smile animation data
-  fetch('AMZN_heston_smile_data.json')
+  fetch('AMZN_volatility_surface_data.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
       return response.json();
     })
     .then(data => {
-      console.log('Smile data loaded:', data);
-      const strikes = data.data.map(item => item.strike);
-      const implied_vols = data.data.map(item => item.implied_vol !== null ? item.implied_vol : NaN);
+      console.log('Surface data loaded:', data);
+      // Extract unique strikes and maturities
+      const strikes = [...new Set(data.data.map(item => item.strike))].sort((a, b) => a - b);
+      const maturities = [...new Set(data.data.map(item => item.maturity))].sort((a, b) => a - b);
       
-      // Replace NaN with interpolated values
-      let lastValid = 0.3;
-      for (let i = 0; i < implied_vols.length; i++) {
-        if (isNaN(implied_vols[i])) {
-          implied_vols[i] = lastValid;
-        } else {
-          lastValid = implied_vols[i];
-        }
+      // Create 2D array for call prices
+      const vols = maturities.map(() => Array(strikes.length).fill(0));
+      data.data.forEach(item => {
+        const i = maturities.indexOf(item.maturity);
+        const j = strikes.indexOf(item.strike);
+        vols[i][j] = item.implied_vol;
+      });
+
+      if (!strikes.length || !maturities.length || !vols.length) {
+        throw new Error('Invalid surface data structure');
       }
 
-      if (!strikes || !implied_vols) {
-        throw new Error('Invalid smile data structure');
-      }
-
-      // Single maturity, so no animation needed
-      const plotData = [{
+      const surfaceData = [{
         x: strikes,
-        y: implied_vols,
-        type: 'scatter',
-        mode: 'lines+markers',
-        line: { color: '#7b3fe4', width: 2 },
-        marker: { size: 6 }
+        y: maturities,
+        z: vols,
+        type: 'surface',
+        colorscale: 'Portland',
+        showscale: true,
+        colorbar: {
+          title: 'Volatility',
+          titleside: 'right'
+        }
       }];
 
-      const layout = {
+      const surfaceLayout = {
         title: {
-          text: `Heston Model: Implied Volatility Smile (AMZN, T=${data.T.toFixed(2)})`,
+          text: 'Heston Model: Volatility Surface (AMZN)',
           font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
           x: 0.5,
           xanchor: 'center'
         },
-        xaxis: {
-          title: 'Strike Price ($)',
-          titlefont: { color: '#1a202c' },
-          tickfont: { color: '#1a202c' },
-          gridcolor: '#e2e8f0'
+        scene: {
+          xaxis: { title: 'Strike Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
+          yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
+          zaxis: { title: 'Volatility', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
+          camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
+          bgcolor: 'rgb(255, 255, 255)'
         },
-        yaxis: {
-          title: 'Implied Volatility',
-          titlefont: { color: '#1a202c' },
-          tickfont: { color: '#1a202c' },
-          gridcolor: '#e2e8f0',
-          range: [0, Math.max(...implied_vols.filter(v => isFinite(v))) * 1.1]
-        },
+        margin: { l: 20, r: 20, b: 20, t: 80 },
         paper_bgcolor: 'rgb(255, 255, 255)',
-        plot_bgcolor: 'rgb(255, 255, 255)',
-        margin: { l: 60, r: 20, b: 60, t: 80 }
+        font: { color: '#1a202c' }
       };
 
       Plotly.newPlot('smile-plot', plotData, layout);
