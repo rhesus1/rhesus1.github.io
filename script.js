@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const strikes = data.data.map(item => item.strike);
       const bs_analytical = data.data.map(item => item.bs_analytical);
       const bs_mc = data.data.map(item => item.bs_mc);
-      //const heston_fourier = data.data.map(item => item.heston_fourier);
+      const heston_fourier = data.data.map(item => item.heston_fourier);
       const heston_mc = data.data.map(item => item.heston_mc);
       const bs_fd = data.data.map(item => item.bs_fd);
 
@@ -188,6 +188,14 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
+        },
+         {
+          x: strikes,
+          y: heston_fourier,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Fourier',
+          line: { color: '#ff0000', width: 2 }
         }
       ];
 
@@ -244,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const bs_mc = data.data.map(item => item.bs_mc);
       const heston_mc = data.data.map(item => item.heston_mc);
       const bs_fd = data.data.map(item => item.bs_fd);
+      const heston_fourer = data.data.map(item => item.heston_fourier);
       
       if (!strikes || !bs_analytical || !bs_mc || !heston_mc || !bs_fd) {
         throw new Error('Invalid put comparison data structure');
@@ -287,6 +296,14 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
+        },
+         {
+          x: strikes,
+          y: heston_fourier,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Fourier',
+          line: { color: '#ff0000', width: 2 }
         }
       ];
 
