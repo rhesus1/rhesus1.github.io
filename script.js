@@ -188,15 +188,15 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
-        },
-         {
-          x: strikes,
-          y: heston_fourier,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Heston Fourier',
-          line: { color: '#ff0000', width: 2 }
-        }
+        }//,
+        // {
+         // x: strikes,
+         // y: heston_fourier,
+         // type: 'scatter',
+         // mode: 'lines',
+         // name: 'Heston Fourier',
+         // line: { color: '#ff0000', width: 2 }
+        //}
       ];
 
       const layout = {
@@ -296,15 +296,15 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
-        },
-         {
-          x: strikes,
-          y: heston_fourier,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Heston Fourier',
-          line: { color: '#ff0000', width: 2 }
-        }
+        }//,
+         //{
+          //x: strikes,
+          //y: heston_fourier,
+          //type: 'scatter',
+          //mode: 'lines',
+          //name: 'Heston Fourier',
+          //line: { color: '#ff0000', width: 2 }
+       // }
       ];
 
       const layout = {
