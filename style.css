@@ -8,7 +8,7 @@
 /* Custom variables for a vibrant, professional design */
 :root {
   --primary-color: #4B0082; /* Rich indigo for nav and accents */
-  --secondary-color: #4B5563; /* Dark gray for secondary elements */
+  --secondary-color: #4B5563; /* Dark gray for footer and secondary elements */
   --text-color: #111827; /* Deep gray for text */
   --bg-white: #FFFFFF; /* White for sections */
   --bg-gray: #E5E7EB; /* Distinct gray for alternating sections */
@@ -19,39 +19,36 @@
 
 /* Global styles */
 body {
-  background-color: var(--bg-white);
+  background-color: var(--bg-white) !important;
   color: var(--text-color);
-  font-family: 'Nunito', 'Poppins', 'Arial', sans-serif;
+  font-family: 'Nunito', 'Poppins', 'Arial', sans-serif !important;
   line-height: 1.6;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 
 /* Navigation */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: var(--primary-color) !important; /* Force indigo */
-  color: #FFFFFF;
-  padding: 1.25rem 0;
-  box-shadow: 0 6px 16px var(--shadow-color);
-  border-bottom: 3px solid var(--accent-hover);
+nav.bg-blue-900 {
+  background-color: var(--primary-color) !important;
+  color: #FFFFFF !important;
+  padding: 1.5rem 0 !important;
+  box-shadow: 0 6px 16px var(--shadow-color) !important;
+  border-bottom: 3px solid var(--accent-hover) !important;
+  z-index: 1000 !important;
 }
 
-nav a {
-  color: #FFFFFF !important; /* Force white text */
+nav .container a {
+  color: #FFFFFF !important;
   font-size: 1.1rem;
   font-weight: 600;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.5rem !important;
   margin: 0 0.25rem;
   border-radius: 9999px;
-  text-decoration: none;
+  text-decoration: none !important;
   transition: all 0.3s ease;
 }
 
-nav a:hover {
+nav .container a:hover {
   background-color: var(--accent-hover) !important;
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -60,22 +57,27 @@ nav a:hover {
 /* Alternating section backgrounds */
 section:nth-child(odd) {
   background-color: var(--bg-white) !important;
-  padding: 5rem 1.5rem;
-  margin: 2.5rem 0;
-  border-radius: 1.5rem;
-  box-shadow: 0 8px 24px var(--shadow-color);
+  padding: 5rem 1.5rem !important;
+  margin: 2.5rem 0 !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 8px 24px var(--shadow-color) !important;
   position: relative;
   scroll-margin-top: 120px;
 }
 
 section:nth-child(even) {
-  background-color: var(--bg-gray) !important; /* Force distinct gray */
-  padding: 5rem 1.5rem;
-  margin: 2.5rem 0;
-  border-radius: 1.5rem;
-  box-shadow: 0 8px 24px var(--shadow-color);
+  background-color: var(--bg-gray) !important;
+  padding: 5rem 1.5rem !important;
+  margin: 2.5rem 0 !important;
+  border-radius: 1.5rem !important;
+  box-shadow: 0 8px 24px var(--shadow-color) !important;
   position: relative;
   scroll-margin-top: 120px;
+}
+
+/* Override specific section classes */
+section.bg-white, section#home, section#about, section#option-pricing, section#vortex-simulation {
+  background-color: inherit !important; /* Inherit from nth-child rule */
 }
 
 /* Gradient overlay for sections */
@@ -97,40 +99,40 @@ section:hover {
 
 /* Headings */
 h1 {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--primary-color);
-  margin-bottom: 2.5rem;
+  font-size: 2.5rem !important;
+  font-weight: 800 !important;
+  color: var(--primary-color) !important;
+  margin-bottom: 2.5rem !important;
   text-align: center;
   letter-spacing: -0.02em;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 640px) {
-  h1 { font-size: 3.5rem; }
+  h1 { font-size: 3.5rem !important; }
 }
 
 h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--text-color);
-  margin-bottom: 1.5rem;
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  color: var(--text-color) !important;
+  margin-bottom: 1.5rem !important;
   border-left: 5px solid var(--primary-color);
   padding-left: 1rem;
 }
 
 h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--text-color);
-  margin-bottom: 1rem;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: var(--text-color) !important;
+  margin-bottom: 1rem !important;
 }
 
 /* Paragraphs and text */
 p {
-  color: var(--text-color);
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  color: var(--text-color) !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 1.5rem !important;
   max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
@@ -138,117 +140,116 @@ p {
 
 /* Links */
 a {
-  color: var(--primary-color);
-  text-decoration: none;
+  color: var(--primary-color) !important;
+  text-decoration: none !important;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: var(--accent-hover);
+  color: var(--accent-hover) !important;
 }
 
 /* Buttons (e.g., Download CV) */
 a[href$=".pdf"] {
   display: inline-block;
-  background-color: var(--primary-color);
+  background-color: var(--primary-color) !important;
   color: #FFFFFF !important;
-  padding: 0.75rem 2rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  padding: 0.75rem 2rem !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
 }
 
 a[href$=".pdf"]:hover {
-  background-color: var(--accent-hover);
-  box-shadow: 0 4px 12px var(--shadow-color);
+  background-color: var(--accent-hover) !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
   transform: scale(1.05);
 }
 
 /* Plot containers */
 #surface-plot, #smile-plot, #comparison-plot, #comparison-plot-put {
-  background-color: var(--bg-white);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 16px var(--shadow-color);
-  border: 1px solid #E5E7EB;
-  margin-top: 2rem;
-  background: linear-gradient(145deg, var(--bg-white) 0%, var(--bg-gray) 100%);
+  background-color: var(--bg-white) !important;
+  padding: 1.5rem !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 16px var(--shadow-color) !important;
+  border: 1px solid #E5E7EB !important;
+  margin-top: 2rem !important;
+  background: linear-gradient(145deg, var(--bg-white) 0%, var(--bg-gray) 100%) !important;
 }
 
 /* Video containers */
 video {
-  border-radius: 1rem;
-  box-shadow: 0 4px 16px var(--shadow-color);
-  border: 1px solid #E5E7EB;
-  width: 100%;
-  max-width: 64rem;
-  margin: 0 auto;
-  display: block;
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 16px var(--shadow-color) !important;
+  border: 1px solid #E5E7EB !important;
+  width: 100% !important;
+  max-width: 64rem !important;
+  margin: 0 auto !important;
+  display: block !important;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 video:hover {
-  box-shadow: 0 8px 24px var(--shadow-color);
+  box-shadow: 0 8px 24px var(--shadow-color) !important;
   transform: scale(1.02);
 }
 
 /* Footer */
-footer {
-  background-color: var(--secondary-color);
-  color: #FFFFFF;
-  text-align: center;
-  padding: 3rem 1.5rem;
-  margin-top: 4rem;
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  font-size: 1rem;
+footer.bg-blue-900 {
+  background-color: var(--secondary-color) !important;
+  color: #FFFFFF !important;
+  padding: 3rem 1.5rem !important;
+  margin-top: 4rem !important;
+  border-top-left-radius: 2rem !important;
+  border-top-right-radius: 2rem !important;
+  font-size: 1rem !important;
 }
 
 /* Contact section links */
 #contact a {
-  display: block;
-  margin-bottom: 1rem;
-  color: var(--primary-color);
-  font-size: 1.1rem;
+  display: block !important;
+  margin-bottom: 1rem !important;
+  color: var(--primary-color) !important;
+  font-size: 1.1rem !important;
   transition: all 0.3s ease;
 }
 
 #contact a:hover {
-  color: var(--accent-hover);
-  padding-left: 0.5rem;
-  text-decoration: underline;
+  color: var(--accent-hover) !important;
+  padding-left: 0.5rem !important;
+  text-decoration: underline !important;
 }
 
 /* Responsive adjustments */
 @media (min-width: 640px) {
   section {
-    max-width: 48rem;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 48rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
 @media (min-width: 1024px) {
   section {
-    max-width: 80rem;
+    max-width: 80rem !important;
   }
 }
 
 /* Plotly chart height */
 #plotly-chart {
-  height: 500px;
+  height: 500px !important;
 }
 
 /* Card-like effect for content blocks */
 section > div {
-  background-color: var(--bg-white);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px var(--shadow-color);
-  border: 1px solid #E5E7EB;
-  margin-bottom: 1.5rem;
+  background-color: var(--bg-white) !important;
+  padding: 1.5rem !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 12px var(--shadow-color) !important;
+  border: 1px solid #E5E7EB !important;
+  margin-bottom: 1.5rem !important;
 }
 
 /* Animations */
