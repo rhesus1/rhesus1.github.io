@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', function () {
           yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           zaxis: { title: 'Call Option Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
-          bgcolor: 'rgb(255, 255, 255)'
+          bgcolor: 'rgb(241, 245, 249)' // Updated to match gray sections
         },
         margin: { l: 20, r: 20, b: 20, t: 80 },
-        paper_bgcolor: 'rgb(255, 255, 255)',
+        paper_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
         font: { color: '#1a202c' }
       };
 
@@ -116,20 +116,19 @@ document.addEventListener('DOMContentLoaded', function () {
           yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           zaxis: { title: 'Volatility', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
-          bgcolor: 'rgb(241, 245, 249)'
+          bgcolor: 'rgb(241, 245, 249)' // Updated to match gray sections
         },
         margin: { l: 20, r: 20, b: 20, t: 80 },
-        paper_bgcolor: 'rgb(241, 245, 249)',
+        paper_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
         font: { color: '#1a202c' }
       };
 
-        Plotly.newPlot('smile-plot', surfaceData1, surfaceLayout1);
+      Plotly.newPlot('smile-plot', surfaceData1, surfaceLayout1);
     })
     .catch(error => {
       console.error('Error loading surface data:', error);
       displayError('smile-plot', 'Failed to load 3D surface plot. Please ensure AMZN_volatility_surface_data.json is accessible.');
     });
-
 
   // Load call option comparison plot data
   fetch('AMZN_call_option_pricing_comparison.json')
@@ -183,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
         },
-         {
+        {
           x: strikes,
           y: heston_fourier,
           type: 'scatter',
@@ -214,8 +213,8 @@ document.addEventListener('DOMContentLoaded', function () {
           gridcolor: '#e2e8f0',
           range: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc) * 1.1]
         },
-        paper_bgcolor: 'rgb(255, 255, 255)',
-        plot_bgcolor: 'rgb(255, 255, 255)',
+        paper_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
+        plot_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
         margin: { l: 60, r: 20, b: 60, t: 80 },
         showlegend: true,
         legend: {
@@ -285,7 +284,7 @@ document.addEventListener('DOMContentLoaded', function () {
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
         },
-         {
+        {
           x: strikes,
           y: heston_fourier,
           type: 'scatter',
@@ -316,8 +315,8 @@ document.addEventListener('DOMContentLoaded', function () {
           gridcolor: '#e2e8f0',
           range: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1]
         },
-        paper_bgcolor: 'rgb(255, 255, 255)',
-        plot_bgcolor: 'rgb(255, 255, 255)',
+        paper_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
+        plot_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
         margin: { l: 60, r: 20, b: 60, t: 80 },
         showlegend: true,
         legend: {
