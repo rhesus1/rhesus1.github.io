@@ -150,12 +150,6 @@ document.addEventListener('DOMContentLoaded', function () {
         throw new Error('Invalid call comparison data structure');
       }
 
-      // Update market data points (approximated from data)
-      const market_data = {
-        x: [160, 180, 200, 220, 240],
-        y: [60.27, 42.87, 23.22, 2.99, 4.14] // Heston Fourier prices as proxy
-      };
-
       const plotData = [
         {
           x: strikes,
@@ -188,15 +182,15 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
-        }//,
-        // {
-         // x: strikes,
-         // y: heston_fourier,
-         // type: 'scatter',
-         // mode: 'lines',
-         // name: 'Heston Fourier',
-         // line: { color: '#ff0000', width: 2 }
-        //}
+        },
+         {
+          x: strikes,
+          y: heston_fourier,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Fourier',
+          line: { color: '#ff0000', width: 2 }
+        }
       ];
 
       const layout = {
@@ -258,12 +252,6 @@ document.addEventListener('DOMContentLoaded', function () {
         throw new Error('Invalid put comparison data structure');
       }
 
-      // Update market data points (approximated from data)
-      const market_data = {
-        x: [160, 180, 200, 220, 240],
-        y: [4.72, 7.06, 7.17, 6.68, 27.59] // Heston Fourier prices as proxy
-      };
-
       const plotData = [
         {
           x: strikes,
@@ -296,15 +284,15 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Monte Carlo',
           line: { color: '#9467bd', width: 2 }
-        }//,
-         //{
-          //x: strikes,
-          //y: heston_fourier,
-          //type: 'scatter',
-          //mode: 'lines',
-          //name: 'Heston Fourier',
-          //line: { color: '#ff0000', width: 2 }
-       // }
+        },
+         {
+          x: strikes,
+          y: heston_fourier,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Fourier',
+          line: { color: '#ff0000', width: 2 }
+        }
       ];
 
       const layout = {
