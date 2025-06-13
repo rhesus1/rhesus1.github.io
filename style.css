@@ -1,92 +1,97 @@
-/* Custom styles to complement Tailwind */
+/* Custom styles to complement Tailwind for a professional, modern look */
 :root {
-  --primary-color: #1a202c; /* Dark gray for text */
-  --secondary-color: #2d3748; /* Slightly lighter gray for backgrounds */
-  --accent-color: #3182ce; /* Blue for links and highlights */
-  --hover-color: #2b6cb0; /* Darker blue for hover states */
-  --background-color: #f7fafc; /* Light background for sections */
+  --primary-color: #1D4E5A; /* Deep teal for accents and headers */
+  --secondary-color: #2D3748; /* Dark gray for secondary elements */
+  --text-color: #1A202C; /* Near-black for text */
+  --background-color: #F8FAFC; /* Light off-white for body */
+  --section-bg: #FFFFFF; /* White for section backgrounds */
+  --accent-hover: #155E75; /* Darker teal for hover states */
+  --shadow-color: rgba(29, 78, 90, 0.1); /* Subtle shadow */
+  --glass-bg: rgba(255, 255, 255, 0.7); /* Glassmorphism background */
 }
 
 /* Global styles */
 body {
-  @apply bg-gray-100 font-sans text-gray-800 leading-relaxed;
-  font-family: 'Inter', 'Arial', sans-serif;
+  @apply bg-[var(--background-color)] font-sans text-[var(--text-color)] leading-relaxed antialiased;
+  font-family: 'Poppins', 'Inter', 'Arial', sans-serif;
 }
 
 /* Navigation */
 nav {
-  @apply bg-white fixed w-full top-0 z-10;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease;
+  @apply fixed w-full top-0 z-20 bg-[var(--section-bg)] bg-opacity-90 backdrop-blur-md;
+  box-shadow: 0 4px 12px var(--shadow-color);
+  transition: all 0.3s ease;
 }
 
 nav a {
-  @apply text-gray-600 font-medium px-4 py-2 transition-colors duration-200;
+  @apply text-[var(--text-color)] font-medium px-4 py-3 rounded-lg transition-all duration-300;
 }
 
 nav a:hover {
-  @apply text-blue-600;
-  background-color: rgba(49, 130, 206, 0.1);
-  border-radius: 4px;
+  @apply text-[var(--primary-color)] bg-[var(--glass-bg)] scale-105;
 }
 
 /* Section styling */
 section {
-  @apply py-16 px-4 sm:px-6 lg:px-8 bg-white my-6 rounded-lg shadow-sm;
-  scroll-margin-top: 80px; /* Adjust for fixed nav */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  @apply py-20 px-6 sm:px-8 lg:px-12 bg-[var(--section-bg)] my-8 rounded-2xl shadow-lg;
+  scroll-margin-top: 90px; /* Adjust for fixed nav */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 section:hover {
-  @apply shadow-md;
-  transform: translateY(-2px);
+  @apply shadow-xl;
+  transform: translateY(-4px);
 }
 
 /* Headings */
-h1, h2, h3 {
-  @apply font-bold text-gray-900;
-}
-
 h1 {
-  @apply text-4xl sm:text-5xl mb-6 text-center;
+  @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-8 text-center text-[var(--primary-color)];
+  letter-spacing: -0.025em;
 }
 
 h2 {
-  @apply text-2xl sm:text-3xl mb-4;
+  @apply text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 text-[var(--text-color)];
 }
 
 h3 {
-  @apply text-xl sm:text-2xl mb-3;
+  @apply text-xl sm:text-2xl font-medium mb-4 text-[var(--text-color)];
 }
 
 /* Paragraphs and text */
 p {
-  @apply text-gray-700 mb-4;
+  @apply text-[var(--text-color)] text-base sm:text-lg mb-6 leading-relaxed;
 }
 
 /* Links */
 a {
-  @apply text-blue-600 hover:text-blue-800 transition-colors duration-200;
+  @apply text-[var(--primary-color)] hover:text-[var(--accent-hover)] transition-colors duration-300;
 }
 
 /* Buttons (e.g., Download CV) */
 a[href$=".pdf"] {
-  @apply inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200;
+  @apply inline-block bg-[var(--primary-color)] text-white py-3 px-6 rounded-xl font-medium
+         hover:bg-[var(--accent-hover)] hover:shadow-md transition-all duration-300;
 }
 
 /* Plot containers */
 #surface-plot, #smile-plot, #comparison-plot, #comparison-plot-put {
-  @apply bg-white p-4 rounded-lg shadow-sm border border-gray-200 mt-6;
+  @apply bg-[var(--glass-bg)] p-6 rounded-xl shadow-md border border-gray-100 backdrop-blur-sm mt-8;
 }
 
 /* Video containers */
 video {
-  @apply rounded-lg shadow-sm border border-gray-200 w-full max-w-2xl mx-auto;
+  @apply rounded-xl shadow-md border border-gray-100 w-full max-w-3xl mx-auto;
+  transition: transform 0.3s ease;
+}
+
+video:hover {
+  transform: scale(1.02);
 }
 
 /* Footer */
 footer {
-  @apply bg-gray-800 text-white text-center py-6 mt-12;
+  @apply bg-[var(--secondary-color)] text-white text-center py-8 mt-16 rounded-t-2xl;
+  font-size: 0.9rem;
 }
 
 /* Smooth transitions for interactive elements */
@@ -94,16 +99,21 @@ a, button {
   transition: all 0.3s ease;
 }
 
+/* Contact section links */
+#contact a {
+  @apply block mb-3 text-[var(--primary-color)] hover:text-[var(--accent-hover)] hover:underline;
+}
+
 /* Responsive adjustments */
 @media (min-width: 640px) {
   section {
-    @apply max-w-4xl mx-auto;
+    @apply max-w-5xl mx-auto;
   }
 }
 
 @media (min-width: 1024px) {
   section {
-    @apply max-w-6xl;
+    @apply max-w-7xl;
   }
 }
 
@@ -112,7 +122,25 @@ a, button {
   height: 500px;
 }
 
-/* Contact section links */
-#contact a {
-  @apply block mb-2 hover:underline;
+/* Subtle gradient overlay for sections */
+section::before {
+  content: '';
+  @apply absolute inset-0 rounded-2xl;
+  background: linear-gradient(135deg, rgba(29, 78, 90, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
+  z-index: -1;
+}
+
+/* Hover effect for navigation container */
+nav:hover {
+  @apply bg-opacity-100;
+}
+
+/* Animation for section fade-in */
+section {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
