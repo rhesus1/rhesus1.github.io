@@ -10,101 +10,97 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="bg-grey-100 font-sans">
   <!-- Navigation -->
-  <nav>
-    <div class="container">
-      <h1>Morgan J. Rees</h1>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#option-pricing">Option Pricing</a></li>
-        <li><a href="#vortex-simulation">Vortex Simulations</a></li>
-        <li><a href="#cv">CV</a></li>
-        <li><a href="#contact">Contact</a></li>
+  <nav class="bg-navy-900 text-white p-4 fixed w-full top-0 z-10">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold">Morgan J. Rees</h1>
+      <ul class="flex space-x-4">
+        <li><a href="#home" class="hover:underline">Home</a></li>
+        <li><a href="#about" class="hover:underline">About</a></li>
+        <li><a href="#publications" class="hover:underline">Publications</a></li>
+        <li><a href="#option-pricing" class="hover:underline">Option Pricing</a></li>
+        <li><a href="#vortex-simulation" class="hover:underline">Vortex Simulations</a></li>
+        <li><a href="#cv" class="hover:underline">CV</a></li>
+        <li><a href="#contact" class="hover:underline">Contact</a></li>
       </ul>
     </div>
   </nav>
 
   <!-- Home Section -->
-  <section id="home">
-    <div class="container text-center">
-      <img src="profile.jpg" alt="Morgan J. Rees" class="profile-img">
-      <h2>Morgan J. Rees</h2>
-      <p>PhD Candidate in Mathematics at the University of Kent, specialising in computational modelling of topological solitons and quantitative finance. My PhD work focuses on numerical solutions and dynamics of the Abelian Higgs Model. I have conducted further research on numerical solutions for the Black-Scholes and Heston partial differential equations (PDEs) in option pricing.</p>
-    </div>
+  <section id="home" class="container mx-auto py-24 text-center">
+    <img src="profile.jpg" alt="Morgan J. Rees" class="w-32 h-32 rounded-full mx-auto mb-4">
+    <h2 class="text-3xl font-bold mb-4">Morgan J. Rees</h2>
+    <p class="text-lg text-grey-700 max-w-2xl mx-auto">PhD Candidate in Mathematics at the University of Kent, specialising in computational modelling of topological solitons and quantitative finance. My PhD work focuses on numerical solutions and dynamics of the Abelian Higgs Model. I have conducted further research on numerical solutions for the Black-Scholes and Heston partial differential equations (PDEs) in option pricing.</p>
   </section>
 
   <!-- About Section -->
-  <section id="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>I am a PhD candidate at the University of Kent, with a thesis titled "The Solitonic Waltz: Abelian Higgs Vortex Dynamics." My research involves advanced computational modelling in C++ for vortex dynamics, optimised with parallel computing using OpenMP. I have a strong background in quantitative finance, with expertise in option pricing, portfolio optimisation, and algorithmic trading, developed through professional development courses and personal projects in Python and C++.</p>
-      <p>Education: PhD in Mathematics (2021-2025, viva pending), MSc Mathematics (First Class Honours, 2020-2021), BSc Mathematics (First Class Honours, 2017-2020), all at the University of Kent.</p>
+  <section id="about" class="py-12">
+    <div class="container mx-auto">
+      <h2 class="text-2xl font-bold mb-4 text-center">About Me</h2>
+      <p class="text-grey-700 mx-auto max-w-2xl">I am a PhD candidate at the University of Kent, with a thesis titled "The Solitonic Waltz: Abelian Higgs Vortex Dynamics." My research involves advanced computational modelling in C++ for vortex dynamics, optimised with parallel computing using OpenMP. I have a strong background in quantitative finance, with expertise in option pricing, portfolio optimisation, and algorithmic trading, developed through professional development courses and personal projects in Python and C++.</p>
+      <p class="text-grey-700 mx-auto max-w-2xl mt-4">Education: PhD in Mathematics (2021-2025, viva pending), MSc Mathematics (First Class Honours, 2020-2021), BSc Mathematics (First Class Honours, 2017-2020), all at the University of Kent.</p>
     </div>
   </section>
 
   <!-- Publications Section -->
-  <section id="publications">
-    <div class="container">
-      <h2>Publications</h2>
-      <ul>
-        <li><a href="https://doi.org/10.1103/PhysRevD.110.056050">Scattering of Vortices with Excited Normal Modes, Phys. Rev. D, 110.056050 (2024)</a></li>
-        <li><a href="https://doi.org/10.1103/PhysRevD.110.065004">Spectral Collisions of Excited Abelian Higgs Vortices, Phys. Rev. D, 110.065004 (2024)</a></li>
-        <li><a href="https://doi.org/10.1103/PhysRevD.111.105021">Dynamics of Excited BPS 3-Vortices, Phys. Rev. D, 111.105021 (2025)</a></li>
-        <li><a>Vortex Dynamics Away From Critical Coupling (Work in Progress)</a></li>
-      </ul>
-    </div>
+  <section id="publications" class="container mx-auto py-12">
+    <h2 class="text-2xl font-bold mb-4 text-center">Publications</h2>
+    <ul class="list-disc list-inside max-w-2xl mx-auto text-grey-700">
+      <li><a href="https://doi.org/10.1103/PhysRevD.110.056050" class="text-blue-600 hover:underline">Scattering of Vortices with Excited Normal Modes, Phys. Rev. D, 110.056050 (2024)</a></li>
+      <li><a href="https://doi.org/10.1103/PhysRevD.110.065004" class="text-blue-600 hover:underline">Spectral Collisions of Excited Abelian Higgs Vortices, Phys. Rev. D, 110.065004 (2024)</a></li>
+      <li><a href="https://doi.org/10.1103/PhysRevD.111.105021" class="text-blue-600 hover:underline">Dynamics of Excited BPS 3-Vortices, Phys. Rev. D, 111.105021 (2025)</a></li>
+      <li><a class="text-blue-600 hover:underline">Vortex Dynamics Away From Critical Coupling (Work in Progress)</a></li>
+    </ul>
   </section>
 
   <!-- CV Section -->
-  <section id="cv">
-    <div class="container text-center">
-      <h2>Curriculum Vitae</h2>
-      <p>Download my full CV to learn more about my academic and professional background.</p>
-      <a href="MRCV_Quant_2025.pdf" download>Download CV (PDF)</a>
+  <section id="cv" class="py-12">
+    <div class="container mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-4">Curriculum Vitae</h2>
+      <p class="text-grey-700 mb-8 max-w-2xl mx-auto">Download my full CV to learn more about my academic and professional background.</p>
+      <a href="MRCV_Quant_2025.pdf" download class="inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">Download CV (PDF)</a>
     </div>
   </section>
 
   <!-- Option Pricing Section -->
-  <section id="option-pricing">
-    <div class="container">
-      <h2>Option Pricing</h2>
-      <p>Explore my computational work in quantitative finance. The visualisations below include option pricing models using the Heston model, as well as comparisons of call and put option prices for Amazon, employing Black-Scholes (Analytical, Finite Difference, Monte Carlo) and Heston (Fourier, Monte Carlo, Finite Difference) methods.</p>  
+  <section id="option-pricing" class="py-12">
+    <div class="container mx-auto">
+      <h2 class="text-2xl font-bold mb-4 text-center">Option Pricing</h2>
+      <p class="text-base text-grey-700 mb-8 max-w-xl mx-auto text-center">Explore my computational work in quantitative finance. The visualisations below include option pricing models using the Heston model, as well as comparisons of call and put option prices for Amazon, employing Black-Scholes (Analytical, Finite Difference, Monte Carlo) and Heston (Fourier, Monte Carlo, Finite Difference) methods.</p>  
       <!-- 3D Surface Plot -->
-      <div>
-        <h3>Heston Model: Call Option Price Surface</h3>
-        <p>This 3D plot visualises call option prices as a function of strike price and time to maturity, computed using the Heston model's Fourier method.</p>
-        <div id="surface-plot"></div>
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-2 text-center">Heston Model: Call Option Price Surface</h3>
+        <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This 3D plot visualises call option prices as a function of strike price and time to maturity, computed using the Heston model's Fourier method.</p>
+        <div id="surface-plot" class="w-full max-w-3xl mx-auto h-[600px]"></div>
       </div>
       <!-- Animated 2D Smile Plot -->
-      <div>
-        <h3>Heston Model: Implied Volatility Surface</h3>
-        <p>This 3d plot shows the implied volatility surface, highlighting the Heston model's stochastic volatility dynamics.</p>
-        <div id="smile-plot"></div>
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-2 text-center">Heston Model: Implied Volatility Surface</h3>
+        <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This 3d plot shows the implied volatility surface, highlighting the Heston model's stochastic volatility dynamics.</p>
+        <div id="smile-plot" class="w-full max-w-3xl mx-auto h-[600px]"></div>
       </div>
       <!-- Comparison Plot -->
-      <div>
-        <h3>Option Pricing Model Comparison</h3>
-        <p>These plots compare call and put option prices across Black-Scholes (Analytical, Finite Difference, Monte Carlo) and Heston (Fourier, Monte Carlo, Finite Difference) models for a range of strike prices. We see that the 3 methods for Black-Scholes all agree.</p>
-        <div id="comparison-plot"></div>
-        <div id="comparison-plot-put"></div>
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-2 text-center">Option Pricing Model Comparison</h3>
+        <p class="text-base text-grey-600 mb-4 max-w-xl mx-auto text-center">These plots compare call and put option prices across Black-Scholes (Analytical, Finite Difference, Monte Carlo) and Heston (Fourier, Monte Carlo, Finite Difference) models for a range of strike prices. We see that the 3 methods for Black-Scholes all agree.</p>
+        <div id="comparison-plot" class="w-full max-w-xl mx-auto"></div>
+        <div id="comparison-plot-put" class="w-full max-w-xl mx-auto"></div>
       </div>
     </div>
   </section>
 
   <!-- Vortex Simulations Section -->
-  <section id="vortex-simulation">
-    <div class="container">
-      <h2>Vortex Simulations</h2>
-      <p>Explore my computational work in vortex dynamics. See a simulation of excited Abelian Higgs vortices, reflecting my research in my PhD. The simulation displays the energy density of a vortex collision, which involved numerically solving the second-order non-linear coupled PDE's for Abelian Higgs vortices, similar to that of the Finite Difference methods for option pricing.</p>
+  <section id="vortex-simulation" class="py-12">
+    <div class="container mx-auto">
+      <h2 class="text-2xl font-bold mb-4 text-center">Vortex Simulations</h2>
+      <p class="text-grey-700 mb-8 max-w-2xl mx-auto text-center">Explore my computational work in vortex dynamics. See a simulation of excited Abelian Higgs vortices, reflecting my research in my PhD. The simulation displays the energy density of a vortex collision, which involved numerically solving the second-order non-linear coupled PDE's for Abelian Higgs vortices, similar to that of the Finite Difference methods for option pricing.</p>
       <!-- Vortex Simulation Video -->
       <div>
-        <h3>Excited Abelian Higgs Vortex Simulation</h3>
-        <p>This video showcases a computational simulation of excited Abelian Higgs vortices, illustrating their dynamic behaviour as studied in my PhD research on vortex dynamics.</p>
-        <div>
-          <video id="vortex-video" controls>
+        <h3 class="text-xl font-semibold mb-2 text-center">Excited Abelian Higgs Vortex Simulation</h3>
+        <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This video showcases a computational simulation of excited Abelian Higgs vortices, illustrating their dynamic behaviour as studied in my PhD research on vortex dynamics.</p>
+        <div class="w-full max-w-lg mx-auto">
+          <video id="vortex-video" class="w-full h-64 rounded-lg shadow-md object-cover" controls>
             <source src="VortexVideo.mp4" type="video/mp4">
             <source src="VortexVideo.webm" type="video/webm">
             Your browser does not support the video tag.
@@ -112,10 +108,10 @@
         </div>
       </div>
       <div>
-        <h3>2-Vortex Spectral Wall Simulation</h3>
-        <p>This video showcases a computational simulation of excited Abelian Higgs vortices, showcasing the formation of a spectral wall.</p>
-        <div>
-          <video id="vortex-spectral" controls>
+        <h3 class="text-xl font-semibold mb-2 text-center">2-Vortex Spectral Wall Simulation</h3>
+        <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This video showcases a computational simulation of excited Abelian Higgs vortices, showcasing the formation of a spectral wall.</p>
+        <div class="w-full max-w-lg mx-auto">
+          <video id="vortex-spectral" class="w-full h-64 rounded-lg shadow-md object-cover" controls>
             <source src="VortexSpectral.mp4" type="video/mp4">
             <source src="VortexSpectral.webm" type="video/webm">
             Your browser does not support the video tag.
@@ -126,19 +122,19 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact">
-    <div class="container text-center">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:reesimorgan@gmail.com">reesjmorgan@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/morgan-rees-8a5008288">morgan-rees-8a5008288</a></p>
-      <p>GitHub: <a href="https://github.com/rhesus1">rhesus1</a></p>
-      <p>Research Gate: <a href="https://www.researchgate.net/profile/Morgan-Rees-5">Morgan-Rees-5</a></p>
-      <p>Google Scholar: <a href="https://scholar.google.com/citations?user=DalMHhgAAAAJ&hl=en&oi=ao">Morgan Rees</a></p>
-    </div>
+  <section id="contact" class="container mx-auto py-12 text-center">
+    <h2 class="text-2xl font-bold mb-4">Contact</h2>
+    <p class="text-grey-700">Email: <a href="mailto:reesimorgan@gmail.com" class="text-blue-600 hover:underline">reesjmorgan@gmail.com</a></p>
+    <p class="text-grey-700">LinkedIn: <a href="https://www.linkedin.com/in/morgan-rees-8a5008288" class="text-blue-600 hover:underline">morgan-rees-8a5008288</a></p>
+    <p class="text-grey-700">GitHub: <a href="https://github.com/rhesus1" class="text-blue-600 hover:underline">rhesus1</a></p>
+    <p class="text-grey-700">Research Gate: <a href="https://www.researchgate.net/profile/Morgan-Rees-5" class="text-blue-600 hover:underline">Morgan-Rees-5</a></p>
+    <p class="text-grey-700">Google Scholar: <a href="https://scholar.google.com/citations?user=DalMHhgAAAAJ&hl=en&oi=ao" class="text-blue-600 hover:underline">Morgan Rees</a></p>
   </section>
 
   <!-- Footer -->
-  <footer>
+  <到来
+
+  <footer class="bg-navy-900 text-white text-center p-4">
     <p>© 2025 Morgan J. Rees. All rights reserved.</p>
   </footer>
 
