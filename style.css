@@ -1,13 +1,118 @@
 /* Custom styles to complement Tailwind */
+:root {
+  --primary-color: #1a202c; /* Dark gray for text */
+  --secondary-color: #2d3748; /* Slightly lighter gray for backgrounds */
+  --accent-color: #3182ce; /* Blue for links and highlights */
+  --hover-color: #2b6cb0; /* Darker blue for hover states */
+  --background-color: #f7fafc; /* Light background for sections */
+}
+
+/* Global styles */
+body {
+  @apply bg-gray-100 font-sans text-gray-800 leading-relaxed;
+  font-family: 'Inter', 'Arial', sans-serif;
+}
+
+/* Navigation */
 nav {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  @apply bg-white fixed w-full top-0 z-10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
 }
+
+nav a {
+  @apply text-gray-600 font-medium px-4 py-2 transition-colors duration-200;
+}
+
 nav a:hover {
-  color: #e0e0e0;
+  @apply text-blue-600;
+  background-color: rgba(49, 130, 206, 0.1);
+  border-radius: 4px;
 }
+
+/* Section styling */
 section {
+  @apply py-16 px-4 sm:px-6 lg:px-8 bg-white my-6 rounded-lg shadow-sm;
   scroll-margin-top: 80px; /* Adjust for fixed nav */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+section:hover {
+  @apply shadow-md;
+  transform: translateY(-2px);
+}
+
+/* Headings */
+h1, h2, h3 {
+  @apply font-bold text-gray-900;
+}
+
+h1 {
+  @apply text-4xl sm:text-5xl mb-6 text-center;
+}
+
+h2 {
+  @apply text-2xl sm:text-3xl mb-4;
+}
+
+h3 {
+  @apply text-xl sm:text-2xl mb-3;
+}
+
+/* Paragraphs and text */
+p {
+  @apply text-gray-700 mb-4;
+}
+
+/* Links */
+a {
+  @apply text-blue-600 hover:text-blue-800 transition-colors duration-200;
+}
+
+/* Buttons (e.g., Download CV) */
+a[href$=".pdf"] {
+  @apply inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200;
+}
+
+/* Plot containers */
+#surface-plot, #smile-plot, #comparison-plot, #comparison-plot-put {
+  @apply bg-white p-4 rounded-lg shadow-sm border border-gray-200 mt-6;
+}
+
+/* Video containers */
+video {
+  @apply rounded-lg shadow-sm border border-gray-200 w-full max-w-2xl mx-auto;
+}
+
+/* Footer */
+footer {
+  @apply bg-gray-800 text-white text-center py-6 mt-12;
+}
+
+/* Smooth transitions for interactive elements */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+  section {
+    @apply max-w-4xl mx-auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  section {
+    @apply max-w-6xl;
+  }
+}
+
+/* Plotly chart height */
 #plotly-chart {
   height: 500px;
+}
+
+/* Contact section links */
+#contact a {
+  @apply block mb-2 hover:underline;
 }
