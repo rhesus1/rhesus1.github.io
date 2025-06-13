@@ -116,10 +116,10 @@ document.addEventListener('DOMContentLoaded', function () {
           yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           zaxis: { title: 'Volatility', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
-          bgcolor: 'rgb(255, 255, 255)'
+          bgcolor: 'rgb(241, 245, 249)'
         },
         margin: { l: 20, r: 20, b: 20, t: 80 },
-        paper_bgcolor: 'rgb(255, 255, 255)',
+        paper_bgcolor: 'rgb(241, 245, 249)',
         font: { color: '#1a202c' }
       };
 
