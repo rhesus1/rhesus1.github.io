@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc, ...market_data.y) * 1.1]
+          range: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc) * 1.1]
         },
         paper_bgcolor: 'rgb(255, 255, 255)',
         plot_bgcolor: 'rgb(255, 255, 255)',
@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc, ...market_data.y) * 1.1]
+          range: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1]
         },
         paper_bgcolor: 'rgb(255, 255, 255)',
         plot_bgcolor: 'rgb(255, 255, 255)',
