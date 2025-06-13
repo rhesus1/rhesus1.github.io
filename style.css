@@ -1,107 +1,127 @@
-/* Custom styles to complement Tailwind for a professional, modern look */
+/* Custom styles to complement Tailwind for a vibrant, modern, and readable design */
 :root {
-  --primary-color: #1D4E5A; /* Deep teal for accents and headers */
-  --secondary-color: #2D3748; /* Dark gray for secondary elements */
-  --text-color: #1A202C; /* Near-black for text */
-  --background-color: #F8FAFC; /* Light off-white for body */
-  --section-bg: #FFFFFF; /* White for section backgrounds */
-  --accent-hover: #155E75; /* Darker teal for hover states */
-  --shadow-color: rgba(29, 78, 90, 0.1); /* Subtle shadow */
-  --glass-bg: rgba(255, 255, 255, 0.7); /* Glassmorphism background */
+  --primary-color: #4B0082; /* Rich indigo for accents and headers */
+  --secondary-color: #6B7280; /* Cool gray for secondary elements */
+  --text-color: #111827; /* Deep gray for text */
+  --bg-white: #FFFFFF; /* White for sections */
+  --bg-gray: #F1F5F9; /* Soft gray for alternating sections */
+  --accent-hover: #6A0DAD; /* Brighter purple for hover states */
+  --shadow-color: rgba(75, 0, 130, 0.15); /* Subtle purple shadow */
+  --gradient-bg: linear-gradient(135deg, rgba(75, 0, 130, 0.05) 0%, rgba(255, 255, 255, 0.2) 100%);
 }
 
 /* Global styles */
 body {
-  @apply bg-[var(--background-color)] font-sans text-[var(--text-color)] leading-relaxed antialiased;
-  font-family: 'Poppins', 'Inter', 'Arial', sans-serif;
+  @apply bg-[var(--bg-white)] font-sans text-[var(--text-color)] leading-relaxed antialiased;
+  font-family: 'Nunito', 'Poppins', 'Arial', sans-serif;
 }
 
 /* Navigation */
 nav {
-  @apply fixed w-full top-0 z-20 bg-[var(--section-bg)] bg-opacity-90 backdrop-blur-md;
-  box-shadow: 0 4px 12px var(--shadow-color);
-  transition: all 0.3s ease;
+  @apply fixed w-full top-0 z-30 bg-[var(--primary-color)] text-white;
+  box-shadow: 0 6px 12px var(--shadow-color);
+  padding: 1rem 0;
+  border-bottom: 2px solid var(--accent-hover);
 }
 
 nav a {
-  @apply text-[var(--text-color)] font-medium px-4 py-3 rounded-lg transition-all duration-300;
+  @apply text-white font-semibold px-5 py-3 mx-1 rounded-full transition-all duration-300;
 }
 
 nav a:hover {
-  @apply text-[var(--primary-color)] bg-[var(--glass-bg)] scale-105;
+  @apply bg-[var(--accent-hover)] text-white scale-110;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Section styling */
-section {
-  @apply py-20 px-6 sm:px-8 lg:px-12 bg-[var(--section-bg)] my-8 rounded-2xl shadow-lg;
-  scroll-margin-top: 90px; /* Adjust for fixed nav */
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+/* Alternating section backgrounds */
+section:nth-child(odd) {
+  @apply bg-[var(--bg-white)] py-20 px-6 sm:px-8 lg:px-12 my-10 rounded-3xl shadow-lg;
+  scroll-margin-top: 100px;
+  position: relative;
+  overflow: hidden;
 }
 
+section:nth-child(even) {
+  @apply bg-[var(--bg-gray)] py-20 px-6 sm:px-8 lg:px-12 my-10 rounded-3xl shadow-lg;
+  scroll-margin-top: 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient overlay for sections */
+section::before {
+  content: '';
+  @apply absolute inset-0 rounded-3xl;
+  background: var(--gradient-bg);
+  z-index: -1;
+}
+
+/* Section hover effect */
 section:hover {
-  @apply shadow-xl;
-  transform: translateY(-4px);
+  @apply shadow-2xl;
+  transform: translateY(-6px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 /* Headings */
 h1 {
-  @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-8 text-center text-[var(--primary-color)];
-  letter-spacing: -0.025em;
+  @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-10 text-center text-[var(--primary-color)];
+  letter-spacing: -0.03em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-  @apply text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 text-[var(--text-color)];
+  @apply text-3xl sm:text-4xl font-bold mb-8 text-[var(--text-color)] border-l-4 border-[var(--primary-color)] pl-4;
 }
 
 h3 {
-  @apply text-xl sm:text-2xl font-medium mb-4 text-[var(--text-color)];
+  @apply text-xl sm:text-2xl font-semibold mb-5 text-[var(--text-color)];
 }
 
 /* Paragraphs and text */
 p {
-  @apply text-[var(--text-color)] text-base sm:text-lg mb-6 leading-relaxed;
+  @apply text-[var(--text-color)] text-base sm:text-lg mb-6 leading-relaxed max-w-3xl mx-auto;
 }
 
 /* Links */
 a {
-  @apply text-[var(--primary-color)] hover:text-[var(--accent-hover)] transition-colors duration-300;
+  @apply text-[var(--primary-color)] hover:text-[var(--accent-hover)] font-medium transition-colors duration-300;
 }
 
 /* Buttons (e.g., Download CV) */
 a[href$=".pdf"] {
-  @apply inline-block bg-[var(--primary-color)] text-white py-3 px-6 rounded-xl font-medium
-         hover:bg-[var(--accent-hover)] hover:shadow-md transition-all duration-300;
+  @apply inline-block bg-[var(--primary-color)] text-white py-3 px-8 rounded-full font-semibold
+         hover:bg-[var(--accent-hover)] hover:shadow-lg hover:scale-105 transition-all duration-300;
 }
 
 /* Plot containers */
 #surface-plot, #smile-plot, #comparison-plot, #comparison-plot-put {
-  @apply bg-[var(--glass-bg)] p-6 rounded-xl shadow-md border border-gray-100 backdrop-blur-sm mt-8;
+  @apply bg-[var(--bg-white)] p-6 rounded-2xl shadow-md border border-gray-100 mt-8;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.8));
 }
 
 /* Video containers */
 video {
-  @apply rounded-xl shadow-md border border-gray-100 w-full max-w-3xl mx-auto;
-  transition: transform 0.3s ease;
+  @apply rounded-2xl shadow-md border border-gray-100 w-full max-w-4xl mx-auto;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 video:hover {
-  transform: scale(1.02);
+  @apply shadow-xl;
+  transform: scale(1.03);
 }
 
 /* Footer */
 footer {
-  @apply bg-[var(--secondary-color)] text-white text-center py-8 mt-16 rounded-t-2xl;
-  font-size: 0.9rem;
-}
-
-/* Smooth transitions for interactive elements */
-a, button {
-  transition: all 0.3s ease;
+  @apply bg-[var(--secondary-color)] text-white text-center py-10 mt-12 rounded-t-3xl;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
 }
 
 /* Contact section links */
 #contact a {
-  @apply block mb-3 text-[var(--primary-color)] hover:text-[var(--accent-hover)] hover:underline;
+  @apply block mb-4 text-[var(--primary-color)] hover:text-[var(--accent-hover)] hover:underline hover:pl-2;
+  transition: all 0.3s ease;
 }
 
 /* Responsive adjustments */
@@ -122,25 +142,32 @@ a, button {
   height: 500px;
 }
 
-/* Subtle gradient overlay for sections */
-section::before {
-  content: '';
-  @apply absolute inset-0 rounded-2xl;
-  background: linear-gradient(135deg, rgba(29, 78, 90, 0.05) 0%, rgba(255, 255, 255, 0.1) 100%);
-  z-index: -1;
+/* Card-like effect for content blocks */
+section > div {
+  @apply bg-[var(--bg-white)] p-6 rounded-xl shadow-sm border border-gray-100;
 }
 
-/* Hover effect for navigation container */
-nav:hover {
-  @apply bg-opacity-100;
-}
-
-/* Animation for section fade-in */
+/* Animation for section entrance */
 section {
-  animation: fadeIn 0.6s ease-out;
+  animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover effect for navigation */
+nav:hover {
+  @apply bg-opacity-95;
+}
+
+/* Subtle content fade-in */
+p, a, h2, h3 {
+  animation: fadeIn 1s ease-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
