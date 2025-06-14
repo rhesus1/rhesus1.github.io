@@ -6,69 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Load 3D surface plot data
-  fetch('AMZN_heston_surface_data.json')
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-      return response.json();
-    })
-    .then(data => {
-      console.log('Surface data loaded:', data);
-      // Extract unique strikes and maturities
-      const strikes = [...new Set(data.data.map(item => item.strike))].sort((a, b) => a - b);
-      const maturities = [...new Set(data.data.map(item => item.maturity))].sort((a, b) => a - b);
-      
-      // Create 2D array for call prices
-      const prices = maturities.map(() => Array(strikes.length).fill(0));
-      data.data.forEach(item => {
-        const i = maturities.indexOf(item.maturity);
-        const j = strikes.indexOf(item.strike);
-        prices[i][j] = item.call_price;
-      });
-
-      if (!strikes.length || !maturities.length || !prices.length) {
-        throw new Error('Invalid surface data structure');
-      }
-
-      const surfaceData = [{
-        x: strikes,
-        y: maturities,
-        z: prices,
-        type: 'surface',
-        colorscale: 'Portland',
-        showscale: true,
-        colorbar: {
-          title: 'Call Price ($)',
-          titleside: 'right'
-        }
-      }];
-
-      const surfaceLayout = {
-        title: {
-          text: 'Heston Model: Call Option Price Surface (AMZN)',
-          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
-          x: 0.5,
-          xanchor: 'center'
-        },
-        scene: {
-          xaxis: { title: 'Strike Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
-          yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
-          zaxis: { title: 'Call Option Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
-          camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
-          bgcolor: 'rgb(241, 245, 249)' // Updated to match gray sections
-        },
-        margin: { l: 20, r: 20, b: 20, t: 80 },
-        paper_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
-        font: { color: '#1a202c' }
-      };
-
-      Plotly.newPlot('surface-plot', surfaceData, surfaceLayout);
-    })
-    .catch(error => {
-      console.error('Error loading surface data:', error);
-      displayError('surface-plot', 'Failed to load 3D surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
-    });
-
-  fetch('AMZN_heston_surface_data.json')
+ fetch('AMZN_heston_surface_data.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
       return response.json();
@@ -79,30 +17,52 @@ document.addEventListener('DOMContentLoaded', function () {
       const strikes1 = [...new Set(data.data.map(item => item.strike))].sort((a, b) => a - b);
       const maturities1 = [...new Set(data.data.map(item => item.maturity))].sort((a, b) => a - b);
       
-      // Create 2D array for call prices
-      const vols = maturities1.map(() => Array(strikes1.length).fill(0));
+      // Create 2D arrays for implied_vol and local_vol
+      const impliedVols = maturities1.map(() => Array(strikes1.length).fill(0));
+      const localVols = maturities1.map(() => Array(strikes1.length).fill(null));
       data.data.forEach(item => {
         const i = maturities1.indexOf(item.maturity);
         const j = strikes1.indexOf(item.strike);
-        vols[i][j] = item.implied_vol;
+        impliedVols[i][j] = item.implied_vol;
+        localVols[i][j] = item.local_vol !== null ? item.local_vol : 0; // Handle null local_vol
       });
 
-      if (!strikes1.length || !maturities1.length || !vols.length) {
+      if (!strikes1.length || !maturities1.length || !impliedVols.length) {
         throw new Error('Invalid surface data structure');
       }
 
-      const surfaceData1 = [{
-        x: strikes1,
-        y: maturities1,
-        z: vols,
-        type: 'surface',
-        colorscale: 'Portland',
-        showscale: true,
-        colorbar: {
-          title: 'Volatility',
-          titleside: 'right'
+      const surfaceData1 = [
+        {
+          x: strikes1,
+          y: maturities1,
+          z: impliedVols,
+          type: 'surface',
+          colorscale: 'Portland',
+          showscale: true,
+          colorbar: {
+            title: 'Implied Volatility',
+            titleside: 'right',
+            x: 1.0
+          },
+          opacity: 0.9
+        },
+        {
+          x: strikes1,
+          y: maturities1,
+          z: localVols,
+          type: 'surface',
+          colorscale: 'Viridis',
+          showscale: true,
+          colorbar: {
+            title: 'Local Volatility',
+            titleside: 'right',
+            x: 1.1
+          },
+          opacity: 0.3, // Transparent mesh
+          showlegend: true,
+          name: 'Local Volatility'
         }
-      }];
+      ];
 
       const surfaceLayout1 = {
         title: {
@@ -116,11 +76,12 @@ document.addEventListener('DOMContentLoaded', function () {
           yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           zaxis: { title: 'Volatility', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
-          bgcolor: 'rgb(241, 245, 249)' // Updated to match gray sections
+          bgcolor: 'rgb(241, 245, 249)'
         },
         margin: { l: 20, r: 20, b: 20, t: 80 },
-        paper_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
-        font: { color: '#1a202c' }
+        paper_bgcolor: 'rgb(241, 245, 249)',
+        font: { color: '#1a202c' },
+        showlegend: true
       };
 
       Plotly.newPlot('smile-plot', surfaceData1, surfaceLayout1);
