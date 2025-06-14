@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const surfaceData = [{
-        x: stikes,
+        x: strikes, // Fixed typo: stikes -> strikes
         y: maturities,
         z: prices,
         type: 'surface',
@@ -135,7 +135,6 @@ document.addEventListener('DOMContentLoaded', function () {
       displayError('surface-plot', 'Failed to load call price surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
       displayError('smile-plot', 'Failed to load volatility surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
     });
-
   // Call Option Comparison Plot
   fetch('AMZN_call_option_pricing_comparison.json')
     .then(response => {
