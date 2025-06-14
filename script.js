@@ -5,6 +5,68 @@ document.addEventListener('DOMContentLoaded', function () {
     div.innerHTML = `<p class="text-red-600 text-center">${message}</p>`;
   }
 
+  fetch('AMZN_heston_surface_data.json')Add commentMore actions
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log('Surface data loaded:', data);
+      // Extract unique strikes and maturities
+      const strikes = [...new Set(data.data.map(item => item.strike))].sort((a, b) => a - b);
+      const maturities = [...new Set(data.data.map(item => item.maturity))].sort((a, b) => a - b);
+      
+      // Create 2D array for call prices
+      const prices = maturities.map(() => Array(strikes.length).fill(0));
+      data.data.forEach(item => {
+        const i = maturities.indexOf(item.maturity);
+        const j = strikes.indexOf(item.strike);
+        prices[i][j] = item.call_price;
+      });
+
+      if (!strikes.length || !maturities.length || !prices.length) {
+        throw new Error('Invalid surface data structure');
+      }
+
+      const surfaceData = [{
+        x: strikes,
+        y: maturities,
+        z: prices,
+        type: 'surface',
+        colorscale: 'Portland',
+        showscale: true,
+        colorbar: {
+          title: 'Call Price ($)',
+          titleside: 'right'
+        }
+      }];
+
+      const surfaceLayout = {
+        title: {
+          text: 'Heston Model: Call Option Price Surface (AMZN)',
+          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          x: 0.5,
+          xanchor: 'center'
+        },
+        scene: {
+          xaxis: { title: 'Strike Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
+          yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
+          zaxis: { title: 'Call Option Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
+          camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
+          bgcolor: 'rgb(241, 245, 249)' // Updated to match gray sections
+        },
+        margin: { l: 20, r: 20, b: 20, t: 80 },
+        paper_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
+        font: { color: '#1a202c' }
+      };
+
+      Plotly.newPlot('surface-plot', surfaceData, surfaceLayout);
+    })
+    .catch(error => {
+      console.error('Error loading surface data:', error);
+      displayError('surface-plot', 'Failed to load 3D surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');Add commentMore actions
+    });
+  
   // Load 3D surface plot data
  fetch('AMZN_heston_surface_data.json')
     .then(response => {
