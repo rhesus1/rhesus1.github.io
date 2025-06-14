@@ -81,12 +81,12 @@ document.addEventListener('DOMContentLoaded', function () {
       
       // Create 2D arrays for implied_vol and local_vol
       const impliedVols = maturities1.map(() => Array(strikes1.length).fill(0));
-      const localVols = maturities1.map(() => Array(strikes1.length).fill(null));
+      const localVols = maturities1.map(() => Array(strikes1.length).fill(0));
       data.data.forEach(item => {
         const i = maturities1.indexOf(item.maturity);
         const j = strikes1.indexOf(item.strike);
         impliedVols[i][j] = item.implied_vol;
-        localVols[i][j] = item.local_vol !== null ? item.local_vol : 0; // Handle null local_vol
+        localVols[i][j] = item.local_vol; // Handle null local_vol
       });
 
       if (!strikes1.length || !maturities1.length || !impliedVols.length) {
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
           y: maturities1,
           z: localVols,
           type: 'surface',
-          colorscale: 'Viridis',
+          colorscale: 'Portland',
           showscale: true,
           colorbar: {
             title: 'Local Volatility',
