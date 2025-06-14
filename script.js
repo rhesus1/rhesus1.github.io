@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
           showscale: true,
           colorbar: {
             title: 'Implied Volatility',
-            titleside: 'right',
+            titleside: 'left',
             x: 1.0
           },
           opacity: 0.9
