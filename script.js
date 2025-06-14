@@ -5,18 +5,21 @@ document.addEventListener('DOMContentLoaded', function () {
     div.innerHTML = `<p class="text-red-600 text-center">${message}</p>`;
   }
 
-  fetch('AMZN_heston_surface_data.json')Add commentMore actions
+  // Fetch data once and reuse
+  fetch('AMZN_heston_surface_data.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
       return response.json();
     })
     .then(data => {
       console.log('Surface data loaded:', data);
+      const S0 = data.S0; // Stock price for OTM reference
+
       // Extract unique strikes and maturities
       const strikes = [...new Set(data.data.map(item => item.strike))].sort((a, b) => a - b);
       const maturities = [...new Set(data.data.map(item => item.maturity))].sort((a, b) => a - b);
-      
-      // Create 2D array for call prices
+
+      // Call Price Surface Plot
       const prices = maturities.map(() => Array(strikes.length).fill(0));
       data.data.forEach(item => {
         const i = maturities.indexOf(item.maturity);
@@ -29,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const surfaceData = [{
-        x: strikes,
+        x: stikes,
         y: maturities,
         z: prices,
         type: 'surface',
@@ -53,50 +56,29 @@ document.addEventListener('DOMContentLoaded', function () {
           yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           zaxis: { title: 'Call Option Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
-          bgcolor: 'rgb(241, 245, 249)' // Updated to match gray sections
+          bgcolor: 'rgb(241, 245, 249)'
         },
         margin: { l: 20, r: 20, b: 20, t: 80 },
-        paper_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
+        paper_bgcolor: 'rgb(241, 245, 249)',
         font: { color: '#1a202c' }
       };
 
       Plotly.newPlot('surface-plot', surfaceData, surfaceLayout);
-    })
-    .catch(error => {
-      console.error('Error loading surface data:', error);
-      displayError('surface-plot', 'Failed to load 3D surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');Add commentMore actions
-    });
-  
-  // Load 3D surface plot data
- fetch('AMZN_heston_surface_data.json')
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-      return response.json();
-    })
-    .then(data => {
-      console.log('Surface data loaded:', data);
-      // Extract unique strikes and maturities
-      const strikes1 = [...new Set(data.data.map(item => item.strike))].sort((a, b) => a - b);
-      const maturities1 = [...new Set(data.data.map(item => item.maturity))].sort((a, b) => a - b);
-      
-      // Create 2D arrays for implied_vol and local_vol
-      const impliedVols = maturities1.map(() => Array(strikes1.length).fill(0));
-      const localVols = maturities1.map(() => Array(strikes1.length).fill(0));
-      data.data.forEach(item => {
-        const i = maturities1.indexOf(item.maturity);
-        const j = strikes1.indexOf(item.strike);
-        impliedVols[i][j] = item.implied_vol;
-        localVols[i][j] = item.local_vol; // Handle null local_vol
-      });
 
-      if (!strikes1.length || !maturities1.length || !impliedVols.length) {
-        throw new Error('Invalid surface data structure');
-      }
+      // Volatility Surface Plot
+      const impliedVols = maturities.map(() => Array(strikes.length).fill(0));
+      const localVols = maturities.map(() => Array(strikes.length).fill(0));
+      data.data.forEach(item => {
+        const i = maturities.indexOf(item.maturity);
+        const j = strikes.indexOf(item.strike);
+        impliedVols[i][j] = item.implied_vol;
+        localVols[i][j] = item.local_vol !== null ? item.local_vol : 0; // Handle null
+      });
 
       const surfaceData1 = [
         {
-          x: strikes1,
-          y: maturities1,
+          x: strikes,
+          y: maturities,
           z: impliedVols,
           type: 'surface',
           colorscale: 'Portland',
@@ -109,18 +91,18 @@ document.addEventListener('DOMContentLoaded', function () {
           opacity: 0.9
         },
         {
-          x: strikes1,
-          y: maturities1,
+          x: strikes,
+          y: maturities,
           z: localVols,
           type: 'surface',
-          colorscale: 'Portland',
+          colorscale: 'Viridis', // Different colorscale for clarity
           showscale: true,
           colorbar: {
             title: 'Local Volatility',
             titleside: 'right',
             x: 1.1
           },
-          opacity: 0.3, // Transparent mesh
+          opacity: 0.3,
           showlegend: true,
           name: 'Local Volatility'
         }
@@ -150,10 +132,11 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .catch(error => {
       console.error('Error loading surface data:', error);
-      displayError('smile-plot', 'Failed to load 3D surface plot. Please ensure AMZN_volatility_surface_data.json is accessible.');
+      displayError('surface-plot', 'Failed to load call price surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
+      displayError('smile-plot', 'Failed to load volatility surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
     });
 
-  // Load call option comparison plot data
+  // Call Option Comparison Plot
   fetch('AMZN_call_option_pricing_comparison.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -212,6 +195,14 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Fourier',
           line: { color: '#ff0000', width: 2 }
+        },
+        {
+          x: [213.57, 213.57],
+          y: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc) * 1.1],
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Stock Price (OTM Calls > 213.57)',
+          line: { color: '#000000', width: 1, dash: 'dash' }
         }
       ];
 
@@ -236,8 +227,8 @@ document.addEventListener('DOMContentLoaded', function () {
           gridcolor: '#e2e8f0',
           range: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc) * 1.1]
         },
-        paper_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
-        plot_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
+        paper_bgcolor: 'rgb(241, 245, 249)',
+        plot_bgcolor: 'rgb(241, 245, 249)',
         margin: { l: 60, r: 20, b: 60, t: 80 },
         showlegend: true,
         legend: {
@@ -255,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function () {
       displayError('comparison-plot', 'Failed to load call comparison plot: ' + error.message);
     });
 
-  // Load put option comparison plot data
+  // Put Option Comparison Plot
   fetch('AMZN_put_option_pricing_comparison.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -269,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const heston_mc = data.data.map(item => item.heston_mc);
       const bs_fd = data.data.map(item => item.bs_fd);
       const heston_fourier = data.data.map(item => item.heston_fourier);
-      
+
       if (!strikes || !bs_analytical || !bs_mc || !heston_mc || !bs_fd) {
         throw new Error('Invalid put comparison data structure');
       }
@@ -314,6 +305,14 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Fourier',
           line: { color: '#ff0000', width: 2 }
+        },
+        {
+          x: [213.57, 213.57],
+          y: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1],
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Stock Price (OTM Puts < 213.57)',
+          line: { color: '#000000', width: 1, dash: 'dash' }
         }
       ];
 
@@ -338,8 +337,8 @@ document.addEventListener('DOMContentLoaded', function () {
           gridcolor: '#e2e8f0',
           range: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1]
         },
-        paper_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
-        plot_bgcolor: 'rgb(241, 245, 249)', // Updated to match gray sections
+        paper_bgcolor: 'rgb(241, 245, 249)',
+        plot_bgcolor: 'rgb(241, 245, 249)',
         margin: { l: 60, r: 20, b: 60, t: 80 },
         showlegend: true,
         legend: {
