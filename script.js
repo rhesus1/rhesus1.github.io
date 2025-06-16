@@ -364,30 +364,40 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .then(data => {
       console.log('LSTM predictions data:', data);
-      const times = data.predictions.map(item => item.time);
+      const fullTimes = data.time_indices;
+      const fullPrices = data.stock_prices;
+      const testTimes = data.predictions.map(item => item.time);
       const actualPrices = data.predictions.map(item => item.actual);
       const predictedPrices = data.predictions.map(item => item.predicted);
 
-      if (!times || !actualPrices || !predictedPrices) {
+      if (!fullTimes || !fullPrices || !testTimes || !actualPrices || !predictedPrices) {
         throw new Error('Invalid LSTM predictions data structure');
       }
 
       const plotData = [
         {
-          x: times,
+          x: fullTimes,
+          y: fullPrices,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Historical Stock Price',
+          line: { color: '#6b7280', width: 1 } // Gray for background history
+        },
+        {
+          x: testTimes,
           y: actualPrices,
           type: 'scatter',
           mode: 'lines',
-          name: 'Actual Stock Price',
-          line: { color: '#1f77b4', width: 2 }
+          name: 'Actual Stock Price (Test)',
+          line: { color: '#1f77b4', width: 2 } // Blue for actual test data
         },
         {
-          x: times,
+          x: testTimes,
           y: predictedPrices,
           type: 'scatter',
           mode: 'lines',
-          name: 'LSTM Predicted Price',
-          line: { color: '#ff7f0e', width: 2 }
+          name: 'LSTM Predicted Price (Test)',
+          line: { color: '#ff7f0e', width: 2 } // Orange for predicted test data
         }
       ];
 
@@ -403,14 +413,14 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [Math.min(...times), Math.max(...times)]
+          range: [Math.min(...fullTimes), Math.max(...fullTimes)]
         },
         yaxis: {
           title: 'Stock Price ($)',
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [Math.min(...actualPrices, ...predictedPrices) * 0.95, Math.max(...actualPrices, ...predictedPrices) * 1.05]
+          range: [Math.min(...fullPrices, ...actualPrices, ...predictedPrices) * 0.95, Math.max(...fullPrices, ...actualPrices, ...predictedPrices) * 1.05]
         },
         paper_bgcolor: 'rgb(241, 245, 249)',
         plot_bgcolor: 'rgb(241, 245, 249)',
