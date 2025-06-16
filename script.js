@@ -366,11 +366,10 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('LSTM predictions data:', data);
       const fullTimes = data.time_indices;
       const fullPrices = data.stock_prices;
-      const testTimes = data.predictions.map(item => item.time);
-      const actualPrices = data.predictions.map(item => item.actual);
+      const predTimes = data.predictions.map(item => item.time);
       const predictedPrices = data.predictions.map(item => item.predicted);
 
-      if (!fullTimes || !fullPrices || !testTimes || !actualPrices || !predictedPrices) {
+      if (!fullTimes || !fullPrices || !predTimes || !predictedPrices) {
         throw new Error('Invalid LSTM predictions data structure');
       }
 
@@ -381,29 +380,21 @@ document.addEventListener('DOMContentLoaded', function () {
           type: 'scatter',
           mode: 'lines',
           name: 'Historical Stock Price',
-          line: { color: '#6b7280', width: 1 } // Gray for background history
+          line: { color: '#6b7280', width: 1 } // Gray for historical data
         },
         {
-          x: testTimes,
-          y: actualPrices,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Actual Stock Price (Test)',
-          line: { color: '#1f77b4', width: 2 } // Blue for actual test data
-        },
-        {
-          x: testTimes,
+          x: predTimes,
           y: predictedPrices,
           type: 'scatter',
           mode: 'lines',
-          name: 'LSTM Predicted Price (Test)',
-          line: { color: '#ff7f0e', width: 2 } // Orange for predicted test data
+          name: 'LSTM Predicted Price',
+          line: { color: '#ff7f0e', width: 2 } // Orange for predictions
         }
       ];
 
       const layout = {
         title: {
-          text: 'LSTM Stock Price Predictions vs Actual (AMZN)',
+          text: 'LSTM Stock Price Predictions vs Historical (AMZN)',
           font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
           x: 0.5,
           xanchor: 'center'
@@ -420,7 +411,7 @@ document.addEventListener('DOMContentLoaded', function () {
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [Math.min(...fullPrices, ...actualPrices, ...predictedPrices) * 0.95, Math.max(...fullPrices, ...actualPrices, ...predictedPrices) * 1.05]
+          range: [Math.min(...fullPrices, ...predictedPrices) * 0.95, Math.max(...fullPrices, ...predictedPrices) * 1.05]
         },
         paper_bgcolor: 'rgb(241, 245, 249)',
         plot_bgcolor: 'rgb(241, 245, 249)',
