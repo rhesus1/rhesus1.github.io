@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     div.innerHTML = `<p class="text-red-600 text-center">${message}</p>`;
   }
 
-  // Fetch data once and reuse
+  // Fetch data for Heston surface plots
   fetch('AMZN_heston_surface_data.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const surfaceData = [{
-        x: strikes, // Fixed typo: stikes -> strikes
+        x: strikes,
         y: maturities,
         z: prices,
         type: 'surface',
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
           y: maturities,
           z: localVols,
           type: 'surface',
-          colorscale: 'Viridis', // Different colorscale for clarity
+          colorscale: 'Viridis',
           showscale: true,
           colorbar: {
             title: 'Local Volatility',
@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
       displayError('surface-plot', 'Failed to load call price surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
       displayError('smile-plot', 'Failed to load volatility surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
     });
+
   // Call Option Comparison Plot
   fetch('AMZN_call_option_pricing_comparison.json')
     .then(response => {
@@ -353,5 +354,80 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => {
       console.error('Put comparison plot error:', error);
       displayError('comparison-plot-put', 'Failed to load put comparison plot: ' + error.message);
+    });
+
+  // LSTM Predictions Plot
+  fetch('lstm_predictions.json')
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log('LSTM predictions data:', data);
+      const times = data.predictions.map(item => item.time);
+      const actualPrices = data.predictions.map(item => item.actual);
+      const predictedPrices = data.predictions.map(item => item.predicted);
+
+      if (!times || !actualPrices || !predictedPrices) {
+        throw new Error('Invalid LSTM predictions data structure');
+      }
+
+      const plotData = [
+        {
+          x: times,
+          y: actualPrices,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Actual Stock Price',
+          line: { color: '#1f77b4', width: 2 }
+        },
+        {
+          x: times,
+          y: predictedPrices,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'LSTM Predicted Price',
+          line: { color: '#ff7f0e', width: 2 }
+        }
+      ];
+
+      const layout = {
+        title: {
+          text: 'LSTM Stock Price Predictions vs Actual (AMZN)',
+          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          x: 0.5,
+          xanchor: 'center'
+        },
+        xaxis: {
+          title: 'Time Index',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0',
+          range: [Math.min(...times), Math.max(...times)]
+        },
+        yaxis: {
+          title: 'Stock Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0',
+          range: [Math.min(...actualPrices, ...predictedPrices) * 0.95, Math.max(...actualPrices, ...predictedPrices) * 1.05]
+        },
+        paper_bgcolor: 'rgb(241, 245, 249)',
+        plot_bgcolor: 'rgb(241, 245, 249)',
+        margin: { l: 60, r: 20, b: 60, t: 80 },
+        showlegend: true,
+        legend: {
+          x: 1,
+          xanchor: 'right',
+          y: 1,
+          bgcolor: 'rgba(255, 255, 255, 0.5)'
+        }
+      };
+
+      Plotly.newPlot('lstm-plot', plotData, layout);
+    })
+    .catch(error => {
+      console.error('LSTM predictions plot error:', error);
+      displayError('lstm-plot', 'Failed to load LSTM predictions plot: ' + error.message);
     });
 });
