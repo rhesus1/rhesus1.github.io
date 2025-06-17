@@ -368,12 +368,22 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   ])
     .then(([marketData, lstmData]) => {
+      // Debugging: Log marketData and its type
       console.log('Market data loaded:', marketData);
+      console.log('Market data type:', typeof marketData);
+      console.log('Market data is object:', marketData && typeof marketData === 'object');
+      console.log('Market data has timestamps:', !!marketData.timestamps);
       console.log('LSTM predictions data:', lstmData);
 
-      // Step 1: Validate marketData structure
-      if (!marketData.timestamps || !Array.isArray(marketData.timestamps) || !marketData.close || !Array.isArray(marketData.close)) {
-        throw new Error('Invalid AMZN_market_data.json structure: timestamps or close is missing or not an array');
+      // Step 1: Validate marketData
+      if (!marketData || typeof marketData !== 'object') {
+        throw new Error('marketData is not an object');
+      }
+      if (!marketData.timestamps || !Array.isArray(marketData.timestamps)) {
+        throw new Error('marketData.timestamps is missing or not an array');
+      }
+      if (!marketData.close || !Array.isArray(marketData.close)) {
+        throw new Error('marketData.close is missing or not an array');
       }
 
       // Step 2: Combine timestamps and close prices into formatted data
@@ -386,6 +396,9 @@ document.addEventListener('DOMContentLoaded', function () {
           year: 'numeric'
         })
       }));
+
+      // Debugging: Log formattedMarketData sample
+      console.log('Formatted market data sample:', formattedMarketData.slice(0, 5));
 
       // Step 3: Map time indices to month-year labels
       const fullTimes = lstmData.time_indices.map(index => {
@@ -403,13 +416,19 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       const predictedPrices = lstmData.predictions.map(item => item.predicted);
 
+      // Debugging: Log data arrays
+      console.log('Full times sample:', fullTimes.slice(0, 5));
+      console.log('Full prices sample:', fullPrices.slice(0, 5));
+      console.log('Predicted times sample:', predTimes.slice(0, 5));
+      console.log('Predicted prices sample:', predictedPrices.slice(0, 5));
+
       // Step 5: Validate data
       if (!fullTimes.length || !fullPrices.length || !predTimes.length || !predictedPrices.length) {
         throw new Error('Invalid LSTM predictions data structure');
       }
 
       // Step 6: Combine historical and predicted labels for the x-axis
-      const allLabels = [...new Set([...fullTimes, ...predTimes])]; // Remove duplicates for clean axis
+      const allLabels = [...new Set([...fullTimes, ...predTimes])]; // Remove duplicates
 
       const plotData = [
         {
