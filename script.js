@@ -368,12 +368,14 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   ])
     .then(([marketData, lstmData]) => {
-      // Debugging: Log marketData and its type
+      // Debugging: Log data structures
       console.log('Market data loaded:', marketData);
       console.log('Market data type:', typeof marketData);
-      console.log('Market data is object:', marketData && typeof marketData === 'object');
       console.log('Market data has timestamps:', !!marketData.timestamps);
       console.log('LSTM predictions data:', lstmData);
+      console.log('LSTM time_indices length:', lstmData.time_indices?.length);
+      console.log('LSTM stock_prices length:', lstmData.stock_prices?.length);
+      console.log('LSTM predictions length:', lstmData.predictions?.length);
 
       // Step 1: Validate marketData
       if (!marketData || typeof marketData !== 'object') {
@@ -386,61 +388,73 @@ document.addEventListener('DOMContentLoaded', function () {
         throw new Error('marketData.close is missing or not an array');
       }
 
-      // Step 2: Combine timestamps and close prices into formatted data
-      const formattedMarketData = marketData.timestamps.map((timestamp, index) => ({
-        timestamp,
-        price: marketData.close[index],
-        date: new Date(timestamp),
-        monthYear: new Date(timestamp).toLocaleString('en-US', {
-          month: 'short',
-          year: 'numeric'
-        })
-      }));
-
-      // Debugging: Log formattedMarketData sample
-      console.log('Formatted market data sample:', formattedMarketData.slice(0, 5));
-
-      // Step 3: Map time indices to month-year labels
-      const fullTimes = lstmData.time_indices.map(index => {
-        const data = formattedMarketData[Math.floor(index)];
-        return data ? data.monthYear : `Index-${index}`;
-      });
-      const fullPrices = lstmData.stock_prices;
-
-      // Step 4: Handle predictions (assume they start after the last historical data point)
-      const lastDate = new Date(formattedMarketData[formattedMarketData.length - 1].timestamp);
-      const predTimes = lstmData.predictions.map((item, idx) => {
-        const date = new Date(lastDate);
-        date.setMonth(lastDate.getMonth() + idx + 1); // Increment by month
-        return date.toLocaleString('en-US', { month: 'short', year: 'numeric' });
-      });
-      const predictedPrices = lstmData.predictions.map(item => item.predicted);
-
-      // Debugging: Log data arrays
-      console.log('Full times sample:', fullTimes.slice(0, 5));
-      console.log('Full prices sample:', fullPrices.slice(0, 5));
-      console.log('Predicted times sample:', predTimes.slice(0, 5));
-      console.log('Predicted prices sample:', predictedPrices.slice(0, 5));
-
-      // Step 5: Validate data
-      if (!fullTimes.length || !fullPrices.length || !predTimes.length || !predictedPrices.length) {
-        throw new Error('Invalid LSTM predictions data structure');
+      // Step 2: Validate lstmData
+      if (!lstmData.time_indices || !Array.isArray(lstmData.time_indices)) {
+        throw new Error('lstmData.time_indices is missing or not an array');
+      }
+      if (!lstmData.stock_prices || !Array.isArray(lstmData.stock_prices)) {
+        throw new Error('lstmData.stock_prices is missing or not an array');
+      }
+      if (!lstmData.predictions || !Array.isArray(lstmData.predictions)) {
+        throw new Error('lstmData.predictions is missing or not an array');
       }
 
-      // Step 6: Combine historical and predicted labels for the x-axis
-      const allLabels = [...new Set([...fullTimes, ...predTimes])]; // Remove duplicates
+      // Step 3: Create timestamp-to-date mapping for tick labels
+      const timestampToDate = marketData.timestamps.map((timestamp, index) => ({
+        index: index,
+        timestamp,
+        date: new Date(timestamp),
+        monthYear: new Date(timestamp).toLocaleString('en-US', { month: 'short', year: 'numeric' })
+      }));
 
+      // Debugging: Log timestamp sample
+      console.log('Timestamp mapping sample:', timestampToDate.slice(0, 5));
+
+      // Step 4: Select tick labels every 3 months
+      const tickIndices = [];
+      const tickLabels = [];
+      let lastMonthYear = null;
+      timestampToDate.forEach((entry, i) => {
+        if (!lastMonthYear || entry.monthYear !== lastMonthYear) {
+          const currentDate = entry.date;
+          const monthDiff = lastMonthYear
+            ? (currentDate.getFullYear() - new Date(timestampToDate[tickIndices[tickIndices.length - 1]].timestamp).getFullYear()) * 12 +
+              (currentDate.getMonth() - new Date(timestampToDate[tickIndices[tickIndices.length - 1]].timestamp).getMonth())
+            : 0;
+          if (!lastMonthYear || monthDiff >= 3) {
+            tickIndices.push(entry.index);
+            tickLabels.push(entry.monthYear);
+            lastMonthYear = entry.monthYear;
+          }
+        }
+      });
+
+      // Debugging: Log tick indices and labels
+      console.log('Tick indices:', tickIndices);
+      console.log('Tick labels:', tickLabels);
+
+      // Step 5: Prepare prediction time indices (extend from last historical index)
+      const lastHistoricalIndex = lstmData.time_indices[lstmData.time_indices.length - 1];
+      const predIndices = lstmData.predictions.map((_, idx) => lastHistoricalIndex + 1 + idx);
+      const predictedPrices = lstmData.predictions.map(item => item.predicted);
+
+      // Step 6: Validate data lengths
+      if (lstmData.time_indices.length !== lstmData.stock_prices.length) {
+        throw new Error('Mismatch between time_indices and stock_prices lengths');
+      }
+
+      // Step 7: Plot data
       const plotData = [
         {
-          x: fullTimes,
-          y: fullPrices,
+          x: lstmData.time_indices,
+          y: lstmData.stock_prices,
           type: 'scatter',
           mode: 'lines',
           name: 'Historical Stock Price',
           line: { color: '#6b7280', width: 1 } // Gray for historical data
         },
         {
-          x: predTimes,
+          x: predIndices,
           y: predictedPrices,
           type: 'scatter',
           mode: 'lines',
@@ -457,20 +471,20 @@ document.addEventListener('DOMContentLoaded', function () {
           xanchor: 'center'
         },
         xaxis: {
-          title: 'Time (Month-Year)',
+          title: 'Time Index',
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          type: 'category', // Use category for equal spacing
-          tickvals: allLabels.map((_, i) => i), // Use indices for equal spacing
-          ticktext: allLabels // Display month-year labels
+          tickvals: tickIndices,
+          ticktext: tickLabels,
+          range: [Math.min(...lstmData.time_indices, ...predIndices), Math.max(...lstmData.time_indices, ...predIndices)]
         },
         yaxis: {
           title: 'Stock Price ($)',
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [Math.min(...fullPrices, ...predictedPrices) * 0.95, Math.max(...fullPrices, ...predictedPrices) * 1.05]
+          range: [Math.min(...lstmData.stock_prices, ...predictedPrices) * 0.95, Math.max(...lstmData.stock_prices, ...predictedPrices) * 1.05]
         },
         paper_bgcolor: 'rgb(255, 255, 255)',
         plot_bgcolor: 'rgb(255, 255, 255)',
