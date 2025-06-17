@@ -56,13 +56,10 @@ document.addEventListener('DOMContentLoaded', function () {
           yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           zaxis: { title: 'Call Option Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
-          //bgcolor: 'rgb(241, 245, 249)'
           bgcolor: 'rgb(255, 255, 255)'
         },
         margin: { l: 20, r: 20, b: 20, t: 80 },
-        //paper_bgcolor: 'rgb(241, 245, 249)',
-                paper_bgcolor: 'rgb(255, 255, 255)',
-
+        paper_bgcolor: 'rgb(255, 255, 255)',
         font: { color: '#1a202c' }
       };
 
@@ -123,13 +120,10 @@ document.addEventListener('DOMContentLoaded', function () {
           yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           zaxis: { title: 'Volatility', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
-         // bgcolor: 'rgb(241, 245, 249)'
-                    bgcolor: 'rgb(255, 255, 255)'
-
+          bgcolor: 'rgb(255, 255, 255)'
         },
         margin: { l: 20, r: 20, b: 20, t: 80 },
-        //paper_bgcolor: 'rgb(241, 245, 249)',
-                  bgcolor: 'rgb(255, 255, 255)',
+        paper_bgcolor: 'rgb(255, 255, 255)',
         font: { color: '#1a202c' },
         showlegend: true
       };
@@ -233,9 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
           gridcolor: '#e2e8f0',
           range: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc) * 1.1]
         },
-       // paper_bgcolor: 'rgb(241, 245, 249)',
-       // plot_bgcolor: 'rgb(241, 245, 249)',
-         paper_bgcolor: 'rgb(255, 255, 255)',
+        paper_bgcolor: 'rgb(255, 255, 255)',
         plot_bgcolor: 'rgb(255, 255, 255)',
         margin: { l: 60, r: 20, b: 60, t: 80 },
         showlegend: true,
@@ -345,8 +337,6 @@ document.addEventListener('DOMContentLoaded', function () {
           gridcolor: '#e2e8f0',
           range: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1]
         },
-        //paper_bgcolor: 'rgb(241, 245, 249)',
-        //plot_bgcolor: 'rgb(241, 245, 249)',
         paper_bgcolor: 'rgb(255, 255, 255)',
         plot_bgcolor: 'rgb(255, 255, 255)',
         margin: { l: 60, r: 20, b: 60, t: 80 },
@@ -367,21 +357,51 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
   // LSTM Predictions Plot
-  fetch('lstm_predictions.json')
-    .then(response => {
+  Promise.all([
+    fetch('AMZN_market_data.json').then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json();
+    }),
+    fetch('lstm_predictions.json').then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
       return response.json();
     })
-    .then(data => {
-      console.log('LSTM predictions data:', data);
-      const fullTimes = data.time_indices;
-      const fullPrices = data.stock_prices;
-      const predTimes = data.predictions.map(item => item.time);
-      const predictedPrices = data.predictions.map(item => item.predicted);
+  ])
+    .then(([marketData, lstmData]) => {
+      console.log('Market data loaded:', marketData);
+      console.log('LSTM predictions data:', lstmData);
 
-      if (!fullTimes || !fullPrices || !predTimes || !predictedPrices) {
+      // Step 1: Convert timestamps to month-year format
+      const formattedMarketData = marketData.map(item => ({
+        ...item,
+        date: new Date(item.timestamp),
+        monthYear: new Date(item.timestamp).toLocaleString('en-US', {
+          month: 'short',
+          year: 'numeric'
+        })
+      }));
+
+      // Step 2: Map time indices and predictions to month-year labels
+      const fullTimes = lstmData.time_indices.map(index =>
+        formattedMarketData[index]?.monthYear || `Index-${index}`
+      );
+      const fullPrices = lstmData.stock_prices;
+
+      // For predictions, assume they start after the last historical data point
+      const lastDate = new Date(formattedMarketData[formattedMarketData.length - 1].timestamp);
+      const predTimes = lstmData.predictions.map((item, idx) => {
+        const date = new Date(lastDate);
+        date.setMonth(lastDate.getMonth() + idx + 1); // Increment by month
+        return date.toLocaleString('en-US', { month: 'short', year: 'numeric' });
+      });
+      const predictedPrices = lstmData.predictions.map(item => item.predicted);
+
+      if (!fullTimes.length || !fullPrices.length || !predTimes.length || !predictedPrices.length) {
         throw new Error('Invalid LSTM predictions data structure');
       }
+
+      // Combine historical and predicted labels for the x-axis
+      const allLabels = [...fullTimes, ...predTimes];
 
       const plotData = [
         {
@@ -410,11 +430,13 @@ document.addEventListener('DOMContentLoaded', function () {
           xanchor: 'center'
         },
         xaxis: {
-          title: 'Time Index',
+          title: 'Time (Month-Year)',
           titlefont: { color: '#1a202c' },
           tickfont: { color: '#1a202c' },
           gridcolor: '#e2e8f0',
-          range: [Math.min(...fullTimes), Math.max(...fullTimes)]
+          type: 'category', // Use category for equal spacing
+          tickvals: allLabels.map((_, i) => i), // Use indices for equal spacing
+          ticktext: allLabels // Display month-year labels
         },
         yaxis: {
           title: 'Stock Price ($)',
@@ -423,8 +445,8 @@ document.addEventListener('DOMContentLoaded', function () {
           gridcolor: '#e2e8f0',
           range: [Math.min(...fullPrices, ...predictedPrices) * 0.95, Math.max(...fullPrices, ...predictedPrices) * 1.05]
         },
-        paper_bgcolor: 'rgb(241, 245, 249)',
-        plot_bgcolor: 'rgb(241, 245, 249)',
+        paper_bgcolor: 'rgb(255, 255, 255)',
+        plot_bgcolor: 'rgb(255, 255, 255)',
         margin: { l: 60, r: 20, b: 60, t: 80 },
         showlegend: true,
         legend: {
