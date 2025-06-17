@@ -433,24 +433,33 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('Tick indices:', tickIndices);
       console.log('Tick labels:', tickLabels);
 
-      // Step 5: Prepare prediction time indices (extend from last historical index)
-      const lastHistoricalIndex = lstmData.time_indices[lstmData.time_indices.length - 1];
-      const predIndices = lstmData.predictions.map((_, idx) => lastHistoricalIndex + 1 + idx);
+      // Step 5: Prepare prediction time indices (overlay over last 80 historical points)
+      const predLength = lstmData.predictions.length; // 80
+      const historicalLength = lstmData.time_indices.length; // 499
+      const predStartIndex = historicalLength - predLength; // 499 - 80 = 419
+      const predIndices = lstmData.time_indices.slice(predStartIndex); // Indices 419 to 498
       const predictedPrices = lstmData.predictions.map(item => item.predicted);
+
+      // Debugging: Log prediction indices and prices
+      console.log('Prediction indices sample:', predIndices.slice(0, 5));
+      console.log('Predicted prices sample:', predictedPrices.slice(0, 5));
 
       // Step 6: Validate data lengths
       if (lstmData.time_indices.length !== lstmData.stock_prices.length) {
         throw new Error('Mismatch between time_indices and stock_prices lengths');
       }
+      if (predIndices.length !== predictedPrices.length) {
+        throw new Error('Mismatch between prediction indices and predicted prices lengths');
+      }
 
-      // Step 7: Plot data
+      // Step 7: Plot data (train + test with predictions overlaid)
       const plotData = [
         {
           x: lstmData.time_indices,
           y: lstmData.stock_prices,
           type: 'scatter',
           mode: 'lines',
-          name: 'Historical Stock Price',
+          name: 'Historical Stock Price (Train + Test)',
           line: { color: '#6b7280', width: 1 } // Gray for historical data
         },
         {
@@ -477,7 +486,7 @@ document.addEventListener('DOMContentLoaded', function () {
           gridcolor: '#e2e8f0',
           tickvals: tickIndices,
           ticktext: tickLabels,
-          range: [Math.min(...lstmData.time_indices, ...predIndices), Math.max(...lstmData.time_indices, ...predIndices)]
+          range: [Math.min(...lstmData.time_indices), Math.max(...lstmData.time_indices)]
         },
         yaxis: {
           title: 'Stock Price ($)',
