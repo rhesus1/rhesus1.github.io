@@ -371,23 +371,30 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('Market data loaded:', marketData);
       console.log('LSTM predictions data:', lstmData);
 
-      // Step 1: Convert timestamps to month-year format
-      const formattedMarketData = marketData.map(item => ({
-        ...item,
-        date: new Date(item.timestamp),
-        monthYear: new Date(item.timestamp).toLocaleString('en-US', {
+      // Step 1: Validate marketData structure
+      if (!marketData.timestamps || !Array.isArray(marketData.timestamps) || !marketData.close || !Array.isArray(marketData.close)) {
+        throw new Error('Invalid AMZN_market_data.json structure: timestamps or close is missing or not an array');
+      }
+
+      // Step 2: Combine timestamps and close prices into formatted data
+      const formattedMarketData = marketData.timestamps.map((timestamp, index) => ({
+        timestamp,
+        price: marketData.close[index],
+        date: new Date(timestamp),
+        monthYear: new Date(timestamp).toLocaleString('en-US', {
           month: 'short',
           year: 'numeric'
         })
       }));
 
-      // Step 2: Map time indices and predictions to month-year labels
-      const fullTimes = lstmData.time_indices.map(index =>
-        formattedMarketData[index]?.monthYear || `Index-${index}`
-      );
+      // Step 3: Map time indices to month-year labels
+      const fullTimes = lstmData.time_indices.map(index => {
+        const data = formattedMarketData[Math.floor(index)];
+        return data ? data.monthYear : `Index-${index}`;
+      });
       const fullPrices = lstmData.stock_prices;
 
-      // For predictions, assume they start after the last historical data point
+      // Step 4: Handle predictions (assume they start after the last historical data point)
       const lastDate = new Date(formattedMarketData[formattedMarketData.length - 1].timestamp);
       const predTimes = lstmData.predictions.map((item, idx) => {
         const date = new Date(lastDate);
@@ -396,12 +403,13 @@ document.addEventListener('DOMContentLoaded', function () {
       });
       const predictedPrices = lstmData.predictions.map(item => item.predicted);
 
+      // Step 5: Validate data
       if (!fullTimes.length || !fullPrices.length || !predTimes.length || !predictedPrices.length) {
         throw new Error('Invalid LSTM predictions data structure');
       }
 
-      // Combine historical and predicted labels for the x-axis
-      const allLabels = [...fullTimes, ...predTimes];
+      // Step 6: Combine historical and predicted labels for the x-axis
+      const allLabels = [...new Set([...fullTimes, ...predTimes])]; // Remove duplicates for clean axis
 
       const plotData = [
         {
