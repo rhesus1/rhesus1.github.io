@@ -1,25 +1,20 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // Helper function to display error messages in plot divs
   function displayError(divId, message) {
     const div = document.getElementById(divId);
     div.innerHTML = `<p class="text-red-600 text-center">${message}</p>`;
   }
 
-  // Fetch data for Heston surface plots
+  // Heston Surface Plots
   fetch('AMZN_heston_surface_data.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
       return response.json();
     })
     .then(data => {
-      console.log('Surface data loaded:', data);
-      const S0 = data.S0; // Stock price for OTM reference
-
-      // Extract unique strikes and maturities
       const strikes = [...new Set(data.data.map(item => item.strike))].sort((a, b) => a - b);
       const maturities = [...new Set(data.data.map(item => item.maturity))].sort((a, b) => a - b);
 
-      // Call Price Surface Plot
+      // Call Price Surface
       const prices = maturities.map(() => Array(strikes.length).fill(0));
       data.data.forEach(item => {
         const i = maturities.indexOf(item.maturity);
@@ -38,94 +33,53 @@ document.addEventListener('DOMContentLoaded', function () {
         type: 'surface',
         colorscale: 'Portland',
         showscale: true,
-        colorbar: {
-          title: 'Call Price ($)',
-          titleside: 'right'
-        }
+        colorbar: { title: 'Call Price ($)', titleside: 'right' }
       }];
 
       const surfaceLayout = {
-        title: {
-          text: 'Heston Model: Call Option Price Surface (AMZN)',
-          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
-          x: 0.5,
-          xanchor: 'center'
-        },
+        title: { text: 'Heston Model: Call Option Price Surface (AMZN)', font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' }, x: 0.5, xanchor: 'center' },
         scene: {
           xaxis: { title: 'Strike Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           zaxis: { title: 'Call Option Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
-          bgcolor: 'rgb(247, 250, 252)' // Matches bg-grey-100
+          bgcolor: '#f7fafc' // Matches bg-grey-100
         },
         margin: { l: 20, r: 20, b: 20, t: 80 },
-        paper_bgcolor: 'rgb(247, 250, 252)', // Matches bg-grey-100
-        plot_bgcolor: 'rgb(247, 250, 252)', // Matches bg-grey-100
+        paper_bgcolor: '#f7fafc', // Matches bg-grey-100
+        plot_bgcolor: '#f7fafc', // Matches bg-grey-100
         font: { color: '#1a202c' }
       };
 
       Plotly.newPlot('surface-plot', surfaceData, surfaceLayout);
 
-      // Volatility Surface Plot
+      // Volatility Surface
       const impliedVols = maturities.map(() => Array(strikes.length).fill(0));
       const localVols = maturities.map(() => Array(strikes.length).fill(0));
       data.data.forEach(item => {
         const i = maturities.indexOf(item.maturity);
         const j = strikes.indexOf(item.strike);
         impliedVols[i][j] = item.implied_vol;
-        localVols[i][j] = item.local_vol !== null ? item.local_vol : 0; // Handle null
+        localVols[i][j] = item.local_vol !== null ? item.local_vol : 0;
       });
 
       const surfaceData1 = [
-        {
-          x: strikes,
-          y: maturities,
-          z: impliedVols,
-          type: 'surface',
-          colorscale: 'Portland',
-          showscale: true,
-          colorbar: {
-            title: 'Implied Volatility',
-            titleside: 'left',
-            x: 1.0
-          },
-          opacity: 0.9
-        },
-        {
-          x: strikes,
-          y: maturities,
-          z: localVols,
-          type: 'surface',
-          colorscale: 'Viridis',
-          showscale: true,
-          colorbar: {
-            title: 'Local Volatility',
-            titleside: 'right',
-            x: 1.1
-          },
-          opacity: 0.3,
-          showlegend: true,
-          name: 'Local Volatility'
-        }
+        { x: strikes, y: maturities, z: impliedVols, type: 'surface', colorscale: 'Portland', showscale: true, colorbar: { title: 'Implied Volatility', titleside: 'left', x: 1.0 }, opacity: 0.9 },
+        { x: strikes, y: maturities, z: localVols, type: 'surface', colorscale: 'Viridis', showscale: true, colorbar: { title: 'Local Volatility', titleside: 'right', x: 1.1 }, opacity: 0.3, showlegend: true, name: 'Local Volatility' }
       ];
 
       const surfaceLayout1 = {
-        title: {
-          text: 'Heston Model: Volatility Surface (AMZN)',
-          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
-          x: 0.5,
-          xanchor: 'center'
-        },
+        title: { text: 'Heston Model: Volatility Surface (AMZN)', font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' }, x: 0.5, xanchor: 'center' },
         scene: {
           xaxis: { title: 'Strike Price ($)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           yaxis: { title: 'Time to Maturity (Years)', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           zaxis: { title: 'Volatility', gridcolor: 'white', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' } },
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
-          bgcolor: 'rgb(247, 250, 252)' // Matches bg-grey-100
+          bgcolor: '#f7fafc' // Matches bg-grey-100
         },
         margin: { l: 20, r: 20, b: 20, t: 80 },
-        paper_bgcolor: 'rgb(247, 250, 252)', // Matches bg-grey-100
-        plot_bgcolor: 'rgb(247, 250, 252)', // Matches bg-grey-100
+        paper_bgcolor: '#f7fafc', // Matches bg-grey-100
+        plot_bgcolor: '#f7fafc', // Matches bg-grey-100
         font: { color: '#1a202c' },
         showlegend: true
       };
@@ -145,7 +99,6 @@ document.addEventListener('DOMContentLoaded', function () {
       return response.json();
     })
     .then(data => {
-      console.log('Call comparison data:', data);
       const strikes = data.data.map(item => item.strike);
       const bs_analytical = data.data.map(item => item.bs_analytical);
       const bs_mc = data.data.map(item => item.bs_mc);
@@ -158,87 +111,23 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const plotData = [
-        {
-          x: strikes,
-          y: bs_analytical,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Black-Scholes Analytical',
-          line: { color: '#1f77b4', width: 2 }
-        },
-        {
-          x: strikes,
-          y: bs_mc,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Black-Scholes Monte Carlo',
-          line: { color: '#2ca02c', width: 2 }
-        },
-        {
-          x: strikes,
-          y: bs_fd,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Black-Scholes Finite Difference',
-          line: { color: '#ff7f0e', width: 2 }
-        },
-        {
-          x: strikes,
-          y: heston_mc,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Heston Monte Carlo',
-          line: { color: '#9467bd', width: 2 }
-        },
-        {
-          x: strikes,
-          y: heston_fourier,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Heston Fourier',
-          line: { color: '#ff0000', width: 2 }
-        },
-        {
-          x: [213.57, 213.57],
-          y: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc) * 1.1],
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Stock Price (OTM Calls > 213.57)',
-          line: { color: '#000000', width: 1, dash: 'dash' }
-        }
+        { x: strikes, y: bs_analytical, type: 'scatter', mode: 'lines', name: 'Black-Scholes Analytical', line: { color: '#1f77b4', width: 2 } },
+        { x: strikes, y: bs_mc, type: 'scatter', mode: 'lines', name: 'Black-Scholes Monte Carlo', line: { color: '#2ca02c', width: 2 } },
+        { x: strikes, y: bs_fd, type: 'scatter', mode: 'lines', name: 'Black-Scholes Finite Difference', line: { color: '#ff7f0e', width: 2 } },
+        { x: strikes, y: heston_mc, type: 'scatter', mode: 'lines', name: 'Heston Monte Carlo', line: { color: '#9467bd', width: 2 } },
+        { x: strikes, y: heston_fourier, type: 'scatter', mode: 'lines', name: 'Heston Fourier', line: { color: '#ff0000', width: 2 } },
+        { x: [213.57, 213.57], y: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc) * 1.1], type: 'scatter', mode: 'lines', name: 'Stock Price (OTM Calls > 213.57)', line: { color: '#000000', width: 1, dash: 'dash' } }
       ];
 
       const layout = {
-        title: {
-          text: 'Call Option Pricing Model Comparison (AMZN, T=0.25)',
-          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
-          x: 0.5,
-          xanchor: 'center'
-        },
-        xaxis: {
-          title: 'Strike Price ($)',
-          titlefont: { color: '#1a202c' },
-          tickfont: { color: '#1a202c' },
-          gridcolor: '#e2e8f0',
-          range: [Math.min(...strikes), Math.max(...strikes)]
-        },
-        yaxis: {
-          title: 'Call Option Price ($)',
-          titlefont: { color: '#1a202c' },
-          tickfont: { color: '#1a202c' },
-          gridcolor: '#e2e8f0',
-          range: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc) * 1.1]
-        },
-        paper_bgcolor: 'rgb(247, 250, 252)', // Matches bg-grey-100
-        plot_bgcolor: 'rgb(247, 250, 252)', // Matches bg-grey-100
+        title: { text: 'Call Option Pricing Model Comparison (AMZN, T=0.25)', font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' }, x: 0.5, xanchor: 'center' },
+        xaxis: { title: 'Strike Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: [Math.min(...strikes), Math.max(...strikes)] },
+        yaxis: { title: 'Call Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: [0, Math.max(...bs_analytical, ...bs_mc, ...heston_mc) * 1.1] },
+        paper_bgcolor: '#f7fafc', // Matches bg-grey-100
+        plot_bgcolor: '#f7fafc', // Matches bg-grey-100
         margin: { l: 60, r: 20, b: 60, t: 80 },
         showlegend: true,
-        legend: {
-          x: 1,
-          xanchor: 'right',
-          y: 1,
-          bgcolor: 'rgba(255, 255, 255, 0.5)'
-        }
+        legend: { x: 1, xanchor: 'right', y: 1, bgcolor: 'rgba(255, 255, 255, 0.5)' }
       };
 
       Plotly.newPlot('comparison-plot', plotData, layout);
@@ -255,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function () {
       return response.json();
     })
     .then(data => {
-      console.log('Put comparison data:', data);
       const strikes = data.data.map(item => item.strike);
       const bs_analytical = data.data.map(item => item.bs_analytical);
       const bs_mc = data.data.map(item => item.bs_mc);
@@ -268,87 +156,23 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       const plotData = [
-        {
-          x: strikes,
-          y: bs_analytical,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Black-Scholes Analytical',
-          line: { color: '#1f77b4', width: 2 }
-        },
-        {
-          x: strikes,
-          y: bs_mc,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Black-Scholes Monte Carlo',
-          line: { color: '#2ca02c', width: 2 }
-        },
-        {
-          x: strikes,
-          y: bs_fd,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Black-Scholes Finite Difference',
-          line: { color: '#ff7f0e', width: 2 }
-        },
-        {
-          x: strikes,
-          y: heston_mc,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Heston Monte Carlo',
-          line: { color: '#9467bd', width: 2 }
-        },
-        {
-          x: strikes,
-          y: heston_fourier,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Heston Fourier',
-          line: { color: '#ff0000', width: 2 }
-        },
-        {
-          x: [213.57, 213.57],
-          y: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1],
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Stock Price (OTM Puts < 213.57)',
-          line: { color: '#000000', width: 1, dash: 'dash' }
-        }
+        { x: strikes, y: bs_analytical, type: 'scatter', mode: 'lines', name: 'Black-Scholes Analytical', line: { color: '#1f77b4', width: 2 } },
+        { x: strikes, y: bs_mc, type: 'scatter', mode: 'lines', name: 'Black-Scholes Monte Carlo', line: { color: '#2ca02c', width: 2 } },
+        { x: strikes, y: bs_fd, type: 'scatter', mode: 'lines', name: 'Black-Scholes Finite Difference', line: { color: '#ff7f0e', width: 2 } },
+        { x: strikes, y: heston_mc, type: 'scatter', mode: 'lines', name: 'Heston Monte Carlo', line: { color: '#9467bd', width: 2 } },
+        { x: strikes, y: heston_fourier, type: 'scatter', mode: 'lines', name: 'Heston Fourier', line: { color: '#ff0000', width: 2 } },
+        { x: [213.57, 213.57], y: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1], type: 'scatter', mode: 'lines', name: 'Stock Price (OTM Puts < 213.57)', line: { color: '#000000', width: 1, dash: 'dash' } }
       ];
 
       const layout = {
-        title: {
-          text: 'Put Option Pricing Model Comparison (AMZN, T=0.25)',
-          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
-          x: 0.5,
-          xanchor: 'center'
-        },
-        xaxis: {
-          title: 'Strike Price ($)',
-          titlefont: { color: '#1a202c' },
-          tickfont: { color: '#1a202c' },
-          gridcolor: '#e2e8f0',
-          range: [Math.min(...strikes), Math.max(...strikes)]
-        },
-        yaxis: {
-          title: 'Put Option Price ($)',
-          titlefont: { color: '#1a202c' },
-          tickfont: { color: '#1a202c' },
-          gridcolor: '#e2e8f0',
-          range: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1]
-        },
-        paper_bgcolor: 'rgb(247, 250, 252)', // Matches bg-grey-100
-        plot_bgcolor: 'rgb(247, 250, 252)', // Matches bg-grey-100
+        title: { text: 'Put Option Pricing Model Comparison (AMZN, T=0.25)', font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' }, x: 0.5, xanchor: 'center' },
+        xaxis: { title: 'Strike Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: [Math.min(...strikes), Math.max(...strikes)] },
+        yaxis: { title: 'Put Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1] },
+        paper_bgcolor: '#f7fafc', // Matches bg-grey-100
+        plot_bgcolor: '#f7fafc', // Matches bg-grey-100
         margin: { l: 60, r: 20, b: 60, t: 80 },
         showlegend: true,
-        legend: {
-          x: 1,
-          xanchor: 'right',
-          y: 1,
-          bgcolor: 'rgba(255, 255, 255, 0.5)'
-        }
+        legend: { x: 1, xanchor: 'right', y: 1, bgcolor: 'rgba(255, 255, 255, 0.5)' }
       };
 
       Plotly.newPlot('comparison-plot-put', plotData, layout);
@@ -370,37 +194,13 @@ document.addEventListener('DOMContentLoaded', function () {
     })
   ])
     .then(([marketData, lstmData]) => {
-      console.log('Market data loaded:', marketData);
-      console.log('Market data type:', typeof marketData);
-      console.log('Market data has timestamps:', !!marketData.timestamps);
-      console.log('LSTM predictions data:', lstmData);
-      console.log('LSTM time_indices length:', lstmData.time_indices?.length);
-      console.log('LSTM stock_prices length:', lstmData.stock_prices?.length);
-      console.log('LSTM predictions length:', lstmData.predictions?.length);
+      if (!marketData || typeof marketData !== 'object') throw new Error('marketData is not an object');
+      if (!marketData.timestamps || !Array.isArray(marketData.timestamps)) throw new Error('marketData.timestamps is missing or not an array');
+      if (!marketData.close || !Array.isArray(marketData.close)) throw new Error('marketData.close is missing or not an array');
+      if (!lstmData.time_indices || !Array.isArray(lstmData.time_indices)) throw new Error('lstmData.time_indices is missing or not an array');
+      if (!lstmData.stock_prices || !Array.isArray(lstmData.stock_prices)) throw new Error('lstmData.stock_prices is missing or not an array');
+      if (!lstmData.predictions || !Array.isArray(lstmData.predictions)) throw new Error('lstmData.predictions is missing or not an array');
 
-      // Step 1: Validate marketData
-      if (!marketData || typeof marketData !== 'object') {
-        throw new Error('marketData is not an object');
-      }
-      if (!marketData.timestamps || !Array.isArray(marketData.timestamps)) {
-        throw new Error('marketData.timestamps is missing or not an array');
-      }
-      if (!marketData.close || !Array.isArray(marketData.close)) {
-        throw new Error('marketData.close is missing or not an array');
-      }
-
-      // Step 2: Validate lstmData
-      if (!lstmData.time_indices || !Array.isArray(lstmData.time_indices)) {
-        throw new Error('lstmData.time_indices is missing or not an array');
-      }
-      if (!lstmData.stock_prices || !Array.isArray(lstmData.stock_prices)) {
-        throw new Error('lstmData.stock_prices is missing or not an array');
-      }
-      if (!lstmData.predictions || !Array.isArray(lstmData.predictions)) {
-        throw new Error('lstmData.predictions is missing or not an array');
-      }
-
-      // Step 3: Create timestamp-to-date mapping for tick labels
       const timestampToDate = marketData.timestamps.map((timestamp, index) => ({
         index: index,
         timestamp,
@@ -408,9 +208,6 @@ document.addEventListener('DOMContentLoaded', function () {
         monthYear: new Date(timestamp).toLocaleString('en-US', { month: 'short', year: 'numeric' })
       }));
 
-      console.log('Timestamp mapping sample:', timestampToDate.slice(0, 5));
-
-      // Step 4: Select tick labels every 3 months
       const tickIndices = [];
       const tickLabels = [];
       let lastMonthYear = null;
@@ -429,80 +226,29 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
 
-      console.log('Tick indices:', tickIndices);
-      console.log('Tick labels:', tickLabels);
-
-      // Step 5: Prepare prediction time indices (overlay over last 80 historical points)
-      const predLength = lstmData.predictions.length; // 80
-      const historicalLength = lstmData.time_indices.length; // 499
-      const predStartIndex = historicalLength - predLength; // 499 - 80 = 419
-      const predIndices = lstmData.time_indices.slice(predStartIndex); // Indices 419 to 498
+      const predLength = lstmData.predictions.length;
+      const historicalLength = lstmData.time_indices.length;
+      const predStartIndex = historicalLength - predLength;
+      const predIndices = lstmData.time_indices.slice(predStartIndex);
       const predictedPrices = lstmData.predictions.map(item => item.predicted);
 
-      console.log('Prediction indices sample:', predIndices.slice(0, 5));
-      console.log('Predicted prices sample:', predictedPrices.slice(0, 5));
+      if (lstmData.time_indices.length !== lstmData.stock_prices.length) throw new Error('Mismatch between time_indices and stock_prices lengths');
+      if (predIndices.length !== predictedPrices.length) throw new Error('Mismatch between prediction indices and predicted prices lengths');
 
-      // Step 6: Validate data lengths
-      if (lstmData.time_indices.length !== lstmData.stock_prices.length) {
-        throw new Error('Mismatch between time_indices and stock_prices lengths');
-      }
-      if (predIndices.length !== predictedPrices.length) {
-        throw new Error('Mismatch between prediction indices and predicted prices lengths');
-      }
-
-      // Step 7: Plot data (train + test with predictions overlaid)
       const plotData = [
-        {
-          x: lstmData.time_indices,
-          y: lstmData.stock_prices,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'Historical Stock Price (Train + Test)',
-          line: { color: '#6b7280', width: 1 } // Gray for historical data
-        },
-        {
-          x: predIndices,
-          y: predictedPrices,
-          type: 'scatter',
-          mode: 'lines',
-          name: 'LSTM Predicted Price',
-          line: { color: '#ff7f0e', width: 2 } // Orange for predictions
-        }
+        { x: lstmData.time_indices, y: lstmData.stock_prices, type: 'scatter', mode: 'lines', name: 'Historical Stock Price (Train + Test)', line: { color: '#6b7280', width: 1 } },
+        { x: predIndices, y: predictedPrices, type: 'scatter', mode: 'lines', name: 'LSTM Predicted Price', line: { color: '#ff7f0e', width: 2 } }
       ];
 
       const layout = {
-        title: {
-          text: 'LSTM Stock Price Predictions vs Historical (AMZN)',
-          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
-          x: 0.5,
-          xanchor: 'center'
-        },
-        xaxis: {
-          title: 'Time Index',
-          titlefont: { color: '#1a202c' },
-          tickfont: { color: '#1a202c' },
-          gridcolor: '#e2e8f0',
-          tickvals: tickIndices,
-          ticktext: tickLabels,
-          range: [Math.min(...lstmData.time_indices), Math.max(...lstmData.time_indices)]
-        },
-        yaxis: {
-          title: 'Stock Price ($)',
-          titlefont: { color: '#1a202c' },
-          tickfont: { color: '#1a202c' },
-          gridcolor: '#e2e8f0',
-          range: [Math.min(...lstmData.stock_prices, ...predictedPrices) * 0.95, Math.max(...lstmData.stock_prices, ...predictedPrices) * 1.05]
-        },
-        paper_bgcolor: 'rgb(247, 250, 252)', // Matches bg-grey-100
-        plot_bgcolor: 'rgb(247, 250, 252)', // Matches bg-grey-100
+        title: { text: 'LSTM Stock Price Predictions vs Historical (AMZN)', font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' }, x: 0.5, xanchor: 'center' },
+        xaxis: { title: 'Time Index', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', tickvals: tickIndices, ticktext: tickLabels, range: [Math.min(...lstmData.time_indices), Math.max(...lstmData.time_indices)] },
+        yaxis: { title: 'Stock Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: [Math.min(...lstmData.stock_prices, ...predictedPrices) * 0.95, Math.max(...lstmData.stock_prices, ...predictedPrices) * 1.05] },
+        paper_bgcolor: '#f7fafc', // Matches bg-grey-100
+        plot_bgcolor: '#f7fafc', // Matches bg-grey-100
         margin: { l: 60, r: 20, b: 60, t: 80 },
         showlegend: true,
-        legend: {
-          x: 1,
-          xanchor: 'right',
-          y: 1,
-          bgcolor: 'rgba(255, 255, 255, 0.5)'
-        }
+        legend: { x: 1, xanchor: 'right', y: 1, bgcolor: 'rgba(255, 255, 255, 0.5)' }
       };
 
       Plotly.newPlot('lstm-plot', plotData, layout);
