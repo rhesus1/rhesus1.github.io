@@ -13,9 +13,9 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-grey-100 font-sans">
   <!-- Navigation -->
-  <nav class="bg-blue-900 text-white p-4 fixed w-full top-0 z-10">
+  <nav class="bg-navy-900 text-white p-4 fixed w-full top-0 z-10">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-xl font-bold">Morgan J. Rees</h1>
       <ul class="flex space-x-4">
@@ -33,15 +33,15 @@
   <section id="home" class="container mx-auto py-24 text-center">
     <img src="profile.jpg" alt="Morgan J. Rees" class="w-32 h-32 rounded-full mx-auto mb-4">
     <h2 class="text-3xl font-bold mb-4">Morgan J. Rees</h2>
-    <p class="text-lg text-gray-700 max-w-2xl mx-auto">PhD Candidate in Mathematics at the University of Kent, specialising in computational finance and topological modelling. I develop high-performance C++ models for option pricing (Black-Scholes, Heston) and LSTM neural networks for stock price prediction, optimised with OpenMP and SIMD. Explore my projects below or at \href{https://github.com/rhesus1/Finance}{github.com/rhesus1/Finance}.</p>
-    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-      <a href="#quant-finance#lstm" class="block bg-blue-100 p-4 rounded-lg hover:bg-blue-200 transition">
+    <p class="text-lg text-grey-700 max-w-2xl mx-auto">PhD Candidate in Mathematics at the University of Kent, specialising in computational finance and topological modelling. I develop high-performance C++ models for option pricing (Black-Scholes, Heston) and LSTM neural networks for stock price prediction, optimised with OpenMP and SIMD. Explore my projects below or at <a href="https://github.com/rhesus1/Finance" class="text-blue-600 hover:underline">github.com/rhesus1/Finance</a>.</p>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <a href="#quant-finance-lstm" class="block bg-blue-100 p-6 rounded-lg hover:bg-blue-200 transition duration-300">
         <h3 class="text-xl font-semibold">LSTM Stock Prediction</h3>
-        <p class="text-gray-600">C++-based neural network for Amazon stock forecasting.</p>
+        <p class="text-grey-600 mt-2">C++-based neural network for Amazon stock forecasting.</p>
       </a>
-      <a href="#quant-finance#option-pricing" class="block bg-blue-100 p-4 rounded-lg hover:bg-blue-200 transition">
+      <a href="#quant-finance-option-pricing" class="block bg-blue-100 p-6 rounded-lg hover:bg-blue-200 transition duration-300">
         <h3 class="text-xl font-semibold">Option Pricing</h3>
-        <p class="text-gray-600">Black-Scholes and Heston models with advanced numerical methods.</p>
+        <p class="text-grey-600 mt-2">Black-Scholes and Heston models with advanced numerical methods.</p>
       </a>
     </div>
   </section>
@@ -50,8 +50,8 @@
   <section id="about" class="py-12 bg-white">
     <div class="container mx-auto">
       <h2 class="text-2xl font-bold mb-4 text-center">About Me</h2>
-      <p class="text-gray-700 mx-auto max-w-2xl">I am a PhD candidate at the University of Kent, with a thesis on Abelian Higgs vortex dynamics, implemented in C++ with OpenMP optimisation. My expertise in quantitative finance includes option pricing (Black-Scholes, Heston), algorithmic trading, and portfolio optimisation, developed through professional courses and projects in Python and C++. I have implemented LSTM neural networks for stock price prediction and optimised PDE solvers for financial modelling, bridging theoretical insights with practical applications in risk management and trading systems.</p>
-      <p class="text-gray-700 mx-auto max-w-2xl mt-4">Education: PhD in Mathematics (2021--2025, viva pending), MSc Mathematics (First Class Honours, 2020--2021), BSc Mathematics (First Class Honours, 2017--2020), University of Kent.</p>
+      <p class="text-grey-700 mx-auto max-w-2xl">I am a PhD candidate at the University of Kent, with a thesis on Abelian Higgs vortex dynamics, implemented in C++ with OpenMP optimisation. My expertise in quantitative finance includes option pricing (Black-Scholes, Heston), algorithmic trading, and portfolio optimisation, developed through professional courses and projects in Python and C++. I have implemented LSTM neural networks for stock price prediction and optimised PDE solvers for financial modelling, bridging theoretical insights with practical applications in risk management and trading systems.</p>
+      <p class="text-grey-700 mx-auto max-w-2xl mt-4">Education: PhD in Mathematics (2021–2025, viva pending), MSc Mathematics (First Class Honours, 2020–2021), BSc Mathematics (First Class Honours, 2017–2020), University of Kent.</p>
     </div>
   </section>
 
@@ -60,29 +60,30 @@
     <div class="container mx-auto">
       <h2 class="text-2xl font-bold mb-4 text-center">Quantitative Finance Projects</h2>
       <!-- LSTM Subsection -->
-      <div id="lstm" class="mb-12">
+      <div id="quant-finance-lstm" class="mb-12">
         <h3 class="text-xl font-semibold mb-2 text-center">LSTM Model for Stock Price Prediction</h3>
-        <p class="text-gray-700 mb-4 max-w-2xl mx-auto text-center">This C++-based Long Short-Term Memory (LSTM) neural network predicts Amazon stock prices, achieving a 5\% RMSE improvement over baseline models. Data was fetched via curl and parsed with nlohmann/json, with statistical distributions from Boost. The model was trained on historical data, optimised for memory efficiency, and supports algorithmic trading applications. See code at \href{https://github.com/rhesus1/Finance/tree/main/LSTM}{github.com/rhesus1/Finance/LSTM}.</p>
+        <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This visualisation showcases a Long Short-Term Memory (LSTM) neural network developed in C++ to predict Amazon stock prices. The plot below compares predicted prices against actual market data, highlighting the model’s potential for financial forecasting and algorithmic trading. Data was fetched via curl and parsed with nlohmann/json, achieving a 5% RMSE improvement over baseline models. See code at <a href="https://github.com/rhesus1/Finance/tree/main/LSTM" class="text-blue-600 hover:underline">github.com/rhesus1/Finance/LSTM</a>.</p>
         <div id="lstm-plot" class="w-full max-w-3xl mx-auto h-[600px]"></div>
       </div>
       <!-- Option Pricing Subsection -->
-      <div id="option-pricing" class="mb-12">
-        <h3 class="text-xl font-semibold mb-2 text-center">Option Pricing Models</h3>
-        <p class="text-gray-700 mb-4 max-w-2xl mx-auto text-center">These C++ models compute call and put option prices for Amazon using Black-Scholes (Analytical, Finite Difference, Monte Carlo) and Heston (Fourier, Monte Carlo, Finite Difference) methods, optimised with SIMD and OpenMP for a 30\% speedup. Visualisations include price surfaces and implied volatility smiles, demonstrating accuracy for exotic option pricing. See code at \href{https://github.com/rhesus1/Finance/tree/main/OptionPricing}{github.com/rhesus1/Finance/OptionPricing}.</p>
-        <div class="mb-8">
+      <div id="quant-finance-option-pricing" class="mb-12">
+        <h3 class="text-xl font-semibold mb-2 text-center">Option Pricing</h3>
+        <p class="text-grey-700 mb-8 max-w-2xl mx-auto text-center">Explore my computational work in quantitative finance. The visualisations below, computed using C++ with SIMD and OpenMP optimisations (30% speedup), include option pricing models for Amazon using Black-Scholes (Analytical, Finite Difference, Monte Carlo) and Heston (Fourier, Monte Carlo, Finite Difference) methods. See code at <a href="https://github.com/rhesus1/Finance/tree/main/OptionPricing" class="text-blue-600 hover:underline">github.com/rhesus1/Finance/OptionPricing</a>.</p>
+        <div class="mb-12">
           <h4 class="text-lg font-semibold mb-2 text-center">Heston Model: Call Option Price Surface</h4>
-          <p class="text-gray-600 mb-4 max-w-2xl mx-auto text-center">3D plot of call option prices (strike price vs. time to maturity) using Heston’s Fourier method.</p>
+          <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This 3D plot visualises call option prices as a function of strike price and time to maturity, computed using the Heston model’s Fourier method.</p>
           <div id="surface-plot" class="w-full max-w-3xl mx-auto h-[600px]"></div>
         </div>
-        <div class="mb-8">
+        <div class="mb-12">
           <h4 class="text-lg font-semibold mb-2 text-center">Heston Model: Implied Volatility Surface</h4>
-          <p class="text-gray-600 mb-4 max-w-2xl mx-auto text-center">3D plot of implied volatility, highlighting stochastic volatility dynamics.</p>
+          <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This 3D plot shows the implied/local volatility surface, highlighting the Heston model’s stochastic volatility dynamics.</p>
           <div id="smile-plot" class="w-full max-w-3xl mx-auto h-[600px]"></div>
         </div>
-        <div class="mb-8">
-          <h4 class="text-lg font-semibold mb-2 text-center">Model Comparison</h4>
-          <p class="text-gray-600 mb-4 max-w-2xl mx-auto text-center">Compares Black-Scholes and Heston models across methods for call and put options.</p>
+        <div class="mb-12">
+          <h4 class="text-lg font-semibold mb-2 text-center">Option Pricing Model Comparison</h4>
+          <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">These plots compare call and put option prices across Black-Scholes (Analytical, Finite Difference, Monte Carlo) and Heston (Fourier, Monte Carlo, Finite Difference) models for a range of strike prices. We see that the three methods for Black-Scholes all agree.</p>
           <div id="comparison-plot" class="w-full max-w-xl mx-auto h-[400px]"></div>
+          <div id="comparison-plot-put" class="w-full max-w-xl mx-auto h-[400px]"></div>
         </div>
       </div>
     </div>
@@ -92,13 +93,23 @@
   <section id="academic-research" class="py-12 bg-white">
     <div class="container mx-auto">
       <h2 class="text-2xl font-bold mb-4 text-center">Academic Research</h2>
-      <p class="text-gray-700 mb-8 max-w-2xl mx-auto text-center">My PhD research focuses on Abelian Higgs vortex dynamics, implemented in C++ with finite difference methods and OpenMP parallelisation, directly applicable to financial PDE solvers (e.g., Black-Scholes, Heston). Below are simulations from my publications.</p>
-      <div class="mb-8">
+      <p class="text-grey-700 mb-8 max-w-2xl mx-auto text-center">My PhD research focuses on Abelian Higgs vortex dynamics, implemented in C++ with finite difference methods and OpenMP parallelisation, directly applicable to financial PDE solvers (e.g., Black-Scholes, Heston). Below are simulations from my publications.</p>
+      <div class="mb-12">
         <h3 class="text-xl font-semibold mb-2 text-center">Excited Abelian Higgs Vortex Simulation</h3>
-        <p class="text-gray-600 mb-4 max-w-2xl mx-auto text-center">Computational simulation of vortex collisions, showcasing energy density dynamics.</p>
+        <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This video showcases a computational simulation of excited Abelian Higgs vortices, illustrating their dynamic behaviour as studied in my PhD research on vortex dynamics.</p>
         <div class="w-full max-w-lg mx-auto">
           <video id="vortex-video" class="w-full h-64 rounded-lg shadow-md object-cover" controls>
             <source src="VortexVideo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold mb-2 text-center">2-Vortex Spectral Wall Simulation</h3>
+        <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This video showcases a computational simulation of excited Abelian Higgs vortices, showcasing the formation of a spectral wall for vortices oscillating out of phase.</p>
+        <div class="w-full max-w-lg mx-auto">
+          <video id="vortex-spectral" class="w-full h-64 rounded-lg shadow-md object-cover" controls>
+            <source src="v-v_sw.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
@@ -110,31 +121,33 @@
   <section id="cv" class="py-12">
     <div class="container mx-auto text-center">
       <h2 class="text-2xl font-bold mb-4">Curriculum Vitae</h2>
-      <p class="text-gray-700 mb-8 max-w-2xl mx-auto">Download my CV for details on my academic and professional background.</p>
+      <p class="text-grey-700 mb-8 max-w-2xl mx-auto">Download my CV for details on my academic and professional background.</p>
       <a href="MRCV_2025.pdf" download class="inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">Download CV (PDF)</a>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="container mx-auto py-12 text-center">
-    <h2 class="text-2xl font-bold mb-4">Contact</h2>
-    <p class="text-gray-700 mb-4 max-w-2xl mx-auto">I’m eager to apply my C++ and quantitative finance expertise to innovative trading systems. Let’s connect!</p>
-    <p class="text-gray-700">Email: \href{mailto:reesimorgan@gmail.com}{reesimorgan@gmail.com}</p>
-    <p class="text-gray-700">LinkedIn: \href{https://www.linkedin.com/in/morgan-rees-8a5008288}{morgan-rees-8a5008288}</p>
-    <p class="text-gray-700">GitHub: \href{https://github.com/rhesus1}{rhesus1}</p>
-    <p class="text-gray-700">Google Scholar: \href{https://scholar.google.com/citations?user=DalMHhgAAAAJ&hl=en&oi=ao}{Morgan Rees}</p>
-    <div class="mt-8 max-w-lg mx-auto">
+  <section id="contact" class="container mx-auto py-12 text-center bg-white">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">Contact</h2>
+      <p class="text-grey-700 mb-6">I’m eager to apply my C++ and quantitative finance expertise to innovative trading systems. Let’s connect!</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <p class="text-grey-700">Email: <a href="mailto:reesimorgan@gmail.com" class="text-blue-600 hover:underline">reesimorgan@gmail.com</a></p>
+        <p class="text-grey-700">LinkedIn: <a href="https://www.linkedin.com/in/morgan-rees-8a5008288" class="text-blue-600 hover:underline">morgan-rees-8a5008288</a></p>
+        <p class="text-grey-700">GitHub: <a href="https://github.com/rhesus1" class="text-blue-600 hover:underline">rhesus1</a></p>
+        <p class="text-grey-700">Google Scholar: <a href="https://scholar.google.com/citations?user=DalMHhgAAAAJ&hl=en&oi=ao" class="text-blue-600 hover:underline">Morgan Rees</a></p>
+      </div>
       <h3 class="text-xl font-semibold mb-4">Get in Touch</h3>
-      <form action="https://formspree.io/f/your_form_id" method="POST" class="space-y-4">
-        <input type="text" name="name" placeholder="Your Name" class="w-full p-2 rounded border border-gray-300" required>
-        <input type="email" name="email" placeholder="Your Email" class="w-full p-2 rounded border border-gray-300" required>
-        <textarea name="message" placeholder="Your Message" class="w-full p-2 rounded border border-gray-300 h-32" required></textarea>
-        <button type="submit" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition">Send</button>
+      <form action="https://formspree.io/f/your_form_id" method="POST" class="space-y-4 max-w-lg mx-auto">
+        <input type="text" name="name" placeholder="Your Name" class="w-full p-3 rounded border border-grey-300 focus:outline-none focus:border-blue-600" required>
+        <input type="email" name="email" placeholder="Your Email" class="w-full p-3 rounded border border-grey-300 focus:outline-none focus:border-blue-600" required>
+        <textarea name="message" placeholder="Your Message" class="w-full p-3 rounded border border-grey-300 focus:outline-none focus:border-blue-600 h-32" required></textarea>
+        <button type="submit" class="bg-blue-600 text-white font-semibold py-3 px-6 rounded hover:bg-blue-700 transition duration-300">Send Message</button>
       </form>
     </div>
   </section>
 
-  <footer class="bg-blue-900 text-white text-center p-4">
+  <footer class="bg-navy-900 text-white text-center p-4">
     <p>© 2025 Morgan J. Rees. All rights reserved.</p>
   </footer>
 
