@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
           type: 'scatter',
           mode: 'lines',
           name: 'Heston Finite Difference',
-          line: { color: '#d62728', width: 2 }
+          line: { color: '#17becf', width: 2 }
         },
         {
           x: [213.57, 213.57],
@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
           type: 'scatter',
           mode: 'lines',
           name: 'Heston Finite Difference',
-          line: { color: '#d62728', width: 2 }
+          line: { color: '#17becf', width: 2 }
         },
         {
           x: [213.57, 213.57],
