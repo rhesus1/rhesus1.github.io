@@ -76,37 +76,36 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       const surfaceData1 = [
-        {
-          x: strikes,
-          y: maturities,
-          z: impliedVols,
-          type: 'surface',
-          colorscale: 'Portland',
-          showscale: true,
-          colorbar: {
-            title: 'Implied Volatility',
-            titleside: 'right',
-            x: 1.0
-          },
-          opacity: 0.9
-        },
-        {
-          x: strikes,
-          y: maturities,
-          z: localVols,
-          type: 'surface',
-          colorscale: 'Viridis',
-          showscale: true,
-          colorbar: {
-            title: 'Local Volatility',
-            titleside: 'right',
-            x: 1.15
-          },
-          opacity: 0.3,
-          showlegend: true,
-          name: 'Local Volatility'
-        }
-      ];
+  {
+    x: strikes,
+    y: maturities,
+    z: impliedVols,
+    type: 'surface',
+    colorscale: 'Portland',
+    showscale: true,
+    colorbar: {
+      title: 'Implied Volatility',
+      titleside: 'right',
+      x: 1.0
+    },
+    opacity: 0.9
+  },
+  {
+    x: strikes,
+    y: maturities,
+    z: localVols,
+    type: 'surface',
+    colorscale: 'Viridis',
+    showscale: true,
+    colorbar: {
+      title: 'Local Volatility',
+      titleside: 'right',
+      x: 1.15
+    },
+    opacity: 0.3,
+    showlegend: false // Disable legend to avoid duplicate title
+  }
+];
 
       const surfaceLayout1 = {
         title: {
