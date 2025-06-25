@@ -65,8 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
       };
 
       Plotly.newPlot('surface-plot', surfaceData, surfaceLayout);
-
-      // Volatility Surface Plot
+// Volatility Surface Plot
       const impliedVols = maturities.map(() => Array(strikes.length).fill(0));
       const localVols = maturities.map(() => Array(strikes.length).fill(0));
       data.data.forEach(item => {
@@ -86,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
           showscale: true,
           colorbar: {
             title: 'Implied Volatility',
-            titleside: 'left',
+            titleside: 'right',
             x: 1.0
           },
           opacity: 0.9
@@ -101,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
           colorbar: {
             title: 'Local Volatility',
             titleside: 'right',
-            x: 1.1
+            x: 1.15
           },
           opacity: 0.3,
           showlegend: true,
@@ -123,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
           camera: { eye: { x: 1.5, y: 1.5, z: 0.8 } },
           bgcolor: '#F1F5F9' // Matches --gray-100
         },
-        margin: { l: 20, r: 20, b: 20, t: 80 },
+        margin: { l: 20, r: 40, b: 20, t: 80 },
         paper_bgcolor: '#F1F5F9', // Matches --gray-100
         plot_bgcolor: '#F1F5F9', // Matches --gray-100
         font: { color: '#1a202c' },
@@ -137,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
       displayError('surface-plot', 'Failed to load call price surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
       displayError('smile-plot', 'Failed to load volatility surface plot. Please ensure AMZN_heston_surface_data.json is accessible.');
     });
+
 
   // Call Option Comparison Plot
   fetch('AMZN_call_option_pricing_comparison.json')
