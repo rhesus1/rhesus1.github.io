@@ -152,8 +152,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const heston_fourier = data.data.map(item => item.heston_fourier);
       const heston_mc = data.data.map(item => item.heston_mc);
       const bs_fd = data.data.map(item => item.bs_fd);
+      const heston_fd = data.data.map(item => item.heston_fd);
 
-      if (!strikes || !bs_analytical || !bs_mc || !heston_mc || !bs_fd) {
+      if (!strikes || !bs_analytical || !bs_mc || !heston_mc || !heston_fourier || !bs_fd || !heston_fd) {
         throw new Error('Invalid call comparison data structure');
       }
 
@@ -197,6 +198,14 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Fourier',
           line: { color: '#ff0000', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Finite Difference',
+          line: { color: '#d62728', width: 2 }
         },
         {
           x: [213.57, 213.57],
@@ -262,8 +271,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const heston_mc = data.data.map(item => item.heston_mc);
       const bs_fd = data.data.map(item => item.bs_fd);
       const heston_fourier = data.data.map(item => item.heston_fourier);
+      const heston_fd = data.data.map(item => item.heston_fd);
 
-      if (!strikes || !bs_analytical || !bs_mc || !heston_mc || !bs_fd) {
+      if (!strikes || !bs_analytical || !bs_mc || !heston_mc || !bs_fd || !heston_fourier || !heston_fd) {
         throw new Error('Invalid put comparison data structure');
       }
 
@@ -307,6 +317,14 @@ document.addEventListener('DOMContentLoaded', function () {
           mode: 'lines',
           name: 'Heston Fourier',
           line: { color: '#ff0000', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Finite Difference',
+          line: { color: '#d62728', width: 2 }
         },
         {
           x: [213.57, 213.57],
