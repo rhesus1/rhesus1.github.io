@@ -374,8 +374,7 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error('Put comparison plot error:', error);
       displayError('comparison-plot-put', 'Failed to load put comparison plot: ' + error.message);
     });
-
-// Option Prices Scatter Plot (ATM, OTM, ITM)
+// Option Prices Scatter Plot (Fixed Strike: 220)
 fetch('AMZNoption_prices.json')
   .then(response => {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -384,38 +383,33 @@ fetch('AMZNoption_prices.json')
   .then(data => {
     console.log('Option prices data loaded:', data);
 
-    // Separate call and put options
-    const callData = data.filter(item => item.option_type === 'call');
-    const putData = data.filter(item => item.option_type === 'put');
+    const spot = 212;
+    const strike = 220;
 
-    // Validate data
+    const callData = data.filter(item => item.option_type === 'call' && item.strike === strike);
+    const putData = data.filter(item => item.option_type === 'put' && item.strike === strike);
+
     if (!callData.length || !putData.length) {
-      throw new Error('Invalid option prices data: missing call or put data');
+      throw new Error('Invalid option prices data: missing call or put data at strike 220');
     }
 
-    // Define spot price and ranges
-    const spot = 212;
-    const atmRange = 5; // |strike - spot| < 5
-    const otmCallRange = [20, 30]; // 20 < strike - spot < 30
-    const itmCallRange = [10, 20]; // 10 < strike - spot < 20
-    const otmPutRange = [-30, -20]; // -30 < strike - spot < -20 (OTM for puts)
-    const itmPutRange = [-20, -10]; // -20 < strike - spot < -10 (ITM for puts)
-
-    // Filter data for each category
-    const callAtm = callData.filter(d => Math.abs(d.strike - spot) < atmRange);
-    const callOtm = callData.filter(d => d.strike - spot > otmCallRange[0] && d.strike - spot < otmCallRange[1]);
-    const callItm = callData.filter(d => d.strike - spot > itmCallRange[0] && d.strike - spot < itmCallRange[1]);
-    const putAtm = putData.filter(d => Math.abs(d.strike - spot) < atmRange);
-    const putOtm = putData.filter(d => d.strike - spot > otmPutRange[0] && d.strike - spot < otmPutRange[1]);
-    const putItm = putData.filter(d => d.strike - spot > itmPutRange[0] && d.strike - spot < itmPutRange[1]);
+    // Categorize by moneyness at fixed strike
+    function isATM() {
+      return Math.abs(strike - spot) < 5;
+    }
+    function isOTM(optionType) {
+      return (optionType === 'call' && strike > spot + 20) || (optionType === 'put' && strike < spot - 20);
+    }
+    function isITM(optionType) {
+      return (optionType === 'call' && strike < spot - 10) || (optionType === 'put' && strike > spot + 10);
+    }
 
     // Helper function to create scatter plot data
-    function createScatterData(data, type, condition) {
-      const filtered = data.filter(condition);
+    function createScatterData(data, type, label) {
       return [
         {
-          x: filtered.map(d => d.time_to_expiry),
-          y: filtered.map(d => d.market_price),
+          x: data.map(d => d.time_to_expiry),
+          y: data.map(d => d.market_price),
           mode: 'markers',
           type: 'scatter',
           name: `${type.toUpperCase()} Market Price`,
@@ -423,8 +417,8 @@ fetch('AMZNoption_prices.json')
           showlegend: true
         },
         {
-          x: filtered.map(d => d.time_to_expiry),
-          y: filtered.map(d => d.black_scholes_price),
+          x: data.map(d => d.time_to_expiry),
+          y: data.map(d => d.black_scholes_price),
           mode: 'markers',
           type: 'scatter',
           name: `${type.toUpperCase()} Black-Scholes`,
@@ -432,8 +426,8 @@ fetch('AMZNoption_prices.json')
           showlegend: true
         },
         {
-          x: filtered.map(d => d.time_to_expiry),
-          y: filtered.map(d => d.heston_price),
+          x: data.map(d => d.time_to_expiry),
+          y: data.map(d => d.heston_price),
           mode: 'markers',
           type: 'scatter',
           name: `${type.toUpperCase()} Heston`,
@@ -443,13 +437,13 @@ fetch('AMZNoption_prices.json')
       ];
     }
 
-    // Create plot data for each subplot
-    const callAtmData = createScatterData(callData, 'call', d => Math.abs(d.strike - spot) < atmRange);
-    const callOtmData = createScatterData(callData, 'call', d => d.strike - spot > otmCallRange[0] && d.strike - spot < otmCallRange[1]);
-    const callItmData = createScatterData(callData, 'call', d => d.strike - spot > itmCallRange[0] && d.strike - spot < itmCallRange[1]);
-    const putAtmData = createScatterData(putData, 'put', d => Math.abs(d.strike - spot) < atmRange);
-    const putOtmData = createScatterData(putData, 'put', d => d.strike - spot > otmPutRange[0] && d.strike - spot < otmPutRange[1]);
-    const putItmData = createScatterData(putData, 'put', d => d.strike - spot > itmPutRange[0] && d.strike - spot < itmPutRange[1]);
+    // Classify and generate data by moneyness
+    const callAtmData = isATM() ? createScatterData(callData, 'call', 'ATM') : [];
+    const callOtmData = isOTM('call') ? createScatterData(callData, 'call', 'OTM') : [];
+    const callItmData = isITM('call') ? createScatterData(callData, 'call', 'ITM') : [];
+    const putAtmData = isATM() ? createScatterData(putData, 'put', 'ATM') : [];
+    const putOtmData = isOTM('put') ? createScatterData(putData, 'put', 'OTM') : [];
+    const putItmData = isITM('put') ? createScatterData(putData, 'put', 'ITM') : [];
 
     // Common layout settings
     const baseLayout = {
@@ -470,26 +464,18 @@ fetch('AMZNoption_prices.json')
       showlegend: true
     };
 
-    // Determine y-axis ranges
-    const allPrices = [
-      ...callAtm.flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price]),
-      ...callOtm.flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price]),
-      ...callItm.flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price]),
-      ...putAtm.flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price]),
-      ...putOtm.flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price]),
-      ...putItm.flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price])
-    ].filter(v => v !== null && !isNaN(v));
+    const allPrices = [...callData, ...putData]
+      .flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price])
+      .filter(v => v !== null && !isNaN(v));
     const yRange = [0, Math.max(...allPrices) * 1.1];
-
     const xRange = [
       Math.min(...callData.concat(putData).map(d => d.time_to_expiry)),
       Math.max(...callData.concat(putData).map(d => d.time_to_expiry))
     ];
 
-    // Layout for the entire plot
     const layout = {
       title: {
-        text: 'Option Prices vs. Time to Expiry (AMZN)',
+        text: 'Option Prices vs. Time to Expiry (AMZN, Strike = 220)',
         font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
         x: 0.5,
         xanchor: 'center'
@@ -544,6 +530,7 @@ fetch('AMZNoption_prices.json')
     console.error('Option prices grid plot error:', error);
     displayError('option-prices-grid-plot', 'Failed to load option prices grid plot: ' + error.message);
   });
+
   // LSTM Predictions Plot
   Promise.all([
     fetch('AMZN_market_data.json').then(response => {
