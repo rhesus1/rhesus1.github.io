@@ -507,9 +507,9 @@ fetch('AMZNoption_prices.json')
         { text: 'Call ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'Call OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'Call ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' }
+        { text: 'Put ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 0.25, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+        { text: 'Put OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 0.25, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+        { text: 'Put ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 0.25, showarrow: false, font: { size: 16 }, xanchor: 'center' }
       ]
     };
 
