@@ -790,13 +790,13 @@ fetch('AMZNoption_prices.json')
     const callOtmTraces = createScatterData(callOtmData, false);
     const callItmTraces = createScatterData(callItmData, false);
 
-    // Calculate individual yRange for each subplot
+    // Calculate individual yRange for each subplot (exact min to max)
     const getYRange = (dataArray) => {
       const prices = dataArray.flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price])
         .filter(v => v !== null && !isNaN(v));
       const minPrice = Math.min(...prices);
       const maxPrice = Math.max(...prices);
-      return [minPrice > 0 ? 0 : minPrice * 1.1, maxPrice * 1.1];
+      return [minPrice, maxPrice];
     };
 
     const callAtmYRange = getYRange(callAtmData);
@@ -933,13 +933,13 @@ fetch('AMZNoption_prices.json')
     const putOtmTraces = createScatterData(putOtmData, false);
     const putItmTraces = createScatterData(putItmData, false);
 
-    // Calculate individual yRange for each subplot
+    // Calculate individual yRange for each subplot (exact min to max)
     const getYRange = (dataArray) => {
       const prices = dataArray.flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price])
         .filter(v => v !== null && !isNaN(v));
       const minPrice = Math.min(...prices);
       const maxPrice = Math.max(...prices);
-      return [minPrice > 0 ? 0 : minPrice * 1.1, maxPrice * 1.1];
+      return [minPrice, maxPrice];
     };
 
     const putAtmYRange = getYRange(putAtmData);
