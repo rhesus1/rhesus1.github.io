@@ -504,12 +504,12 @@ fetch('AMZNoption_prices.json')
       xaxis6: { ...sharedLayout.xaxis, domain: [0.7, 1.0], range: xRange },
       yaxis6: { ...sharedLayout.yaxis, domain: [0.0, 0.28], range: yRange },
       annotations: [
-        { text: 'Call ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 1.03, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Call OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1.03, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Call ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 1.03, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 0.33, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 0.33, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 0.33, showarrow: false, font: { size: 16 }, xanchor: 'center' }
+        { text: 'Call ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+        { text: 'Call OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+        { text: 'Call ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+        { text: 'Put ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+        { text: 'Put OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+        { text: 'Put ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' }
       ]
     };
 
@@ -523,7 +523,7 @@ fetch('AMZNoption_prices.json')
 
     const plotData = [
       ...addTraces(callAtmData, 'x1', 'y1', true),
-      ...addTraces(callOtmData, 'x2', 'y2', false),
+      ...addTraces(callOtmData, 'x2', 'y2', true),
       ...addTraces(callItmData, 'x3', 'y3', false),
       ...addTraces(putAtmData, 'x4', 'y4', false),
       ...addTraces(putOtmData, 'x5', 'y5', false),
