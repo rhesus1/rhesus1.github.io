@@ -610,6 +610,124 @@ fetch('AMZN_put_option_pricing_comparison.json')
       displayError('comparison-plot-put', 'Failed to load put comparison plot: ' + error.message);
     });
 
+fetch('AMZN_put_option_pricing_comparison.json')
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log('Put comparison data:', data);
+      const strikes = data.data.map(item => item.strike);
+      const bs_analytical = data.data.map(item => item.bs_analytical);
+      const bs_mc = data.data.map(item => item.bs_mc);
+      const heston_mc = data.data.map(item => item.heston_mc);
+      const bs_fd = data.data.map(item => item.bs_fd);
+      const heston_fourier = data.data.map(item => item.heston_fourier);
+      const heston_fd = data.data.map(item => item.heston_fd);
+
+      if (!strikes || !bs_analytical || !bs_mc || !heston_mc || !bs_fd || !heston_fourier || !heston_fd) {
+        throw new Error('Invalid put comparison data structure');
+      }
+
+      const plotData = [
+        {
+          x: strikes,
+          y: bs_analytical,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Analytical',
+          line: { color: '#1f77b4', width: 2 }
+        },
+        {
+          x: strikes,
+          y: bs_mc,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Monte Carlo',
+          line: { color: '#2ca02c', width: 2 }
+        },
+        {
+          x: strikes,
+          y: bs_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Black-Scholes Finite Difference',
+          line: { color: '#ff7f0e', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_mc,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Monte Carlo',
+          line: { color: '#9467bd', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_fourier,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Fourier',
+          line: { color: '#ff0000', width: 2 }
+        },
+        {
+          x: strikes,
+          y: heston_fd,
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Heston Finite Difference',
+          line: { color: '#17becf', width: 2 }
+        },
+        {
+          x: [213.57, 213.57],
+          y: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1],
+          type: 'scatter',
+          mode: 'lines',
+          name: 'Stock Price (OTM Puts < 213.57)',
+          line: { color: '#000000', width: 1, dash: 'dash' }
+        }
+      ];
+
+      const layout = {
+        title: {
+          text: 'Put Option Pricing Model Comparison (AMZN, T=0.25)',
+          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          x: 0.5,
+          xanchor: 'center'
+        },
+        xaxis: {
+          title: 'Strike Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0',
+          range: [Math.min(...strikes), Math.max(...strikes)]
+        },
+        yaxis: {
+          title: 'Put Option Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0',
+          range: [0, Math.max(...bs_analytical.filter(v => v > 0), ...bs_mc.filter(v => v > 0), ...heston_mc) * 1.1]
+        },
+        paper_bgcolor: '#F1F5F9', // Matches --gray-100
+        plot_bgcolor: '#F1F5F9', // Matches --gray-100
+        margin: { l: 60, r: 20, b: 60, t: 80 },
+        showlegend: true,
+        legend: {
+          x: 1,
+          xanchor: 'right',
+          y: 1,
+          bgcolor: 'rgba(255, 255, 255, 0.5)'
+        }
+      };
+
+      Plotly.newPlot('comparison-plot-put', plotData, layout);
+    })
+    .catch(error => {
+      console.error('Put comparison plot error:', error);
+      displayError('comparison-plot-put', 'Failed to load put comparison plot: ' + error.message);
+    });
+
 fetch('AMZNoption_prices.json')
   .then(response => {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -727,24 +845,24 @@ fetch('AMZNoption_prices.json')
       margin: { l: 120, r: 120, b: 100, t: 130 },
       ...sharedLayout,
       xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.3], range: xRange },
-      yaxis: { ...sharedLayout.yaxis, domain: [0.36, 1.0], range: yRange },
+      yaxis: { ...sharedLayout.yaxis, domain: [0.44, 1.0], range: yRange },
       xaxis2: { ...sharedLayout.xaxis, domain: [0.35, 0.65], range: xRange },
-      yaxis2: { ...sharedLayout.yaxis, domain: [0.36, 1.0], range: yRange },
+      yaxis2: { ...sharedLayout.yaxis, domain: [0.44, 1.0], range: yRange },
       xaxis3: { ...sharedLayout.xaxis, domain: [0.7, 1.0], range: xRange },
-      yaxis3: { ...sharedLayout.yaxis, domain: [0.36, 1.0], range: yRange },
+      yaxis3: { ...sharedLayout.yaxis, domain: [0.44, 1.0], range: yRange },
       xaxis4: { ...sharedLayout.xaxis, title: 'Time to Expiry (Years)', domain: [0.0, 0.3], range: xRange },
-      yaxis4: { ...sharedLayout.yaxis, domain: [0.0, 0.64], range: yRange },
+      yaxis4: { ...sharedLayout.yaxis, domain: [0.0, 0.56], range: yRange },
       xaxis5: { ...sharedLayout.xaxis, title: 'Time to Expiry (Years)', domain: [0.35, 0.65], range: xRange },
-      yaxis5: { ...sharedLayout.yaxis, domain: [0.0, 0.64], range: yRange },
+      yaxis5: { ...sharedLayout.yaxis, domain: [0.0, 0.56], range: yRange },
       xaxis6: { ...sharedLayout.xaxis, title: 'Time to Expiry (Years)', domain: [0.7, 1.0], range: xRange },
-      yaxis6: { ...sharedLayout.yaxis, domain: [0.0, 0.64], range: yRange },
+      yaxis6: { ...sharedLayout.yaxis, domain: [0.0, 0.56], range: yRange },
       annotations: [
         { text: 'Call ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'Call OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'Call ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 0.25, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 0.25, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 0.25, showarrow: false, font: { size: 16 }, xanchor: 'center' }
+        { text: 'Put ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+        { text: 'Put OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+        { text: 'Put ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' }
       ]
     };
 
@@ -761,7 +879,7 @@ fetch('AMZNoption_prices.json')
       ...addTraces(callOtmData, 'x2', 'y2', false),
       ...addTraces(callItmData, 'x3', 'y3', false),
       ...addTraces(putAtmData, 'x4', 'y4', false),
-      ...addTraces(putOtmData, '6x5', 'y5', false),
+      ...addTraces(putOtmData, 'x5', 'y5', false),
       ...addTraces(putItmData, 'x6', 'y6', false)
     ];
 
@@ -771,7 +889,6 @@ fetch('AMZNoption_prices.json')
     console.error('Option prices grid plot error:', error);
     displayError('option-prices-grid-plot', 'Failed to load option prices grid plot: ' + error.message);
   });
-
   // LSTM Predictions Plot
   Promise.all([
     fetch('AMZN_market_data.json').then(response => {
