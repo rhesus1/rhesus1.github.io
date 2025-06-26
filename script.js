@@ -728,7 +728,6 @@ fetch('AMZN_put_option_pricing_comparison.json')
       displayError('comparison-plot-put', 'Failed to load put comparison plot: ' + error.message);
     });
 // Option Prices Scatter Plot (Call Options: ATM, OTM, ITM)
-// Option Prices Scatter Plot (Call Options: ATM, OTM, ITM)
 fetch('AMZNoption_prices.json')
   .then(response => {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -838,12 +837,12 @@ fetch('AMZNoption_prices.json')
       },
       margin: { l: 80, r: 80, b: 80, t: 150 },
       ...sharedLayout,
-      xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.33], range: xRange },
-      yaxis: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: callAtmYRange },
-      xaxis2: { ...sharedLayout.xaxis, domain: [0.34, 0.66], range: xRange },
-      yaxis2: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: callOtmYRange },
-      xaxis3: { ...sharedLayout.xaxis, domain: [0.67, 1.0], range: xRange },
-      yaxis3: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: callItmYRange },
+      xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.33], range: xRange, anchor: 'y1' },
+      yaxis: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: callAtmYRange, domain: [0.0, 1.0], anchor: 'x1' },
+      xaxis2: { ...sharedLayout.xaxis, domain: [0.34, 0.66], range: xRange, anchor: 'y2' },
+      yaxis2: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: callOtmYRange, domain: [0.0, 1.0], anchor: 'x2' },
+      xaxis3: { ...sharedLayout.xaxis, domain: [0.67, 1.0], range: xRange, anchor: 'y3' },
+      yaxis3: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: callItmYRange, domain: [0.0, 1.0], anchor: 'x3' },
       annotations: [
         { text: 'ATM', xref: 'paper', yref: 'paper', x: 0.165, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
@@ -981,12 +980,12 @@ fetch('AMZNoption_prices.json')
       },
       margin: { l: 80, r: 80, b: 80, t: 150 },
       ...sharedLayout,
-      xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.33], range: xRange },
-      yaxis: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: putAtmYRange },
-      xaxis2: { ...sharedLayout.xaxis, domain: [0.34, 0.66], range: xRange },
-      yaxis2: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: putOtmYRange },
-      xaxis3: { ...sharedLayout.xaxis, domain: [0.67, 1.0], range: xRange },
-      yaxis3: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: putItmYRange },
+      xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.33], range: xRange, anchor: 'y1' },
+      yaxis: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: putAtmYRange, domain: [0.0, 1.0], anchor: 'x1' },
+      xaxis2: { ...sharedLayout.xaxis, domain: [0.34, 0.66], range: xRange, anchor: 'y2' },
+      yaxis2: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: putOtmYRange, domain: [0.0, 1.0], anchor: 'x2' },
+      xaxis3: { ...sharedLayout.xaxis, domain: [0.67, 1.0], range: xRange, anchor: 'y3' },
+      yaxis3: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: putItmYRange, domain: [0.0, 1.0], anchor: 'x3' },
       annotations: [
         { text: 'ATM', xref: 'paper', yref: 'paper', x: 0.165, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
@@ -1013,6 +1012,7 @@ fetch('AMZNoption_prices.json')
     console.error('Put option prices plot error:', error);
     displayError('put-option-prices-plot', 'Failed to load put option prices plot: ' + error.message);
   });
+  
   // LSTM Predictions Plot
   Promise.all([
     fetch('AMZN_market_data.json').then(response => {
