@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function () {
         Math.max(...callData.concat(putData).map(d => d.time_to_expiry))
       ];
 
-      // Layout for the entire plot
+      // Layout for the entire plot with increased space for subplot titles
       const layout = {
         title: {
           text: 'Option Prices vs. Time to Expiry (AMZN)',
@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', function () {
           xanchor: 'center'
         },
         grid: { rows: 2, columns: 3, pattern: 'independent' },
-        margin: { l: 60, r: 60, b: 60, t: 80 },
+        margin: { l: 80, r: 80, b: 80, t: 100 }, // Increased margins to provide more space
         paper_bgcolor: '#F1F5F9',
         plot_bgcolor: '#F1F5F9',
         showlegend: true,
@@ -527,7 +527,10 @@ document.addEventListener('DOMContentLoaded', function () {
             x: 0.16,
             y: 0.95,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' }
+            font: { size: 14, color: '#1a202c' },
+            xanchor: 'center',
+            yanchor: 'top',
+            yshift: 20 // Increased vertical shift for more space
           },
           {
             text: 'Call Option Prices (OTM)',
@@ -536,7 +539,10 @@ document.addEventListener('DOMContentLoaded', function () {
             x: 0.5,
             y: 0.95,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' }
+            font: { size: 14, color: '#1a202c' },
+            xanchor: 'center',
+            yanchor: 'top',
+            yshift: 20 // Increased vertical shift for more space
           },
           {
             text: 'Call Option Prices (ITM)',
@@ -545,7 +551,10 @@ document.addEventListener('DOMContentLoaded', function () {
             x: 0.84,
             y: 0.95,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' }
+            font: { size: 14, color: '#1a202c' },
+            xanchor: 'center',
+            yanchor: 'top',
+            yshift: 20 // Increased vertical shift for more space
           },
           {
             text: 'Put Option Prices (ATM)',
@@ -554,7 +563,10 @@ document.addEventListener('DOMContentLoaded', function () {
             x: 0.16,
             y: 0.45,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' }
+            font: { size: 14, color: '#1a202c' },
+            xanchor: 'center',
+            yanchor: 'top',
+            yshift: 20 // Increased vertical shift for more space
           },
           {
             text: 'Put Option Prices (OTM)',
@@ -563,7 +575,10 @@ document.addEventListener('DOMContentLoaded', function () {
             x: 0.5,
             y: 0.45,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' }
+            font: { size: 14, color: '#1a202c' },
+            xanchor: 'center',
+            yanchor: 'top',
+            yshift: 20 // Increased vertical shift for more space
           },
           {
             text: 'Put Option Prices (ITM)',
@@ -572,7 +587,10 @@ document.addEventListener('DOMContentLoaded', function () {
             x: 0.84,
             y: 0.45,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' }
+            font: { size: 14, color: '#1a202c' },
+            xanchor: 'center',
+            yanchor: 'top',
+            yshift: 20 // Increased vertical shift for more space
           }
         ]
       };
