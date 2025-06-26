@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
             type: 'scatter',
             name: 'Market Price',
             marker: { size: 8, symbol: 'star', color: '#000000' },
-            showlegend: type === 'call' && condition === 'atm'
+            showlegend: true
           },
           {
             x: data.filter(condition).map(d => d.time_to_expiry),
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function () {
             type: 'scatter',
             name: 'Black-Scholes Price',
             marker: { size: 8, symbol: 'cross', color: '#1f77b4' },
-            showlegend: type === 'call' && condition === 'atm'
+            showlegend: true
           },
           {
             x: data.filter(condition).map(d => d.time_to_expiry),
@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function () {
             type: 'scatter',
             name: 'Heston Price',
             marker: { size: 8, symbol: 'triangle-up', color: '#ff0000' },
-            showlegend: type === 'call' && condition === 'atm'
+            showlegend: true
           }
         ];
       }
@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         paper_bgcolor: '#F1F5F9',
         plot_bgcolor: '#F1F5F9',
-        showlegend: false
+        showlegend: true
       };
 
       // Determine y-axis ranges
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function () {
         Math.max(...callData.concat(putData).map(d => d.time_to_expiry))
       ];
 
-      // Layout for the entire plot with increased space and spacing
+      // Layout for the entire plot with improved spacing and legend
       const layout = {
         title: {
           text: 'Option Prices vs. Time to Expiry (AMZN)',
@@ -493,104 +493,105 @@ document.addEventListener('DOMContentLoaded', function () {
           x: 0.5,
           xanchor: 'center'
         },
-        grid: { rows: 2, columns: 3, pattern: 'independent', roworder: 'top-to-bottom', xgap: 0.1, ygap: 0.1 }, // Increased gaps between subplots
-        margin: { l: 100, r: 100, b: 100, t: 120 }, // Significantly increased margins
+        grid: { rows: 2, columns: 3, pattern: 'independent', roworder: 'top-to-bottom', xgap: 0.15, ygap: 0.15 }, // Increased gaps
+        margin: { l: 120, r: 120, b: 120, t: 150 }, // Increased margins
         paper_bgcolor: '#F1F5F9',
         plot_bgcolor: '#F1F5F9',
         showlegend: true,
         legend: {
-          x: 1,
-          xanchor: 'right',
+          x: 1.05, // Move legend slightly right to avoid overlap
+          xanchor: 'left',
           y: 1,
-          bgcolor: 'rgba(255, 255, 255, 0.5)',
-          font: { color: '#1a202c' }
+          bgcolor: 'rgba(255, 255, 255, 0.8)',
+          font: { color: '#1a202c' },
+          orientation: 'v' // Vertical legend to save space
         },
-        // Call plots
+        // Call plots with adjusted domains
         xaxis: { ...baseLayout.xaxis, title: 'Time to Expiry (Years)', range: xRange, domain: [0.0, 0.3] },
-        yaxis: { ...baseLayout.yaxis, title: 'Option Price ($)', range: yRange, domain: [0.55, 1.0] },
+        yaxis: { ...baseLayout.yaxis, title: 'Option Price ($)', range: yRange, domain: [0.6, 1.0] },
         xaxis2: { ...baseLayout.xaxis, range: xRange, domain: [0.4, 0.7] },
-        yaxis2: { ...baseLayout.yaxis, range: yRange, domain: [0.55, 1.0] },
+        yaxis2: { ...baseLayout.yaxis, range: yRange, domain: [0.6, 1.0] },
         xaxis3: { ...baseLayout.xaxis, range: xRange, domain: [0.8, 1.1] },
-        yaxis3: { ...baseLayout.yaxis, range: yRange, domain: [0.55, 1.0] },
-        // Put plots
+        yaxis3: { ...baseLayout.yaxis, range: yRange, domain: [0.6, 1.0] },
+        // Put plots with adjusted domains
         xaxis4: { ...baseLayout.xaxis, title: 'Time to Expiry (Years)', range: xRange, domain: [0.0, 0.3] },
-        yaxis4: { ...baseLayout.yaxis, title: 'Option Price ($)', range: yRange, domain: [0.0, 0.45] },
+        yaxis4: { ...baseLayout.yaxis, title: 'Option Price ($)', range: yRange, domain: [0.0, 0.4] },
         xaxis5: { ...baseLayout.xaxis, range: xRange, domain: [0.4, 0.7] },
-        yaxis5: { ...baseLayout.yaxis, range: yRange, domain: [0.0, 0.45] },
+        yaxis5: { ...baseLayout.yaxis, range: yRange, domain: [0.0, 0.4] },
         xaxis6: { ...baseLayout.xaxis, range: xRange, domain: [0.8, 1.1] },
-        yaxis6: { ...baseLayout.yaxis, range: yRange, domain: [0.0, 0.45] },
+        yaxis6: { ...baseLayout.yaxis, range: yRange, domain: [0.0, 0.4] },
         annotations: [
           {
             text: 'Call Option Prices (ATM)',
             xref: 'paper',
             yref: 'paper',
             x: 0.15,
-            y: 0.75,
+            y: 0.95,
             showarrow: false,
             font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
             yanchor: 'bottom',
-            yshift: 30
+            yshift: 10
           },
           {
             text: 'Call Option Prices (OTM)',
             xref: 'paper',
             yref: 'paper',
             x: 0.55,
-            y: 0.75,
+            y: 0.95,
             showarrow: false,
             font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
             yanchor: 'bottom',
-            yshift: 30
+            yshift: 10
           },
           {
             text: 'Call Option Prices (ITM)',
             xref: 'paper',
             yref: 'paper',
             x: 0.95,
-            y: 0.75,
+            y: 0.95,
             showarrow: false,
             font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
             yanchor: 'bottom',
-            yshift: 30
+            yshift: 10
           },
           {
             text: 'Put Option Prices (ATM)',
             xref: 'paper',
             yref: 'paper',
             x: 0.15,
-            y: 0.225,
+            y: 0.45,
             showarrow: false,
             font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
             yanchor: 'bottom',
-            yshift: 30
+            yshift: 10
           },
           {
             text: 'Put Option Prices (OTM)',
             xref: 'paper',
             yref: 'paper',
             x: 0.55,
-            y: 0.225,
+            y: 0.45,
             showarrow: false,
             font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
             yanchor: 'bottom',
-            yshift: 30
+            yshift: 10
           },
           {
             text: 'Put Option Prices (ITM)',
             xref: 'paper',
             yref: 'paper',
             x: 0.95,
-            y: 0.225,
+            y: 0.45,
             showarrow: false,
             font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
             yanchor: 'bottom',
-            yshift: 30
+            yshift: 10
           }
         ]
       };
@@ -722,7 +723,7 @@ document.addEventListener('DOMContentLoaded', function () {
           name: 'LSTM Predicted Price',
           line: { color: '#ff7f0e', width: 2 } // Orange for predictions
         }
-     ];
+      ];
 
       const layout = {
         title: {
