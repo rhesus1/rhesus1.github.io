@@ -1,0 +1,2402 @@
+[
+    {
+        "black_scholes_price": 82.37395750531272,
+        "heston_price": 82.3746125235547,
+        "market_price": 84.05,
+        "option_type": "call",
+        "strike": 130.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 4.4614286834269824e-10,
+        "heston_price": 0.0006550186881497666,
+        "market_price": 0.02,
+        "option_type": "put",
+        "strike": 130.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 72.39503134812225,
+        "heston_price": 72.39597068386516,
+        "market_price": 77.35,
+        "option_type": "call",
+        "strike": 140.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 1.890351898541564e-07,
+        "heston_price": 0.000939524778118539,
+        "market_price": 0.03,
+        "option_type": "put",
+        "strike": 140.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 62.41612561496362,
+        "heston_price": 62.418744263703275,
+        "market_price": 64.7,
+        "option_type": "call",
+        "strike": 150.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 2.080165607713577e-05,
+        "heston_price": 0.002639450395719223,
+        "market_price": 0.06,
+        "option_type": "put",
+        "strike": 150.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 52.43793863532309,
+        "heston_price": 52.448709860395596,
+        "market_price": 52.53,
+        "option_type": "call",
+        "strike": 160.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 0.000760167795044007,
+        "heston_price": 0.011531392867539125,
+        "market_price": 0.1,
+        "option_type": "put",
+        "strike": 160.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 42.47026508572201,
+        "heston_price": 42.5089908906419,
+        "market_price": 42.99,
+        "option_type": "call",
+        "strike": 170.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 0.012012963973473647,
+        "heston_price": 0.05073876889335338,
+        "market_price": 0.16,
+        "option_type": "put",
+        "strike": 170.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 32.585395250228935,
+        "heston_price": 32.67643370294982,
+        "market_price": 32.7,
+        "option_type": "call",
+        "strike": 180.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 0.10606947425986314,
+        "heston_price": 0.19710792698074897,
+        "market_price": 0.27,
+        "option_type": "put",
+        "strike": 180.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 23.08412837410262,
+        "heston_price": 23.161654300470996,
+        "market_price": 22.76,
+        "option_type": "call",
+        "strike": 190.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 0.5837289439130513,
+        "heston_price": 0.6612548702814252,
+        "market_price": 0.57,
+        "option_type": "put",
+        "strike": 190.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 14.638457831145018,
+        "heston_price": 14.430564065586392,
+        "market_price": 14.06,
+        "option_type": "call",
+        "strike": 200.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 2.1169847467349303,
+        "heston_price": 1.9090909811763197,
+        "market_price": 1.55,
+        "option_type": "put",
+        "strike": 200.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 8.068138542448459,
+        "heston_price": 7.271332085673687,
+        "market_price": 6.95,
+        "option_type": "call",
+        "strike": 210.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 5.525591803817905,
+        "heston_price": 4.728785347043129,
+        "market_price": 4.35,
+        "option_type": "put",
+        "strike": 210.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 3.7923249967173636,
+        "heston_price": 2.5566160123589636,
+        "market_price": 2.39,
+        "option_type": "call",
+        "strike": 220.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 11.22870460386629,
+        "heston_price": 9.992995619507894,
+        "market_price": 10.0,
+        "option_type": "put",
+        "strike": 220.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 1.5071840504609226,
+        "heston_price": 0.49573490120334807,
+        "market_price": 0.57,
+        "option_type": "call",
+        "strike": 230.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 18.922490003389353,
+        "heston_price": 17.911040854131755,
+        "market_price": 18.61,
+        "option_type": "put",
+        "strike": 230.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 0.5039845295321821,
+        "heston_price": 0.04485986345037948,
+        "market_price": 0.14,
+        "option_type": "call",
+        "strike": 240.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 27.8982168282401,
+        "heston_price": 27.43909216215829,
+        "market_price": 26.04,
+        "option_type": "put",
+        "strike": 240.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 0.14286692138833634,
+        "heston_price": 0.002700071658257338,
+        "market_price": 0.06,
+        "option_type": "call",
+        "strike": 250.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 37.51602556587573,
+        "heston_price": 37.37585871614567,
+        "market_price": 41.1,
+        "option_type": "put",
+        "strike": 250.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 0.035318335067151825,
+        "heston_price": 0.0007379694952085624,
+        "market_price": 0.02,
+        "option_type": "call",
+        "strike": 260.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 47.38740332533405,
+        "heston_price": 47.35282295976211,
+        "market_price": 47.0,
+        "option_type": "put",
+        "strike": 260.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 0.007780204153320665,
+        "heston_price": 0.0006738594539815468,
+        "market_price": 0.02,
+        "option_type": "call",
+        "strike": 270.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 57.33879154019974,
+        "heston_price": 57.3316851955004,
+        "market_price": 53.53,
+        "option_type": "put",
+        "strike": 270.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 0.001514518930497621,
+        "heston_price": 0.0006085534817934518,
+        "market_price": 0.01,
+        "option_type": "call",
+        "strike": 280.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 67.31145220075646,
+        "heston_price": 67.31054623530767,
+        "market_price": 70.76,
+        "option_type": "put",
+        "strike": 280.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 0.00025590679007698054,
+        "heston_price": 0.0006659689678260919,
+        "market_price": 0.02,
+        "option_type": "call",
+        "strike": 290.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 77.28911993439552,
+        "heston_price": 77.28952999657324,
+        "market_price": 59.25,
+        "option_type": "put",
+        "strike": 290.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 3.732543697534574e-05,
+        "heston_price": 0.0005930391170902526,
+        "market_price": 0.01,
+        "option_type": "call",
+        "strike": 300.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 87.26782769882192,
+        "heston_price": 87.268383412502,
+        "market_price": 91.95,
+        "option_type": "put",
+        "strike": 300.0,
+        "time_to_expiry": 0.06027397260273973
+    },
+    {
+        "black_scholes_price": 82.70947026021389,
+        "heston_price": 82.7193892516823,
+        "market_price": 80.0,
+        "option_type": "call",
+        "strike": 130.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 8.111064696974109e-05,
+        "heston_price": 0.010000102115355958,
+        "market_price": 0.15,
+        "option_type": "put",
+        "strike": 130.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 72.7574627898073,
+        "heston_price": 72.78549357147864,
+        "market_price": 74.57,
+        "option_type": "call",
+        "strike": 140.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 0.001197551812153785,
+        "heston_price": 0.029228333483473534,
+        "market_price": 0.22,
+        "option_type": "put",
+        "strike": 140.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 62.81337658754727,
+        "heston_price": 62.882762143615835,
+        "market_price": 65.16,
+        "option_type": "call",
+        "strike": 150.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 0.010235261123917386,
+        "heston_price": 0.07962081719244907,
+        "market_price": 0.35,
+        "option_type": "put",
+        "strike": 150.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 52.909091538761395,
+        "heston_price": 53.050505155906855,
+        "market_price": 53.21,
+        "option_type": "call",
+        "strike": 160.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 0.059074123909786135,
+        "heston_price": 0.20048774105524103,
+        "market_price": 0.57,
+        "option_type": "put",
+        "strike": 160.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 43.14880900315081,
+        "heston_price": 43.3647948143352,
+        "market_price": 44.0,
+        "option_type": "call",
+        "strike": 170.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 0.25191549987095685,
+        "heston_price": 0.4679013110553569,
+        "market_price": 0.92,
+        "option_type": "put",
+        "strike": 170.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 33.76770514943224,
+        "heston_price": 33.96062731793444,
+        "market_price": 34.45,
+        "option_type": "call",
+        "strike": 180.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 0.8239355577241747,
+        "heston_price": 1.0168577262263625,
+        "market_price": 1.62,
+        "option_type": "put",
+        "strike": 180.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 25.13141495671848,
+        "heston_price": 25.05723308291297,
+        "market_price": 26.2,
+        "option_type": "call",
+        "strike": 190.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 2.140769276582205,
+        "heston_price": 2.0665874027766904,
+        "market_price": 2.94,
+        "option_type": "put",
+        "strike": 190.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 17.647822015960955,
+        "heston_price": 16.977532434065413,
+        "market_price": 18.3,
+        "option_type": "call",
+        "strike": 200.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 4.610300247396458,
+        "heston_price": 3.9400106655008926,
+        "market_price": 5.2,
+        "option_type": "put",
+        "strike": 200.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 11.631017548477484,
+        "heston_price": 10.142977138515892,
+        "market_price": 12.1,
+        "option_type": "call",
+        "strike": 210.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 8.546619691484755,
+        "heston_price": 7.058579281523151,
+        "market_price": 8.75,
+        "option_type": "put",
+        "strike": 210.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 7.1800370465726555,
+        "heston_price": 5.007850966955118,
+        "market_price": 7.1,
+        "option_type": "call",
+        "strike": 220.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 14.0487631011517,
+        "heston_price": 11.87657702153416,
+        "market_price": 13.85,
+        "option_type": "put",
+        "strike": 220.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 4.153055962436547,
+        "heston_price": 1.8629007166167093,
+        "market_price": 3.75,
+        "option_type": "call",
+        "strike": 230.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 20.974905928587365,
+        "heston_price": 18.684750682767515,
+        "market_price": 17.85,
+        "option_type": "put",
+        "strike": 230.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 2.253012632369921,
+        "heston_price": 0.48330080713373963,
+        "market_price": 1.81,
+        "option_type": "call",
+        "strike": 240.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 29.027986510092486,
+        "heston_price": 27.25827468485633,
+        "market_price": 27.66,
+        "option_type": "put",
+        "strike": 240.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 1.1477195147866766,
+        "heston_price": 0.09068774748921876,
+        "market_price": 0.86,
+        "option_type": "call",
+        "strike": 250.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 37.87581730408106,
+        "heston_price": 36.818785536783565,
+        "market_price": 36.48,
+        "option_type": "put",
+        "strike": 250.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 0.5506996808956792,
+        "heston_price": 0.01437271625046857,
+        "market_price": 0.4,
+        "option_type": "call",
+        "strike": 260.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 47.23192138176182,
+        "heston_price": 46.69559441711661,
+        "market_price": 54.5,
+        "option_type": "put",
+        "strike": 260.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 0.2505568923648612,
+        "heston_price": 0.0025470313071002094,
+        "market_price": 0.19,
+        "option_type": "call",
+        "strike": 270.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 56.88490250480277,
+        "heston_price": 56.63689264374503,
+        "market_price": 56.6,
+        "option_type": "put",
+        "strike": 270.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 0.10912467884082373,
+        "heston_price": 0.0009007924558545573,
+        "market_price": 0.1,
+        "option_type": "call",
+        "strike": 280.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 66.69659420285052,
+        "heston_price": 66.58837031646553,
+        "market_price": 68.39,
+        "option_type": "put",
+        "strike": 280.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 0.04588359787414878,
+        "heston_price": 0.00066005311931753,
+        "market_price": 0.04,
+        "option_type": "call",
+        "strike": 290.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 76.5864770334556,
+        "heston_price": 76.54125348870079,
+        "market_price": 57.65,
+        "option_type": "put",
+        "strike": 290.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 0.018699383816146792,
+        "heston_price": 0.0006288416157529094,
+        "market_price": 0.03,
+        "option_type": "call",
+        "strike": 300.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 86.51241673096939,
+        "heston_price": 86.49434618876896,
+        "market_price": 60.2,
+        "option_type": "put",
+        "strike": 300.0,
+        "time_to_expiry": 0.13424657534246576
+    },
+    {
+        "black_scholes_price": 83.13551170415697,
+        "heston_price": 83.20390667406097,
+        "market_price": 80.85,
+        "option_type": "call",
+        "strike": 130.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 0.004960638409660734,
+        "heston_price": 0.07335560831364774,
+        "market_price": 0.27,
+        "option_type": "put",
+        "strike": 130.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 73.23606115602102,
+        "heston_price": 73.36978802726647,
+        "market_price": 74.0,
+        "option_type": "call",
+        "strike": 140.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 0.026236931370065185,
+        "heston_price": 0.1599638026155219,
+        "market_price": 0.47,
+        "option_type": "put",
+        "strike": 140.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 63.394669361423276,
+        "heston_price": 63.6170921705914,
+        "market_price": 66.4,
+        "option_type": "call",
+        "strike": 150.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 0.10557197786866789,
+        "heston_price": 0.3279947870368005,
+        "market_price": 0.59,
+        "option_type": "put",
+        "strike": 150.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 53.70890075614574,
+        "heston_price": 54.004666064419716,
+        "market_price": 54.51,
+        "option_type": "call",
+        "strike": 160.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 0.34053021368751907,
+        "heston_price": 0.6362955219614719,
+        "market_price": 1.07,
+        "option_type": "put",
+        "strike": 160.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 44.35324440805926,
+        "heston_price": 44.62200454311357,
+        "market_price": 47.58,
+        "option_type": "call",
+        "strike": 170.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 0.9056007066973719,
+        "heston_price": 1.1743608417517066,
+        "market_price": 1.65,
+        "option_type": "put",
+        "strike": 170.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 35.5660962699655,
+        "heston_price": 35.598587556477106,
+        "market_price": 36.29,
+        "option_type": "call",
+        "strike": 180.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 2.0391794096999707,
+        "heston_price": 2.0716706962115836,
+        "market_price": 2.75,
+        "option_type": "put",
+        "strike": 180.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 27.606034595880892,
+        "heston_price": 27.112594479931573,
+        "market_price": 28.5,
+        "option_type": "call",
+        "strike": 190.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 3.9998445767117223,
+        "heston_price": 3.506404460762411,
+        "market_price": 4.38,
+        "option_type": "put",
+        "strike": 190.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 20.69659782959977,
+        "heston_price": 19.396012293230292,
+        "market_price": 21.2,
+        "option_type": "call",
+        "strike": 200.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 7.0111346515269855,
+        "heston_price": 5.710549115157505,
+        "market_price": 7.0,
+        "option_type": "put",
+        "strike": 200.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 14.974678757474324,
+        "heston_price": 12.729319649998088,
+        "market_price": 14.8,
+        "option_type": "call",
+        "strike": 210.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 11.20994242049791,
+        "heston_price": 8.964583313021649,
+        "market_price": 10.85,
+        "option_type": "put",
+        "strike": 210.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 10.460404560029932,
+        "heston_price": 7.409484617199805,
+        "market_price": 9.7,
+        "option_type": "call",
+        "strike": 220.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 16.616395064149874,
+        "heston_price": 13.565475121319736,
+        "market_price": 15.7,
+        "option_type": "put",
+        "strike": 220.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 7.062750460257141,
+        "heston_price": 3.660359858450275,
+        "market_price": 5.92,
+        "option_type": "call",
+        "strike": 230.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 23.139467805473426,
+        "heston_price": 19.73707720366656,
+        "market_price": 22.0,
+        "option_type": "put",
+        "strike": 230.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 4.615568311994551,
+        "heston_price": 1.4699523209819476,
+        "market_price": 3.35,
+        "option_type": "call",
+        "strike": 240.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 30.6130124983072,
+        "heston_price": 27.46739650729458,
+        "market_price": 29.7,
+        "option_type": "put",
+        "strike": 240.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 2.9231427755824093,
+        "heston_price": 0.474468317312204,
+        "market_price": 1.85,
+        "option_type": "call",
+        "strike": 250.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 38.841313802991415,
+        "heston_price": 36.3926393447212,
+        "market_price": 38.64,
+        "option_type": "put",
+        "strike": 250.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 1.7964183780290288,
+        "heston_price": 0.12882404626614427,
+        "market_price": 1.03,
+        "option_type": "call",
+        "strike": 260.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 47.635316246534394,
+        "heston_price": 45.96772191477149,
+        "market_price": 79.95,
+        "option_type": "put",
+        "strike": 260.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 1.0731513118671288,
+        "heston_price": 0.03193390488115228,
+        "market_price": 0.53,
+        "option_type": "call",
+        "strike": 270.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 56.83277602146888,
+        "heston_price": 55.79155861448285,
+        "market_price": 58.0,
+        "option_type": "put",
+        "strike": 270.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 0.6248252440648494,
+        "heston_price": 0.007955366613098645,
+        "market_price": 0.35,
+        "option_type": "call",
+        "strike": 280.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 66.3051767947629,
+        "heston_price": 65.68830691731117,
+        "market_price": 66.75,
+        "option_type": "put",
+        "strike": 280.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 0.3558352411466643,
+        "heston_price": 0.0023275638262781687,
+        "market_price": 0.19,
+        "option_type": "call",
+        "strike": 290.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 75.95691363294111,
+        "heston_price": 75.60340595562073,
+        "market_price": 95.3,
+        "option_type": "put",
+        "strike": 290.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 0.1990102170188381,
+        "heston_price": 0.0010162081679647912,
+        "market_price": 0.13,
+        "option_type": "call",
+        "strike": 300.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 85.72081544990961,
+        "heston_price": 85.52282144105877,
+        "market_price": 85.92,
+        "option_type": "put",
+        "strike": 300.0,
+        "time_to_expiry": 0.2273972602739726
+    },
+    {
+        "black_scholes_price": 83.50046984729914,
+        "heston_price": 83.63989586256531,
+        "market_price": 89.67,
+        "option_type": "call",
+        "strike": 130.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 0.024109090096261793,
+        "heston_price": 0.16353510536245608,
+        "market_price": 0.47,
+        "option_type": "put",
+        "strike": 130.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 73.67255609693194,
+        "heston_price": 73.89919057045321,
+        "market_price": 77.34,
+        "option_type": "call",
+        "strike": 140.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 0.09032143532886776,
+        "heston_price": 0.31695590885013303,
+        "market_price": 0.69,
+        "option_type": "put",
+        "strike": 140.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 63.96430379957375,
+        "heston_price": 64.27183209960482,
+        "market_price": 62.0,
+        "option_type": "call",
+        "strike": 150.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 0.2761952335704504,
+        "heston_price": 0.5837235336014999,
+        "market_price": 1.02,
+        "option_type": "put",
+        "strike": 150.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 54.50370312173688,
+        "heston_price": 54.821554896977084,
+        "market_price": 55.71,
+        "option_type": "call",
+        "strike": 160.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 0.7097206513333602,
+        "heston_price": 1.0275724265735562,
+        "market_price": 1.55,
+        "option_type": "put",
+        "strike": 160.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 45.46876471061245,
+        "heston_price": 45.63751246871792,
+        "market_price": 47.17,
+        "option_type": "call",
+        "strike": 170.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 1.5689083358086893,
+        "heston_price": 1.7376560939141825,
+        "market_price": 2.33,
+        "option_type": "put",
+        "strike": 170.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 37.06138999805849,
+        "heston_price": 36.839883605461765,
+        "market_price": 38.55,
+        "option_type": "call",
+        "strike": 180.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 3.0556597188545234,
+        "heston_price": 2.834153326257791,
+        "market_price": 3.65,
+        "option_type": "put",
+        "strike": 180.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 29.47308138503638,
+        "heston_price": 28.584524761006417,
+        "market_price": 31.09,
+        "option_type": "call",
+        "strike": 190.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 5.36147720143219,
+        "heston_price": 4.4729205774022205,
+        "market_price": 5.5,
+        "option_type": "put",
+        "strike": 190.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 22.851693998898718,
+        "heston_price": 21.0643175717936,
+        "market_price": 22.75,
+        "option_type": "call",
+        "strike": 200.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 8.634215910894296,
+        "heston_price": 6.846839483789182,
+        "market_price": 8.4,
+        "option_type": "put",
+        "strike": 200.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 17.275718905834047,
+        "heston_price": 14.502021534171842,
+        "market_price": 16.75,
+        "option_type": "call",
+        "strike": 210.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 12.952366913429415,
+        "heston_price": 10.178669541767192,
+        "market_price": 12.16,
+        "option_type": "put",
+        "strike": 210.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 12.743826894474092,
+        "heston_price": 9.124569702143956,
+        "market_price": 11.5,
+        "option_type": "call",
+        "strike": 220.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 18.31460099766922,
+        "heston_price": 14.695343805339093,
+        "market_price": 17.14,
+        "option_type": "put",
+        "strike": 220.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 9.183268490998872,
+        "heston_price": 5.104825442467545,
+        "market_price": 7.77,
+        "option_type": "call",
+        "strike": 230.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 24.648168689793778,
+        "heston_price": 20.569725641262465,
+        "market_price": 21.98,
+        "option_type": "put",
+        "strike": 230.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 6.472258113570327,
+        "heston_price": 2.468307812253869,
+        "market_price": 4.85,
+        "option_type": "call",
+        "strike": 240.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 31.83128440796504,
+        "heston_price": 27.82733410664858,
+        "market_price": 30.49,
+        "option_type": "put",
+        "strike": 240.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 4.466460910509477,
+        "heston_price": 1.0140737387559637,
+        "market_price": 2.92,
+        "option_type": "call",
+        "strike": 250.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 39.71961330050399,
+        "heston_price": 36.26722612875045,
+        "market_price": 38.7,
+        "option_type": "put",
+        "strike": 250.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 3.0211081324581577,
+        "heston_price": 0.3576925969928349,
+        "market_price": 1.7,
+        "option_type": "call",
+        "strike": 260.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 48.168386618052416,
+        "heston_price": 45.504971082587105,
+        "market_price": 44.5,
+        "option_type": "put",
+        "strike": 260.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 2.0050797193294643,
+        "heston_price": 0.11281950914823566,
+        "market_price": 1.03,
+        "option_type": "call",
+        "strike": 270.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 1.3074907223987993,
+        "heston_price": 0.033634298110889825,
+        "market_price": 0.7,
+        "option_type": "call",
+        "strike": 280.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 66.24302139919259,
+        "heston_price": 64.96916497490471,
+        "market_price": 87.25,
+        "option_type": "put",
+        "strike": 280.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 0.8391528926019665,
+        "heston_price": 0.010081041644123635,
+        "market_price": 0.43,
+        "option_type": "call",
+        "strike": 290.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 0.5312108642366116,
+        "heston_price": 0.0033212522128485576,
+        "market_price": 0.28,
+        "option_type": "call",
+        "strike": 300.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 85.25499373222998,
+        "heston_price": 84.72710412020623,
+        "market_price": 124.1,
+        "option_type": "put",
+        "strike": 300.0,
+        "time_to_expiry": 0.3041095890410959
+    },
+    {
+        "black_scholes_price": 83.97308479082011,
+        "heston_price": 84.19203465985649,
+        "market_price": 89.5,
+        "option_type": "call",
+        "strike": 130.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 0.07805858321445741,
+        "heston_price": 0.2970084522508216,
+        "market_price": 1.04,
+        "option_type": "put",
+        "strike": 130.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 74.26285047614432,
+        "heston_price": 74.56314960262883,
+        "market_price": 75.05,
+        "option_type": "call",
+        "strike": 140.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 0.2297453294920635,
+        "heston_price": 0.5300444559765651,
+        "market_price": 1.11,
+        "option_type": "put",
+        "strike": 140.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 64.74605015003583,
+        "heston_price": 65.07692789428486,
+        "market_price": 70.45,
+        "option_type": "call",
+        "strike": 150.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 0.5748660643369748,
+        "heston_price": 0.9057438085860099,
+        "market_price": 1.56,
+        "option_type": "put",
+        "strike": 150.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 55.56017610869179,
+        "heston_price": 55.799108531604816,
+        "market_price": 60.05,
+        "option_type": "call",
+        "strike": 160.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 1.2509130839463702,
+        "heston_price": 1.4898455068593819,
+        "market_price": 2.5,
+        "option_type": "put",
+        "strike": 160.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 46.86541548344868,
+        "heston_price": 46.816429408311215,
+        "market_price": 46.56,
+        "option_type": "call",
+        "strike": 170.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 2.418073519656637,
+        "heston_price": 2.369087444519181,
+        "market_price": 3.65,
+        "option_type": "put",
+        "strike": 170.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 38.82142892370341,
+        "heston_price": 38.239767764159,
+        "market_price": 40.35,
+        "option_type": "call",
+        "strike": 180.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 4.236008020864773,
+        "heston_price": 3.654346861320363,
+        "market_price": 5.25,
+        "option_type": "put",
+        "strike": 180.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 31.564927070130278,
+        "heston_price": 30.205815544436028,
+        "market_price": 33.0,
+        "option_type": "call",
+        "strike": 190.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 6.8414272282450455,
+        "heston_price": 5.482315702550807,
+        "market_price": 7.6,
+        "option_type": "put",
+        "strike": 190.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 25.191166704061555,
+        "heston_price": 22.875279390202138,
+        "market_price": 25.95,
+        "option_type": "call",
+        "strike": 200.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 10.329587923129726,
+        "heston_price": 8.01370060927033,
+        "market_price": 10.7,
+        "option_type": "put",
+        "strike": 200.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 19.74230373463897,
+        "heston_price": 16.42412546998119,
+        "market_price": 20.25,
+        "option_type": "call",
+        "strike": 210.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 14.742646014660554,
+        "heston_price": 11.424467750002776,
+        "market_price": 14.7,
+        "option_type": "put",
+        "strike": 210.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 15.205492840166473,
+        "heston_price": 11.022850048659489,
+        "market_price": 14.95,
+        "option_type": "call",
+        "strike": 220.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 20.06775618114149,
+        "heston_price": 15.885113389634483,
+        "market_price": 19.4,
+        "option_type": "put",
+        "strike": 220.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 11.520844857567356,
+        "heston_price": 6.799083826238279,
+        "market_price": 10.9,
+        "option_type": "call",
+        "strike": 230.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 26.245029259495773,
+        "heston_price": 21.5232682281667,
+        "market_price": 23.7,
+        "option_type": "put",
+        "strike": 230.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 8.59587824321962,
+        "heston_price": 3.785726600139634,
+        "market_price": 7.6,
+        "option_type": "call",
+        "strike": 240.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 33.18198370610142,
+        "heston_price": 28.371832063021458,
+        "market_price": 34.59,
+        "option_type": "put",
+        "strike": 240.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 6.321602184708425,
+        "heston_price": 1.875440924281666,
+        "market_price": 5.25,
+        "option_type": "call",
+        "strike": 250.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 40.769628708543685,
+        "heston_price": 36.3234674481169,
+        "market_price": 39.15,
+        "option_type": "put",
+        "strike": 250.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 4.5862770211779385,
+        "heston_price": 0.8234841851661631,
+        "market_price": 3.75,
+        "option_type": "call",
+        "strike": 260.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 48.89622460596658,
+        "heston_price": 45.1334317699548,
+        "market_price": 53.7,
+        "option_type": "put",
+        "strike": 260.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 3.284964393232783,
+        "heston_price": 0.3245588507978866,
+        "market_price": 2.34,
+        "option_type": "call",
+        "strike": 270.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 57.45683303897488,
+        "heston_price": 54.49642749653995,
+        "market_price": 56.8,
+        "option_type": "put",
+        "strike": 270.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 2.324840265088646,
+        "heston_price": 0.1180543728232706,
+        "market_price": 1.6,
+        "option_type": "call",
+        "strike": 280.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 66.35862997178408,
+        "heston_price": 64.15184407951872,
+        "market_price": 70.27,
+        "option_type": "put",
+        "strike": 280.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 1.6272537760048842,
+        "heston_price": 0.041065978511931486,
+        "market_price": 1.23,
+        "option_type": "call",
+        "strike": 290.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 1.1277215350015184,
+        "heston_price": 0.014213568262910462,
+        "market_price": 0.72,
+        "option_type": "call",
+        "strike": 300.0,
+        "time_to_expiry": 0.3972602739726027
+    },
+    {
+        "black_scholes_price": 84.39007627803082,
+        "heston_price": 84.65502109807686,
+        "market_price": 85.51,
+        "option_type": "call",
+        "strike": 130.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 0.15129018933254537,
+        "heston_price": 0.41623500937859603,
+        "market_price": 1.01,
+        "option_type": "put",
+        "strike": 130.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 74.79351410603422,
+        "heston_price": 75.11454788997393,
+        "market_price": 76.44,
+        "option_type": "call",
+        "strike": 140.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 0.3902060105129826,
+        "heston_price": 0.7112397944527231,
+        "market_price": 1.43,
+        "option_type": "put",
+        "strike": 140.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 65.44190701791064,
+        "heston_price": 65.73611128446422,
+        "market_price": 68.26,
+        "option_type": "call",
+        "strike": 150.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 0.8740769155664682,
+        "heston_price": 1.1682811821200403,
+        "market_price": 2.01,
+        "option_type": "put",
+        "strike": 150.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 56.46869965246418,
+        "heston_price": 56.58597117315927,
+        "market_price": 58.32,
+        "option_type": "call",
+        "strike": 160.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 1.7363475432970614,
+        "heston_price": 1.85361906399217,
+        "market_price": 3.0,
+        "option_type": "put",
+        "strike": 160.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 48.01556606775414,
+        "heston_price": 47.74856069098756,
+        "market_price": 49.7,
+        "option_type": "call",
+        "strike": 170.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 3.1186919517640836,
+        "heston_price": 2.851686574997501,
+        "market_price": 4.25,
+        "option_type": "put",
+        "strike": 170.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 40.21407723383665,
+        "heston_price": 39.328137175513866,
+        "market_price": 41.79,
+        "option_type": "call",
+        "strike": 180.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 5.152681111023655,
+        "heston_price": 4.266741052700866,
+        "market_price": 6.1,
+        "option_type": "put",
+        "strike": 180.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 33.170044759097905,
+        "heston_price": 31.44869403177992,
+        "market_price": 34.65,
+        "option_type": "call",
+        "strike": 190.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 7.944126629461978,
+        "heston_price": 6.2227759021439795,
+        "market_price": 8.52,
+        "option_type": "put",
+        "strike": 190.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 26.95188795709576,
+        "heston_price": 24.25055309032891,
+        "market_price": 27.5,
+        "option_type": "call",
+        "strike": 200.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 11.561447820636866,
+        "heston_price": 8.860112953870015,
+        "market_price": 11.6,
+        "option_type": "put",
+        "strike": 200.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 21.58464887945608,
+        "heston_price": 17.88137178071659,
+        "market_price": 21.81,
+        "option_type": "call",
+        "strike": 210.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 16.02968673617422,
+        "heston_price": 12.32640963743475,
+        "market_price": 15.55,
+        "option_type": "put",
+        "strike": 210.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 17.05084944288157,
+        "heston_price": 12.4789556192891,
+        "market_price": 16.67,
+        "option_type": "call",
+        "strike": 220.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 21.33136529277678,
+        "heston_price": 16.75947146918432,
+        "market_price": 20.45,
+        "option_type": "put",
+        "strike": 220.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 13.29754494376097,
+        "heston_price": 8.144330305092815,
+        "market_price": 12.46,
+        "option_type": "call",
+        "strike": 230.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 27.413538786833254,
+        "heston_price": 22.260324148165097,
+        "market_price": 25.61,
+        "option_type": "put",
+        "strike": 230.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 10.247138759970246,
+        "heston_price": 4.907845959377499,
+        "market_price": 9.07,
+        "option_type": "call",
+        "strike": 240.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 34.1986105962196,
+        "heston_price": 28.859317795626822,
+        "market_price": 32.15,
+        "option_type": "put",
+        "strike": 240.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 7.808955351866731,
+        "heston_price": 2.699936009911468,
+        "market_price": 6.4,
+        "option_type": "call",
+        "strike": 250.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 41.595905181293126,
+        "heston_price": 36.486885839337845,
+        "market_price": 41.0,
+        "option_type": "put",
+        "strike": 250.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 5.889218207837165,
+        "heston_price": 1.3474058968356946,
+        "market_price": 4.57,
+        "option_type": "call",
+        "strike": 260.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 49.51164603044057,
+        "heston_price": 44.96983371943915,
+        "market_price": 48.25,
+        "option_type": "put",
+        "strike": 260.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 4.398266678511024,
+        "heston_price": 0.6116056548414024,
+        "market_price": 3.05,
+        "option_type": "call",
+        "strike": 270.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 57.85617249429153,
+        "heston_price": 54.069511470621904,
+        "market_price": 56.47,
+        "option_type": "put",
+        "strike": 270.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 3.2549126866969162,
+        "heston_price": 0.25587805566119753,
+        "market_price": 2.2,
+        "option_type": "call",
+        "strike": 280.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 66.5482964956545,
+        "heston_price": 63.54926186461873,
+        "market_price": 65.04,
+        "option_type": "put",
+        "strike": 280.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 2.3884697793873184,
+        "heston_price": 0.10083447987398148,
+        "market_price": 1.5,
+        "option_type": "call",
+        "strike": 290.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 75.51733158152187,
+        "heston_price": 73.22969628200858,
+        "market_price": 106.25,
+        "option_type": "put",
+        "strike": 290.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 1.739184296449519,
+        "heston_price": 0.03842196870893845,
+        "market_price": 1.16,
+        "option_type": "call",
+        "strike": 300.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 84.70352409176117,
+        "heston_price": 83.00276176402062,
+        "market_price": 88.53,
+        "option_type": "put",
+        "strike": 300.0,
+        "time_to_expiry": 0.473972602739726
+    },
+    {
+        "black_scholes_price": 84.89641638111337,
+        "heston_price": 85.18770265262641,
+        "market_price": 86.68,
+        "option_type": "call",
+        "strike": 130.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 0.26589036630387564,
+        "heston_price": 0.5571766378168945,
+        "market_price": 1.17,
+        "option_type": "put",
+        "strike": 130.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 75.43928102406204,
+        "heston_price": 75.74445092016322,
+        "market_price": 79.45,
+        "option_type": "call",
+        "strike": 140.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 0.6140991619594829,
+        "heston_price": 0.9192690580606779,
+        "market_price": 1.65,
+        "option_type": "put",
+        "strike": 140.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 66.27422704703726,
+        "heston_price": 66.48208286052335,
+        "market_price": 68.1,
+        "option_type": "call",
+        "strike": 150.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 1.2543893376417026,
+        "heston_price": 1.4622451511277745,
+        "market_price": 2.41,
+        "option_type": "put",
+        "strike": 150.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 57.52475617084734,
+        "heston_price": 57.466775756079585,
+        "market_price": 59.1,
+        "option_type": "call",
+        "strike": 160.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 2.310262614158718,
+        "heston_price": 2.252282199390976,
+        "market_price": 3.3,
+        "option_type": "put",
+        "strike": 160.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 49.31244760317904,
+        "heston_price": 48.780051276620036,
+        "market_price": 52.73,
+        "option_type": "call",
+        "strike": 170.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 3.9032981991973643,
+        "heston_price": 3.3709018726383704,
+        "market_price": 4.78,
+        "option_type": "put",
+        "strike": 170.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 41.74349667319089,
+        "heston_price": 40.51910151508031,
+        "market_price": 42.8,
+        "option_type": "call",
+        "strike": 180.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 6.13969142191617,
+        "heston_price": 4.915296263805601,
+        "market_price": 6.72,
+        "option_type": "put",
+        "strike": 180.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 34.89828844774086,
+        "heston_price": 32.795315472079345,
+        "market_price": 35.95,
+        "option_type": "call",
+        "strike": 190.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 9.099827349173108,
+        "heston_price": 6.99685437351161,
+        "market_price": 9.28,
+        "option_type": "put",
+        "strike": 190.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 28.824551827158267,
+        "heston_price": 25.72992541419203,
+        "market_price": 29.3,
+        "option_type": "call",
+        "strike": 200.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 12.831434881297495,
+        "heston_price": 9.736808468331247,
+        "market_price": 12.45,
+        "option_type": "put",
+        "strike": 200.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 23.534891145870716,
+        "heston_price": 19.44550041365791,
+        "market_price": 23.3,
+        "option_type": "call",
+        "strike": 210.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 17.34711835271689,
+        "heston_price": 13.257727620504085,
+        "market_price": 16.45,
+        "option_type": "put",
+        "strike": 210.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 19.008990545175422,
+        "heston_price": 14.052193102184654,
+        "market_price": 18.2,
+        "option_type": "call",
+        "strike": 220.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 22.626561904728586,
+        "heston_price": 17.6697644617378,
+        "market_price": 21.5,
+        "option_type": "put",
+        "strike": 220.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 15.199658773196399,
+        "heston_price": 9.628687903374486,
+        "market_price": 13.8,
+        "option_type": "call",
+        "strike": 230.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 28.622574285456487,
+        "heston_price": 23.051603415634588,
+        "market_price": 27.13,
+        "option_type": "put",
+        "strike": 230.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 12.04100385867614,
+        "heston_price": 6.200311621851554,
+        "market_price": 10.3,
+        "option_type": "call",
+        "strike": 240.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 35.269263523643176,
+        "heston_price": 29.428571286818624,
+        "market_price": 33.65,
+        "option_type": "put",
+        "strike": 240.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 9.45687151563131,
+        "heston_price": 3.720833946792324,
+        "market_price": 7.5,
+        "option_type": "call",
+        "strike": 250.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 42.49047533330531,
+        "heston_price": 36.75443776446636,
+        "market_price": 41.65,
+        "option_type": "put",
+        "strike": 250.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 7.368137774586571,
+        "heston_price": 2.068213955215415,
+        "market_price": 5.4,
+        "option_type": "call",
+        "strike": 260.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 50.20708574496755,
+        "heston_price": 44.9071619255964,
+        "market_price": 51.7,
+        "option_type": "put",
+        "strike": 260.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 5.698145050365712,
+        "heston_price": 1.0630578300500118,
+        "market_price": 3.9,
+        "option_type": "call",
+        "strike": 270.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 58.34243717345363,
+        "heston_price": 53.707349953137935,
+        "market_price": 61.06,
+        "option_type": "put",
+        "strike": 270.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 4.376189911520918,
+        "heston_price": 0.5075461600770326,
+        "market_price": 2.77,
+        "option_type": "call",
+        "strike": 280.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 66.82582618731583,
+        "heston_price": 62.95718243587194,
+        "market_price": 62.95,
+        "option_type": "put",
+        "strike": 280.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 3.3393577553182263,
+        "heston_price": 0.227545145568076,
+        "market_price": 2.03,
+        "option_type": "call",
+        "strike": 290.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 75.5943381838201,
+        "heston_price": 72.48252557406997,
+        "market_price": 102.54,
+        "option_type": "put",
+        "strike": 290.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 2.533150020706056,
+        "heston_price": 0.09731284190976727,
+        "market_price": 1.43,
+        "option_type": "call",
+        "strike": 300.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 84.5934746019149,
+        "heston_price": 82.15763742311859,
+        "market_price": 90.64,
+        "option_type": "put",
+        "strike": 300.0,
+        "time_to_expiry": 0.5616438356164384
+    },
+    {
+        "black_scholes_price": 85.98878093143155,
+        "heston_price": 86.25638617275393,
+        "market_price": 90.37,
+        "option_type": "call",
+        "strike": 130.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 0.5783720139772242,
+        "heston_price": 0.8459772552996014,
+        "market_price": 1.75,
+        "option_type": "put",
+        "strike": 130.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 76.81713875085472,
+        "heston_price": 76.99809099778238,
+        "market_price": 81.2,
+        "option_type": "call",
+        "strike": 140.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 1.1520829935962165,
+        "heston_price": 1.3330352405238557,
+        "market_price": 2.35,
+        "option_type": "put",
+        "strike": 140.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 68.00086456600656,
+        "heston_price": 67.95124992087968,
+        "market_price": 74.1,
+        "option_type": "call",
+        "strike": 150.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 2.0811619689438627,
+        "heston_price": 2.031547323816966,
+        "market_price": 3.2,
+        "option_type": "put",
+        "strike": 150.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 59.640100337620865,
+        "heston_price": 59.18021887692436,
+        "market_price": 63.6,
+        "option_type": "call",
+        "strike": 160.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 3.4657509007539637,
+        "heston_price": 3.0058694400574666,
+        "market_price": 4.55,
+        "option_type": "put",
+        "strike": 160.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 51.82384351306013,
+        "heston_price": 50.75984672615355,
+        "market_price": 54.91,
+        "option_type": "call",
+        "strike": 170.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 5.394847236389059,
+        "heston_price": 4.330850449482483,
+        "market_price": 6.45,
+        "option_type": "put",
+        "strike": 170.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 44.62290813515093,
+        "heston_price": 42.774176363173176,
+        "market_price": 47.2,
+        "option_type": "call",
+        "strike": 180.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 7.939265018675681,
+        "heston_price": 6.09053324669793,
+        "market_price": 8.65,
+        "option_type": "put",
+        "strike": 180.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 38.08536006907428,
+        "heston_price": 35.313684284847454,
+        "market_price": 38.95,
+        "option_type": "call",
+        "strike": 190.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 11.147070112794866,
+        "heston_price": 8.375394328568035,
+        "market_price": 10.8,
+        "option_type": "put",
+        "strike": 190.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 32.234455138539545,
+        "heston_price": 28.470674038450916,
+        "market_price": 32.75,
+        "option_type": "call",
+        "strike": 200.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 15.041518342455971,
+        "heston_price": 11.277737242367323,
+        "market_price": 14.75,
+        "option_type": "put",
+        "strike": 200.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 27.069156114105684,
+        "heston_price": 22.33255958317755,
+        "market_price": 27.22,
+        "option_type": "call",
+        "strike": 210.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 19.62157247821792,
+        "heston_price": 14.884975947289774,
+        "market_price": 18.88,
+        "option_type": "put",
+        "strike": 210.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 22.56696798426625,
+        "heston_price": 16.973084821472543,
+        "market_price": 21.8,
+        "option_type": "call",
+        "strike": 220.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 24.864737508574315,
+        "heston_price": 19.270854345780577,
+        "market_price": 23.59,
+        "option_type": "put",
+        "strike": 220.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 18.68840722922306,
+        "heston_price": 12.442101939588794,
+        "market_price": 17.6,
+        "option_type": "call",
+        "strike": 230.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 30.731529913726902,
+        "heston_price": 24.485224624092666,
+        "market_price": 28.55,
+        "option_type": "put",
+        "strike": 230.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 15.382202932358425,
+        "heston_price": 8.755388280606525,
+        "market_price": 13.95,
+        "option_type": "call",
+        "strike": 240.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 37.17067877705814,
+        "heston_price": 30.543864125306214,
+        "market_price": 34.32,
+        "option_type": "put",
+        "strike": 240.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 12.59038675186528,
+        "heston_price": 5.88695456312606,
+        "market_price": 10.87,
+        "option_type": "call",
+        "strike": 250.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 44.12421575676077,
+        "heston_price": 37.42078356802156,
+        "market_price": 41.03,
+        "option_type": "put",
+        "strike": 250.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 10.252674115603476,
+        "heston_price": 3.766908925353046,
+        "market_price": 8.6,
+        "option_type": "call",
+        "strike": 260.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 51.53185628069479,
+        "heston_price": 45.04609109044438,
+        "market_price": 47.9,
+        "option_type": "put",
+        "strike": 260.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 8.30983796877435,
+        "heston_price": 2.2874206631480027,
+        "market_price": 6.32,
+        "option_type": "call",
+        "strike": 270.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 59.33437329406148,
+        "heston_price": 53.31195598843513,
+        "market_price": 95.97,
+        "option_type": "put",
+        "strike": 270.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 6.706030797678252,
+        "heston_price": 1.3170627124533134,
+        "market_price": 4.9,
+        "option_type": "call",
+        "strike": 280.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 67.47591928316118,
+        "heston_price": 62.08695119793626,
+        "market_price": 82.15,
+        "option_type": "put",
+        "strike": 280.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 5.3901770087036445,
+        "heston_price": 0.7202578193146892,
+        "market_price": 3.65,
+        "option_type": "call",
+        "strike": 290.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 75.90541865438246,
+        "heston_price": 71.23549946499347,
+        "market_price": 64.15,
+        "option_type": "put",
+        "strike": 290.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 4.316635678180508,
+        "heston_price": 0.3757425709113434,
+        "market_price": 2.78,
+        "option_type": "call",
+        "strike": 300.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 84.57723048405514,
+        "heston_price": 80.63633737678592,
+        "market_price": 70.68,
+        "option_type": "put",
+        "strike": 300.0,
+        "time_to_expiry": 0.736986301369863
+    },
+    {
+        "black_scholes_price": 1.6720850025863472,
+        "heston_price": 1.6848540762957782,
+        "market_price": 3.75,
+        "option_type": "put",
+        "strike": 140.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 2.8183374814602686,
+        "heston_price": 2.5034892921842413,
+        "market_price": 4.4,
+        "option_type": "put",
+        "strike": 150.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 4.4335625016014255,
+        "heston_price": 3.615626883239514,
+        "market_price": 5.85,
+        "option_type": "put",
+        "strike": 160.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 6.586200920781182,
+        "heston_price": 5.089934881777566,
+        "market_price": 7.85,
+        "option_type": "put",
+        "strike": 170.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 9.327141717969695,
+        "heston_price": 7.000300793427698,
+        "market_price": 9.75,
+        "option_type": "put",
+        "strike": 180.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 40.59994069913547,
+        "heston_price": 37.33511989956229,
+        "market_price": 43.65,
+        "option_type": "call",
+        "strike": 190.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 12.687683552703916,
+        "heston_price": 9.422862753130715,
+        "market_price": 13.1,
+        "option_type": "put",
+        "strike": 190.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 16.679267461697943,
+        "heston_price": 12.431899668212623,
+        "market_price": 16.65,
+        "option_type": "put",
+        "strike": 200.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 29.818929011788846,
+        "heston_price": 24.618703237331932,
+        "market_price": 30.28,
+        "option_type": "call",
+        "strike": 210.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 21.294855323627655,
+        "heston_price": 16.09462954917072,
+        "market_price": 23.6,
+        "option_type": "put",
+        "strike": 210.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 25.34161576950956,
+        "heston_price": 19.295161948139587,
+        "market_price": 26.49,
+        "option_type": "call",
+        "strike": 220.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 21.43043282848424,
+        "heston_price": 14.714178036073418,
+        "market_price": 20.78,
+        "option_type": "call",
+        "strike": 230.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 18.04187223707191,
+        "heston_price": 10.885418689222131,
+        "market_price": 17.9,
+        "option_type": "call",
+        "strike": 240.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 45.37986859359416,
+        "heston_price": 38.04189466444896,
+        "market_price": 44.15,
+        "option_type": "put",
+        "strike": 250.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 7.229320523385175,
+        "heston_price": 1.4022141548037967,
+        "market_price": 5.35,
+        "option_type": "call",
+        "strike": 290.0,
+        "time_to_expiry": 0.8876712328767123
+    },
+    {
+        "black_scholes_price": 5.9688108025896645,
+        "heston_price": 0.8284440585044922,
+        "market_price": 4.3,
+        "option_type": "call",
+        "strike": 300.0,
+        "time_to_expiry": 0.8876712328767123
+    }
+]
