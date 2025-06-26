@@ -729,7 +729,7 @@ fetch('AMZN_put_option_pricing_comparison.json')
     });
 
 // Option Prices Scatter Plot (ATM, OTM, ITM)
-  fetch('AMZNoption_prices.json')
+ fetch('AMZNoption_prices.json')
   .then(response => {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     return response.json();
@@ -842,32 +842,32 @@ fetch('AMZN_put_option_pricing_comparison.json')
       legend: {
         x: 0.35,
         xanchor: 'left',
-        y: 0.96,
+        y: 1.05, // Moved above the plots
         orientation: 'h',
         bgcolor: 'rgba(255, 255, 255, 0.8)',
         font: { color: '#1a202c' }
       },
-      margin: { l: 80, r: 80, b: 80, t: 100 },
+      margin: { l: 80, r: 80, b: 80, t: 120 }, // Increased top margin for legend space
       ...sharedLayout,
       xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.3], range: xRange, title: 'Time to Expiry (Years)' },
-      yaxis: { ...sharedLayout.yaxis, domain: [0.55, 1.0], range: yRange },
+      yaxis: { ...sharedLayout.yaxis, domain: [0.65, 1.0], range: yRange }, // Taller top row
       xaxis2: { ...sharedLayout.xaxis, domain: [0.35, 0.65], range: xRange, title: 'Time to Expiry (Years)' },
-      yaxis2: { ...sharedLayout.yaxis, domain: [0.55, 1.0], range: yRange },
+      yaxis2: { ...sharedLayout.yaxis, domain: [0.65, 1.0], range: yRange },
       xaxis3: { ...sharedLayout.xaxis, domain: [0.7, 1.0], range: xRange, title: 'Time to Expiry (Years)' },
-      yaxis3: { ...sharedLayout.yaxis, domain: [0.55, 1.0], range: yRange },
+      yaxis3: { ...sharedLayout.yaxis, domain: [0.65, 1.0], range: yRange },
       xaxis4: { ...sharedLayout.xaxis, domain: [0.0, 0.3], range: xRange, title: 'Time to Expiry (Years)' },
-      yaxis4: { ...sharedLayout.yaxis, domain: [0.0, 0.45], range: yRange },
+      yaxis4: { ...sharedLayout.yaxis, domain: [0.25, 0.45], range: yRange }, // Taller bottom row with gap
       xaxis5: { ...sharedLayout.xaxis, domain: [0.35, 0.65], range: xRange, title: 'Time to Expiry (Years)' },
-      yaxis5: { ...sharedLayout.yaxis, domain: [0.0, 0.45], range: yRange },
+      yaxis5: { ...sharedLayout.yaxis, domain: [0.25, 0.45], range: yRange },
       xaxis6: { ...sharedLayout.xaxis, domain: [0.7, 1.0], range: xRange, title: 'Time to Expiry (Years)' },
-      yaxis6: { ...sharedLayout.yaxis, domain: [0.0, 0.45], range: yRange },
+      yaxis6: { ...sharedLayout.yaxis, domain: [0.25, 0.45], range: yRange },
       annotations: [
         { text: 'Call ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 1.0, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'Call OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1.0, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'Call ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 1.0, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 0.45, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 0.45, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 0.45, showarrow: false, font: { size: 16 }, xanchor: 'center' }
+        { text: 'Put ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 0.5, showarrow: false, font: { size: 16 }, xanchor: 'center' }, // Adjusted for gap
+        { text: 'Put OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 0.5, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+        { text: 'Put ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 0.5, showarrow: false, font: { size: 16 }, xanchor: 'center' }
       ]
     };
 
@@ -893,7 +893,6 @@ fetch('AMZN_put_option_pricing_comparison.json')
     console.error('Option prices grid plot error:', error);
     displayError('option-prices-grid-plot', 'Failed to load option prices grid plot: ' + error.message);
   });
-  
 
   // LSTM Predictions Plot
   Promise.all([
