@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function () {
         Math.max(...callData.concat(putData).map(d => d.time_to_expiry))
       ];
 
-      // Layout for the entire plot with increased space for subplot titles
+      // Layout for the entire plot with increased space and spacing
       const layout = {
         title: {
           text: 'Option Prices vs. Time to Expiry (AMZN)',
@@ -493,8 +493,8 @@ document.addEventListener('DOMContentLoaded', function () {
           x: 0.5,
           xanchor: 'center'
         },
-        grid: { rows: 2, columns: 3, pattern: 'independent' },
-        margin: { l: 80, r: 80, b: 80, t: 100 }, // Increased margins to provide more space
+        grid: { rows: 2, columns: 3, pattern: 'independent', roworder: 'top-to-bottom', xgap: 0.1, ygap: 0.1 }, // Increased gaps between subplots
+        margin: { l: 100, r: 100, b: 100, t: 120 }, // Significantly increased margins
         paper_bgcolor: '#F1F5F9',
         plot_bgcolor: '#F1F5F9',
         showlegend: true,
@@ -506,91 +506,91 @@ document.addEventListener('DOMContentLoaded', function () {
           font: { color: '#1a202c' }
         },
         // Call plots
-        xaxis: { ...baseLayout.xaxis, title: 'Time to Expiry (Years)', range: xRange },
-        yaxis: { ...baseLayout.yaxis, title: 'Option Price ($)', range: yRange },
-        xaxis2: { ...baseLayout.xaxis, range: xRange },
-        yaxis2: { ...baseLayout.yaxis, range: yRange },
-        xaxis3: { ...baseLayout.xaxis, range: xRange },
-        yaxis3: { ...baseLayout.yaxis, range: yRange },
+        xaxis: { ...baseLayout.xaxis, title: 'Time to Expiry (Years)', range: xRange, domain: [0.0, 0.3] },
+        yaxis: { ...baseLayout.yaxis, title: 'Option Price ($)', range: yRange, domain: [0.55, 1.0] },
+        xaxis2: { ...baseLayout.xaxis, range: xRange, domain: [0.4, 0.7] },
+        yaxis2: { ...baseLayout.yaxis, range: yRange, domain: [0.55, 1.0] },
+        xaxis3: { ...baseLayout.xaxis, range: xRange, domain: [0.8, 1.1] },
+        yaxis3: { ...baseLayout.yaxis, range: yRange, domain: [0.55, 1.0] },
         // Put plots
-        xaxis4: { ...baseLayout.xaxis, title: 'Time to Expiry (Years)', range: xRange },
-        yaxis4: { ...baseLayout.yaxis, title: 'Option Price ($)', range: yRange },
-        xaxis5: { ...baseLayout.xaxis, range: xRange },
-        yaxis5: { ...baseLayout.yaxis, range: yRange },
-        xaxis6: { ...baseLayout.xaxis, range: xRange },
-        yaxis6: { ...baseLayout.yaxis, range: yRange },
+        xaxis4: { ...baseLayout.xaxis, title: 'Time to Expiry (Years)', range: xRange, domain: [0.0, 0.3] },
+        yaxis4: { ...baseLayout.yaxis, title: 'Option Price ($)', range: yRange, domain: [0.0, 0.45] },
+        xaxis5: { ...baseLayout.xaxis, range: xRange, domain: [0.4, 0.7] },
+        yaxis5: { ...baseLayout.yaxis, range: yRange, domain: [0.0, 0.45] },
+        xaxis6: { ...baseLayout.xaxis, range: xRange, domain: [0.8, 1.1] },
+        yaxis6: { ...baseLayout.yaxis, range: yRange, domain: [0.0, 0.45] },
         annotations: [
           {
             text: 'Call Option Prices (ATM)',
             xref: 'paper',
             yref: 'paper',
-            x: 0.16,
-            y: 0.95,
+            x: 0.15,
+            y: 0.75,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' },
+            font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
-            yanchor: 'top',
-            yshift: 20 // Increased vertical shift for more space
+            yanchor: 'bottom',
+            yshift: 30
           },
           {
             text: 'Call Option Prices (OTM)',
             xref: 'paper',
             yref: 'paper',
-            x: 0.5,
-            y: 0.95,
+            x: 0.55,
+            y: 0.75,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' },
+            font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
-            yanchor: 'top',
-            yshift: 20 // Increased vertical shift for more space
+            yanchor: 'bottom',
+            yshift: 30
           },
           {
             text: 'Call Option Prices (ITM)',
             xref: 'paper',
             yref: 'paper',
-            x: 0.84,
-            y: 0.95,
+            x: 0.95,
+            y: 0.75,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' },
+            font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
-            yanchor: 'top',
-            yshift: 20 // Increased vertical shift for more space
+            yanchor: 'bottom',
+            yshift: 30
           },
           {
             text: 'Put Option Prices (ATM)',
             xref: 'paper',
             yref: 'paper',
-            x: 0.16,
-            y: 0.45,
+            x: 0.15,
+            y: 0.225,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' },
+            font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
-            yanchor: 'top',
-            yshift: 20 // Increased vertical shift for more space
+            yanchor: 'bottom',
+            yshift: 30
           },
           {
             text: 'Put Option Prices (OTM)',
             xref: 'paper',
             yref: 'paper',
-            x: 0.5,
-            y: 0.45,
+            x: 0.55,
+            y: 0.225,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' },
+            font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
-            yanchor: 'top',
-            yshift: 20 // Increased vertical shift for more space
+            yanchor: 'bottom',
+            yshift: 30
           },
           {
             text: 'Put Option Prices (ITM)',
             xref: 'paper',
             yref: 'paper',
-            x: 0.84,
-            y: 0.45,
+            x: 0.95,
+            y: 0.225,
             showarrow: false,
-            font: { size: 14, color: '#1a202c' },
+            font: { size: 16, color: '#1a202c' },
             xanchor: 'center',
-            yanchor: 'top',
-            yshift: 20 // Increased vertical shift for more space
+            yanchor: 'bottom',
+            yshift: 30
           }
         ]
       };
@@ -722,7 +722,7 @@ document.addEventListener('DOMContentLoaded', function () {
           name: 'LSTM Predicted Price',
           line: { color: '#ff7f0e', width: 2 } // Orange for predictions
         }
-      ];
+     ];
 
       const layout = {
         title: {
