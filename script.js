@@ -727,7 +727,6 @@ fetch('AMZN_put_option_pricing_comparison.json')
       console.error('Put comparison plot error:', error);
       displayError('comparison-plot-put', 'Failed to load put comparison plot: ' + error.message);
     });
-
 // Option Prices Scatter Plot (Call Options: ATM, OTM, ITM)
 fetch('AMZNoption_prices.json')
   .then(response => {
@@ -810,12 +809,6 @@ fetch('AMZNoption_prices.json')
         tickfont: { color: '#1a202c' },
         gridcolor: '#e2e8f0'
       },
-      yaxis: {
-        title: 'Option Price ($)',
-        titlefont: { color: '#1a202c' },
-        tickfont: { color: '#1a202c' },
-        gridcolor: '#e2e8f0'
-      },
       paper_bgcolor: '#F1F5F9',
       plot_bgcolor: '#F1F5F9'
     };
@@ -831,19 +824,19 @@ fetch('AMZNoption_prices.json')
       legend: {
         x: 0.35,
         xanchor: 'left',
-        y: 1.05,
+        y: 1.15, // Increased buffer to prevent overlap with OTM title
         orientation: 'h',
         bgcolor: 'rgba(255, 255, 255, 0.8)',
         font: { color: '#1a202c' }
       },
-      margin: { l: 80, r: 80, b: 80, t: 120 },
+      margin: { l: 80, r: 80, b: 80, t: 150 }, // Increased top margin for legend buffer
       ...sharedLayout,
       xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.33], range: xRange },
-      yaxis: { ...sharedLayout.yaxis, domain: [0.0, 1.0], range: yRange },
+      yaxis: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
       xaxis2: { ...sharedLayout.xaxis, domain: [0.34, 0.66], range: xRange },
-      yaxis2: { ...sharedLayout.yaxis, domain: [0.0, 1.0], range: yRange },
+      yaxis2: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
       xaxis3: { ...sharedLayout.xaxis, domain: [0.67, 1.0], range: xRange },
-      yaxis3: { ...sharedLayout.yaxis, domain: [0.0, 1.0], range: yRange },
+      yaxis3: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
       annotations: [
         { text: 'ATM', xref: 'paper', yref: 'paper', x: 0.165, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
@@ -953,12 +946,6 @@ fetch('AMZNoption_prices.json')
         tickfont: { color: '#1a202c' },
         gridcolor: '#e2e8f0'
       },
-      yaxis: {
-        title: 'Option Price ($)',
-        titlefont: { color: '#1a202c' },
-        tickfont: { color: '#1a202c' },
-        gridcolor: '#e2e8f0'
-      },
       paper_bgcolor: '#F1F5F9',
       plot_bgcolor: '#F1F5F9'
     };
@@ -974,19 +961,19 @@ fetch('AMZNoption_prices.json')
       legend: {
         x: 0.35,
         xanchor: 'left',
-        y: 1.05,
+        y: 1.15, // Increased buffer to prevent overlap with OTM title
         orientation: 'h',
         bgcolor: 'rgba(255, 255, 255, 0.8)',
         font: { color: '#1a202c' }
       },
-      margin: { l: 80, r: 80, b: 80, t: 120 },
+      margin: { l: 80, r: 80, b: 80, t: 150 }, // Increased top margin for legend buffer
       ...sharedLayout,
       xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.33], range: xRange },
-      yaxis: { ...sharedLayout.yaxis, domain: [0.0, 1.0], range: yRange },
+      yaxis: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
       xaxis2: { ...sharedLayout.xaxis, domain: [0.34, 0.66], range: xRange },
-      yaxis2: { ...sharedLayout.yaxis, domain: [0.0, 1.0], range: yRange },
+      yaxis2: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
       xaxis3: { ...sharedLayout.xaxis, domain: [0.67, 1.0], range: xRange },
-      yaxis3: { ...sharedLayout.yaxis, domain: [0.0, 1.0], range: yRange },
+      yaxis3: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
       annotations: [
         { text: 'ATM', xref: 'paper', yref: 'paper', x: 0.165, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
