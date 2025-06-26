@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     div.innerHTML = `<p class="text-red-600 text-center">${message}</p>`;
   }
 
-  // Fetch data for Heston surface plots
+  // Fetch data for Heston surface plots...
   fetch('AMZN_heston_surface_data.json')
     .then(response => {
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
