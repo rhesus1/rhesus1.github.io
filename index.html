@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    #option-prices-grid-plot {
+    #call-option-prices-plot, #put-option-prices-plot {
       overflow-x: auto; /* Allow horizontal scrolling if needed */
     }
   </style>
@@ -91,9 +91,14 @@
           <div id="comparison-plot-put" class="w-full max-w-xl mx-auto h-[400px]"></div>
         </div>
         <div class="mb-12">
-          <h4 class="text-lg font-semibold mb-2 text-center">Option Prices vs. Time to Expiry (ATM, OTM, ITM)</h4>
-          <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This 2x3 grid of scatter plots compares call and put option prices for Amazon across Market, Black-Scholes, and Heston models, categorized by moneyness (ATM: |strike - spot| < 5; Call OTM: 20 < strike - spot < 30; Call ITM: 10 < strike - spot < 20; Put OTM: -30 < strike - spot < -20; Put ITM: -20 < strike - spot < -10). Prices are plotted against time to expiry, with Market (black stars), Black-Scholes (blue crosses), and Heston (red triangles) models, computed using C++ with numerical optimizations.</p>
-          <div id="option-prices-grid-plot" class="w-full max-w-6xl mx-auto h-[1000px]"></div> <!-- Changed to max-w-6xl -->
+          <h4 class="text-lg font-semibold mb-2 text-center">Call Option Prices vs. Time to Expiry (ATM, OTM, ITM)</h4>
+          <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This 1x3 grid of scatter plots compares call option prices for Amazon across Market, Black-Scholes, and Heston models, categorized by moneyness (ATM: |strike - spot| < 5; OTM: 20 < strike - spot < 30; ITM: 10 < strike - spot < 20). Prices are plotted against time to expiry, with Market (black stars), Black-Scholes (blue crosses), and Heston (red triangles) models, computed using C++ with numerical optimizations.</p>
+          <div id="call-option-prices-plot" class="w-full max-w-6xl mx-auto h-[500px]"></div>
+        </div>
+        <div class="mb-12">
+          <h4 class="text-lg font-semibold mb-2 text-center">Put Option Prices vs. Time to Expiry (ATM, OTM, ITM)</h4>
+          <p class="text-grey-600 mb-4 max-w-2xl mx-auto text-center">This 1x3 grid of scatter plots compares put option prices for Amazon across Market, Black-Scholes, and Heston models, categorized by moneyness (ATM: |strike - spot| < 5; OTM: -30 < strike - spot < -20; ITM: -20 < strike - spot < -10). Prices are plotted against time to expiry, with Market (black stars), Black-Scholes (blue crosses), and Heston (red triangles) models, computed using C++ with numerical optimizations.</p>
+          <div id="put-option-prices-plot" class="w-full max-w-6xl mx-auto h-[500px]"></div>
         </div>
       </div>
     </div>
