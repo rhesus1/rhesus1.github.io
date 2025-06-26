@@ -728,167 +728,164 @@ fetch('AMZN_put_option_pricing_comparison.json')
       displayError('comparison-plot-put', 'Failed to load put comparison plot: ' + error.message);
     });
 
-fetch('AMZNoption_prices.json')
-  .then(response => {
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-    return response.json();
-  })
-  .then(data => {
-    console.log('Option prices data loaded:', data);
+// Option Prices Scatter Plot (ATM, OTM, ITM)
+  fetch('AMZNoption_prices.json')
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log('Option prices data loaded:', data);
 
-    const callData = data.filter(item => item.option_type === 'call');
-    const putData = data.filter(item => item.option_type === 'put');
+      const callData = data.filter(item => item.option_type === 'call');
+      const putData = data.filter(item => item.option_type === 'put');
 
-    if (!callData.length || !putData.length) {
-      throw new Error('Invalid option prices data: missing call or put data');
-    }
+      if (!callData.length || !putData.length) {
+        throw new Error('Invalid option prices data: missing call or put data');
+      }
 
-    const spot = 212;
-    const atmRange = 5;
-    const otmCallRange = [20, 30];
-    const itmCallRange = [10, 20];
-    const otmPutRange = [-30, -20];
-    const itmPutRange = [-20, -10];
+      const spot = 212;
+      const atmRange = 5;
+      const otmCallRange = [20, 30];
+      const itmCallRange = [10, 20];
+      const otmPutRange = [20, 30]; // Adjusted to match MATLAB code
+      const itmPutRange = [10, 20]; // Adjusted to match MATLAB code
 
-    const callAtm = callData.filter(d => Math.abs(d.strike - spot) < atmRange);
-    const callOtm = callData.filter(d => d.strike - spot > otmCallRange[0] && d.strike - spot < otmCallRange[1]);
-    const callItm = callData.filter(d => d.strike - spot > itmCallRange[0] && d.strike - spot < itmCallRange[1]);
-    const putAtm = putData.filter(d => Math.abs(d.strike - spot) < atmRange);
-    const putOtm = putData.filter(d => d.strike - spot > otmPutRange[0] && d.strike - spot < otmPutRange[1]);
-    const putItm = putData.filter(d => d.strike - spot > itmPutRange[0] && d.strike - spot < itmPutRange[1]);
+      function createScatterData(dataArray, condition, showLegend) {
+        const filtered = dataArray.filter(condition);
+        return [
+          {
+            x: filtered.map(d => d.time_to_expiry),
+            y: filtered.map(d => d.market_price),
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Market Price',
+            marker: { size: 8, symbol: 'star', color: '#000000' },
+            showlegend: showLegend
+          },
+          {
+            x: filtered.map(d => d.time_to_expiry),
+            y: filtered.map(d => d.black_scholes_price),
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Black-Scholes',
+            marker: { size: 8, symbol: 'cross', color: '#1f77b4' },
+            showlegend: showLegend
+          },
+          {
+            x: filtered.map(d => d.time_to_expiry),
+            y: filtered.map(d => d.heston_price),
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Heston',
+            marker: { size: 8, symbol: 'triangle-up', color: '#ff0000' },
+            showlegend: showLegend
+          }
+        ];
+      }
 
-    function createScatterData(dataArray, condition) {
-      const filtered = dataArray.filter(condition);
-      return [
-        {
-          x: filtered.map(d => d.time_to_expiry),
-          y: filtered.map(d => d.market_price),
-          mode: 'markers',
-          type: 'scatter',
-          name: 'Market Price',
-          marker: { size: 8, symbol: 'star', color: '#000000' },
-          showlegend: true
-        },
-        {
-          x: filtered.map(d => d.time_to_expiry),
-          y: filtered.map(d => d.black_scholes_price),
-          mode: 'markers',
-          type: 'scatter',
-          name: 'Black-Scholes',
-          marker: { size: 8, symbol: 'cross', color: '#1f77b4' },
-          showlegend: true
-        },
-        {
-          x: filtered.map(d => d.time_to_expiry),
-          y: filtered.map(d => d.heston_price),
-          mode: 'markers',
-          type: 'scatter',
-          name: 'Heston',
-          marker: { size: 8, symbol: 'triangle-up', color: '#ff0000' },
-          showlegend: true
-        }
+      const callAtmData = createScatterData(callData, d => Math.abs(d.strike - spot) < atmRange, true);
+      const callOtmData = createScatterData(callData, d => d.strike - spot > otmCallRange[0] && d.strike - spot < otmCallRange[1], false);
+      const callItmData = createScatterData(callData, d => d.strike - spot > itmCallRange[0] && d.strike - spot < itmCallRange[1], false);
+      const putAtmData = createScatterData(putData, d => Math.abs(d.strike - spot) < atmRange, false);
+      const putOtmData = createScatterData(putData, d => d.strike - spot > otmPutRange[0] && d.strike - spot < otmPutRange[1], false);
+      const putItmData = createScatterData(putData, d => d.strike - spot > itmPutRange[0] && d.strike - spot < itmPutRange[1], false);
+
+      const allPrices = [
+        ...callAtm, ...callOtm, ...callItm,
+        ...putAtm, ...putOtm, ...putItm
+      ].flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price])
+       .filter(v => v !== null && !isNaN(v));
+
+      const yRange = [0, Math.max(...allPrices) * 1.1];
+
+      const allData = callData.concat(putData);
+      const xRange = [
+        Math.min(...allData.map(d => d.time_to_expiry)),
+        Math.max(...allData.map(d => d.time_to_expiry))
       ];
-    }
 
-    const callAtmData = createScatterData(callData, d => Math.abs(d.strike - spot) < atmRange);
-    const callOtmData = createScatterData(callData, d => d.strike - spot > otmCallRange[0] && d.strike - spot < otmCallRange[1]);
-    const callItmData = createScatterData(callData, d => d.strike - spot > itmCallRange[0] && d.strike - spot < itmCallRange[1]);
-    const putAtmData = createScatterData(putData, d => Math.abs(d.strike - spot) < atmRange);
-    const putOtmData = createScatterData(putData, d => d.strike - spot > otmPutRange[0] && d.strike - spot < otmPutRange[1]);
-    const putItmData = createScatterData(putData, d => d.strike - spot > itmPutRange[0] && d.strike - spot < itmPutRange[1]);
+      const sharedLayout = {
+        xaxis: {
+          title: 'Time to Expiry (Years)',
+          titlefont: { color: '#1a202c', size: 14 },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0'
+        },
+        yaxis: {
+          title: 'Option Price ($)',
+          titlefont: { color: '#1a202c' },
+          tickfont: { color: '#1a202c' },
+          gridcolor: '#e2e8f0'
+        },
+        paper_bgcolor: '#F1F5F9',
+        plot_bgcolor: '#F1F5F9'
+      };
 
-    const allPrices = [
-      ...callAtm, ...callOtm, ...callItm,
-      ...putAtm, ...putOtm, ...putItm
-    ].flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price])
-     .filter(v => v !== null && !isNaN(v));
+      const layout = {
+        title: {
+          text: 'Option Prices vs. Time to Expiry (AMZN)',
+          font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
+          x: 0.5,
+          xanchor: 'center'
+        },
+        showlegend: true,
+        legend: {
+          x: 0.35,
+          xanchor: 'left',
+          y: 0.96,
+          orientation: 'h',
+          bgcolor: 'rgba(255, 255, 255, 0.8)',
+          font: { color: '#1a202c' }
+        },
+        margin: { l: 80, r: 80, b: 80, t: 100 },
+        ...sharedLayout,
+        xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.3], range: xRange, title: 'Time to Expiry (Years)' },
+        yaxis: { ...sharedLayout.yaxis, domain: [0.55, 1.0], range: yRange },
+        xaxis2: { ...sharedLayout.xaxis, domain: [0.35, 0.65], range: xRange, title: 'Time to Expiry (Years)' },
+        yaxis2: { ...sharedLayout.yaxis, domain: [0.55, 1.0], range: yRange },
+        xaxis3: { ...sharedLayout.xaxis, domain: [0.7, 1.0], range: xRange, title: 'Time to Expiry (Years)' },
+        yaxis3: { ...sharedLayout.yaxis, domain: [0.55, 1.0], range: yRange },
+        xaxis4: { ...sharedLayout.xaxis, domain: [0.0, 0.3], range: xRange, title: 'Time to Expiry (Years)' },
+        yaxis4: { ...sharedLayout.yaxis, domain: [0.0, 0.45], range: yRange },
+        xaxis5: { ...sharedLayout.xaxis, domain: [0.35, 0.65], range: xRange, title: 'Time to Expiry (Years)' },
+        yaxis5: { ...sharedLayout.yaxis, domain: [0.0, 0.45], range: yRange },
+        xaxis6: { ...sharedLayout.xaxis, domain: [0.7, 1.0], range: xRange, title: 'Time to Expiry (Years)' },
+        yaxis6: { ...sharedLayout.yaxis, domain: [0.0, 0.45], range: yRange },
+        annotations: [
+          { text: 'Call ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 1.0, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+          { text: 'Call OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1.0, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+          { text: 'Call ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 1.0, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+          { text: 'Put ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 0.45, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+          { text: 'Put OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 0.45, showarrow: false, font: { size: 16 }, xanchor: 'center' },
+          { text: 'Put ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 0.45, showarrow: false, font: { size: 16 }, xanchor: 'center' }
+        ]
+      };
 
-    const yRange = [0, Math.max(...allPrices) * 1.1];
+      const addTraces = (data, xaxis, yaxis, showLegend) =>
+        data.map(trace => ({
+          ...trace,
+          xaxis,
+          yaxis,
+          showlegend: showLegend
+        }));
 
-    const allData = callData.concat(putData);
-    const xRange = [
-      Math.min(...allData.map(d => d.time_to_expiry)),
-      Math.max(...allData.map(d => d.time_to_expiry))
-    ];
+      const plotData = [
+        ...addTraces(callAtmData, 'x1', 'y1', true),
+        ...addTraces(callOtmData, 'x2', 'y2', false),
+        ...addTraces(callItmData, 'x3', 'y3', false),
+        ...addTraces(putAtmData, 'x4', 'y4', false),
+        ...addTraces(putOtmData, 'x5', 'y5', false),
+        ...addTraces(putItmData, 'x6', 'y6', false)
+      ];
 
-    const sharedLayout = {
-      xaxis: {
-        title: 'Time to Expiry (Years)',
-        titlefont: { color: '#1a202c', size: 14 },
-        tickfont: { color: '#1a202c' },
-        gridcolor: '#e2e8f0'
-      },
-      yaxis: {
-        title: 'Option Price ($)',
-        titlefont: { color: '#1a202c' },
-        tickfont: { color: '#1a202c' },
-        gridcolor: '#e2e8f0'
-      },
-      paper_bgcolor: '#F1F5F9',
-      plot_bgcolor: '#F1F5F9'
-    };
+      Plotly.newPlot('option-prices-grid-plot', plotData, layout);
+    })
+    .catch(error => {
+      console.error('Option prices grid plot error:', error);
+      displayError('option-prices-grid-plot', 'Failed to load option prices grid plot: ' + error.message);
+    });
 
-    const layout = {
-      title: {
-        text: 'Option Prices vs. Time to Expiry (AMZN)',
-        font: { size: 20, family: 'Arial, sans-serif', color: '#1a202c' },
-        x: 0.5
-      },
-      showlegend: true,
-      legend: {
-        x: 1.05,
-        xanchor: 'left',
-        y: 1,
-        bgcolor: 'rgba(255, 255, 255, 0.8)',
-        font: { color: '#1a202c' }
-      },
-      margin: { l: 120, r: 120, b: 100, t: 130 },
-      ...sharedLayout,
-      xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.3], range: xRange },
-      yaxis: { ...sharedLayout.yaxis, domain: [0.44, 1.0], range: yRange },
-      xaxis2: { ...sharedLayout.xaxis, domain: [0.35, 0.65], range: xRange },
-      yaxis2: { ...sharedLayout.yaxis, domain: [0.44, 1.0], range: yRange },
-      xaxis3: { ...sharedLayout.xaxis, domain: [0.7, 1.0], range: xRange },
-      yaxis3: { ...sharedLayout.yaxis, domain: [0.44, 1.0], range: yRange },
-      xaxis4: { ...sharedLayout.xaxis, title: 'Time to Expiry (Years)', domain: [0.0, 0.3], range: xRange },
-      yaxis4: { ...sharedLayout.yaxis, domain: [0.0, 0.56], range: yRange },
-      xaxis5: { ...sharedLayout.xaxis, title: 'Time to Expiry (Years)', domain: [0.35, 0.65], range: xRange },
-      yaxis5: { ...sharedLayout.yaxis, domain: [0.0, 0.56], range: yRange },
-      xaxis6: { ...sharedLayout.xaxis, title: 'Time to Expiry (Years)', domain: [0.7, 1.0], range: xRange },
-      yaxis6: { ...sharedLayout.yaxis, domain: [0.0, 0.56], range: yRange },
-      annotations: [
-        { text: 'Call ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Call OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Call ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 1, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put ATM', xref: 'paper', yref: 'paper', x: 0.15, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' },
-        { text: 'Put ITM', xref: 'paper', yref: 'paper', x: 0.85, y: 0.3, showarrow: false, font: { size: 16 }, xanchor: 'center' }
-      ]
-    };
-
-    const addTraces = (data, xaxis, yaxis, isFirstSubplot) =>
-      data.map(trace => ({
-        ...trace,
-        xaxis,
-        yaxis,
-        showlegend: isFirstSubplot ? true : false
-      }));
-
-    const plotData = [
-      ...addTraces(callAtmData, 'x1', 'y1', true),
-      ...addTraces(callOtmData, 'x2', 'y2', false),
-      ...addTraces(callItmData, 'x3', 'y3', false),
-      ...addTraces(putAtmData, 'x4', 'y4', false),
-      ...addTraces(putOtmData, 'x5', 'y5', false),
-      ...addTraces(putItmData, 'x6', 'y6', false)
-    ];
-
-    Plotly.newPlot('option-prices-grid-plot', plotData, layout);
-  })
-  .catch(error => {
-    console.error('Option prices grid plot error:', error);
-    displayError('option-prices-grid-plot', 'Failed to load option prices grid plot: ' + error.message);
-  });
   // LSTM Predictions Plot
   Promise.all([
     fetch('AMZN_market_data.json').then(response => {
