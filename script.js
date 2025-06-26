@@ -728,6 +728,7 @@ fetch('AMZN_put_option_pricing_comparison.json')
       displayError('comparison-plot-put', 'Failed to load put comparison plot: ' + error.message);
     });
 // Option Prices Scatter Plot (Call Options: ATM, OTM, ITM)
+// Option Prices Scatter Plot (Call Options: ATM, OTM, ITM)
 fetch('AMZNoption_prices.json')
   .then(response => {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -789,12 +790,18 @@ fetch('AMZNoption_prices.json')
     const callOtmTraces = createScatterData(callOtmData, false);
     const callItmTraces = createScatterData(callItmData, false);
 
-    // Calculate yRange using filtered call data
-    const allPrices = [...callAtmData, ...callOtmData, ...callItmData]
-      .flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price])
-      .filter(v => v !== null && !isNaN(v));
+    // Calculate individual yRange for each subplot
+    const getYRange = (dataArray) => {
+      const prices = dataArray.flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price])
+        .filter(v => v !== null && !isNaN(v));
+      const minPrice = Math.min(...prices);
+      const maxPrice = Math.max(...prices);
+      return [minPrice > 0 ? 0 : minPrice * 1.1, maxPrice * 1.1];
+    };
 
-    const yRange = [0, Math.max(...allPrices) * 1.1];
+    const callAtmYRange = getYRange(callAtmData);
+    const callOtmYRange = getYRange(callOtmData);
+    const callItmYRange = getYRange(callItmData);
 
     const allCallData = callData;
     const xRange = [
@@ -824,19 +831,19 @@ fetch('AMZNoption_prices.json')
       legend: {
         x: 0.35,
         xanchor: 'left',
-        y: 1.15, // Increased buffer to prevent overlap with OTM title
+        y: 1.15,
         orientation: 'h',
         bgcolor: 'rgba(255, 255, 255, 0.8)',
         font: { color: '#1a202c' }
       },
-      margin: { l: 80, r: 80, b: 80, t: 150 }, // Increased top margin for legend buffer
+      margin: { l: 80, r: 80, b: 80, t: 150 },
       ...sharedLayout,
       xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.33], range: xRange },
-      yaxis: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
+      yaxis: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: callAtmYRange },
       xaxis2: { ...sharedLayout.xaxis, domain: [0.34, 0.66], range: xRange },
-      yaxis2: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
+      yaxis2: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: callOtmYRange },
       xaxis3: { ...sharedLayout.xaxis, domain: [0.67, 1.0], range: xRange },
-      yaxis3: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
+      yaxis3: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: callItmYRange },
       annotations: [
         { text: 'ATM', xref: 'paper', yref: 'paper', x: 0.165, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
@@ -926,12 +933,18 @@ fetch('AMZNoption_prices.json')
     const putOtmTraces = createScatterData(putOtmData, false);
     const putItmTraces = createScatterData(putItmData, false);
 
-    // Calculate yRange using filtered put data
-    const allPrices = [...putAtmData, ...putOtmData, ...putItmData]
-      .flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price])
-      .filter(v => v !== null && !isNaN(v));
+    // Calculate individual yRange for each subplot
+    const getYRange = (dataArray) => {
+      const prices = dataArray.flatMap(d => [d.market_price, d.black_scholes_price, d.heston_price])
+        .filter(v => v !== null && !isNaN(v));
+      const minPrice = Math.min(...prices);
+      const maxPrice = Math.max(...prices);
+      return [minPrice > 0 ? 0 : minPrice * 1.1, maxPrice * 1.1];
+    };
 
-    const yRange = [0, Math.max(...allPrices) * 1.1];
+    const putAtmYRange = getYRange(putAtmData);
+    const putOtmYRange = getYRange(putOtmData);
+    const putItmYRange = getYRange(putItmData);
 
     const allPutData = putData;
     const xRange = [
@@ -961,19 +974,19 @@ fetch('AMZNoption_prices.json')
       legend: {
         x: 0.35,
         xanchor: 'left',
-        y: 1.15, // Increased buffer to prevent overlap with OTM title
+        y: 1.15,
         orientation: 'h',
         bgcolor: 'rgba(255, 255, 255, 0.8)',
         font: { color: '#1a202c' }
       },
-      margin: { l: 80, r: 80, b: 80, t: 150 }, // Increased top margin for legend buffer
+      margin: { l: 80, r: 80, b: 80, t: 150 },
       ...sharedLayout,
       xaxis: { ...sharedLayout.xaxis, domain: [0.0, 0.33], range: xRange },
-      yaxis: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
+      yaxis: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: putAtmYRange },
       xaxis2: { ...sharedLayout.xaxis, domain: [0.34, 0.66], range: xRange },
-      yaxis2: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
+      yaxis2: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: putOtmYRange },
       xaxis3: { ...sharedLayout.xaxis, domain: [0.67, 1.0], range: xRange },
-      yaxis3: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: yRange },
+      yaxis3: { title: 'Option Price ($)', titlefont: { color: '#1a202c' }, tickfont: { color: '#1a202c' }, gridcolor: '#e2e8f0', range: putItmYRange },
       annotations: [
         { text: 'ATM', xref: 'paper', yref: 'paper', x: 0.165, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
         { text: 'OTM', xref: 'paper', yref: 'paper', x: 0.5, y: 1.05, showarrow: false, font: { size: 16 }, xanchor: 'center' },
